@@ -23,4 +23,3 @@ Excute de code using the command **_python Lexer.py code.c_**
 Excute de code using the command **_python3 Lexer.py code.c_**
 
 **NOTE:** If you want to run a different string to test the compiler's operation, you need to edit the file _code.xd_ 
-# CompiladorPython
