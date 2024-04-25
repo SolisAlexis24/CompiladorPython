@@ -10,7 +10,7 @@ precedence = (
     ('left', 'POTENCIA')
 )
 
-start = 'D'
+start = 'P'
 symbolTable = {}
 
 
