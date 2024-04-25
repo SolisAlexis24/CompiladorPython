@@ -1,0 +1,557 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    DIFERENTE
+    IGUAL
+    MAYOR
+    MAYORIG
+    MENOR
+    MENORIG
+    NOT
+    OR
+    bool
+    else
+    false
+    if
+    true
+
+Grammar
+
+Rule 0     S' -> D
+Rule 1     empty -> <empty>
+Rule 2     P -> int main LlaveI C return ENTERO PyC LlaveD
+Rule 3     C -> D
+Rule 4     C -> empty
+Rule 5     D -> int ID PyC C
+Rule 6     D -> int ID ASIGNA E PyC C
+Rule 7     D -> ID ASIGNA E PyC C
+Rule 8     E -> E MAS T
+Rule 9     E -> E MENOS T
+Rule 10    E -> T
+Rule 11    T -> T POR F
+Rule 12    T -> T DIVIDE F
+Rule 13    T -> F
+Rule 14    F -> F POTENCIA H
+Rule 15    F -> H
+Rule 16    H -> ParI E ParD
+Rule 17    H -> ID
+Rule 18    H -> ENTERO
+
+Terminals, with rules where they appear
+
+AND                  : 
+ASIGNA               : 6 7
+DIFERENTE            : 
+DIVIDE               : 12
+ENTERO               : 2 18
+ID                   : 5 6 7 17
+IGUAL                : 
+LlaveD               : 2
+LlaveI               : 2
+MAS                  : 8
+MAYOR                : 
+MAYORIG              : 
+MENOR                : 
+MENORIG              : 
+MENOS                : 9
+NOT                  : 
+OR                   : 
+POR                  : 11
+POTENCIA             : 14
+ParD                 : 16
+ParI                 : 16
+PyC                  : 2 5 6 7
+bool                 : 
+else                 : 
+error                : 
+false                : 
+if                   : 
+int                  : 2 5 6
+main                 : 2
+return               : 2
+true                 : 
+
+Nonterminals, with rules where they appear
+
+C                    : 2 5 6 7
+D                    : 3 0
+E                    : 6 7 8 9 16
+F                    : 11 12 13 14
+H                    : 14 15
+P                    : 
+T                    : 8 9 10 11 12
+empty                : 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . D
+    (5) D -> . int ID PyC C
+    (6) D -> . int ID ASIGNA E PyC C
+    (7) D -> . ID ASIGNA E PyC C
+
+    int             shift and go to state 2
+    ID              shift and go to state 3
+
+    D                              shift and go to state 1
+
+state 1
+
+    (0) S' -> D .
+
+
+
+state 2
+
+    (5) D -> int . ID PyC C
+    (6) D -> int . ID ASIGNA E PyC C
+
+    ID              shift and go to state 4
+
+
+state 3
+
+    (7) D -> ID . ASIGNA E PyC C
+
+    ASIGNA          shift and go to state 5
+
+
+state 4
+
+    (5) D -> int ID . PyC C
+    (6) D -> int ID . ASIGNA E PyC C
+
+    PyC             shift and go to state 6
+    ASIGNA          shift and go to state 7
+
+
+state 5
+
+    (7) D -> ID ASIGNA . E PyC C
+    (8) E -> . E MAS T
+    (9) E -> . E MENOS T
+    (10) E -> . T
+    (11) T -> . T POR F
+    (12) T -> . T DIVIDE F
+    (13) T -> . F
+    (14) F -> . F POTENCIA H
+    (15) F -> . H
+    (16) H -> . ParI E ParD
+    (17) H -> . ID
+    (18) H -> . ENTERO
+
+    ParI            shift and go to state 13
+    ID              shift and go to state 8
+    ENTERO          shift and go to state 14
+
+    E                              shift and go to state 9
+    T                              shift and go to state 10
+    F                              shift and go to state 11
+    H                              shift and go to state 12
+
+state 6
+
+    (5) D -> int ID PyC . C
+    (3) C -> . D
+    (4) C -> . empty
+    (5) D -> . int ID PyC C
+    (6) D -> . int ID ASIGNA E PyC C
+    (7) D -> . ID ASIGNA E PyC C
+    (1) empty -> .
+
+    int             shift and go to state 2
+    ID              shift and go to state 3
+    $end            reduce using rule 1 (empty -> .)
+
+    C                              shift and go to state 15
+    D                              shift and go to state 16
+    empty                          shift and go to state 17
+
+state 7
+
+    (6) D -> int ID ASIGNA . E PyC C
+    (8) E -> . E MAS T
+    (9) E -> . E MENOS T
+    (10) E -> . T
+    (11) T -> . T POR F
+    (12) T -> . T DIVIDE F
+    (13) T -> . F
+    (14) F -> . F POTENCIA H
+    (15) F -> . H
+    (16) H -> . ParI E ParD
+    (17) H -> . ID
+    (18) H -> . ENTERO
+
+    ParI            shift and go to state 13
+    ID              shift and go to state 8
+    ENTERO          shift and go to state 14
+
+    E                              shift and go to state 18
+    T                              shift and go to state 10
+    F                              shift and go to state 11
+    H                              shift and go to state 12
+
+state 8
+
+    (17) H -> ID .
+
+    POTENCIA        reduce using rule 17 (H -> ID .)
+    POR             reduce using rule 17 (H -> ID .)
+    DIVIDE          reduce using rule 17 (H -> ID .)
+    PyC             reduce using rule 17 (H -> ID .)
+    MAS             reduce using rule 17 (H -> ID .)
+    MENOS           reduce using rule 17 (H -> ID .)
+    ParD            reduce using rule 17 (H -> ID .)
+
+
+state 9
+
+    (7) D -> ID ASIGNA E . PyC C
+    (8) E -> E . MAS T
+    (9) E -> E . MENOS T
+
+    PyC             shift and go to state 19
+    MAS             shift and go to state 20
+    MENOS           shift and go to state 21
+
+
+state 10
+
+    (10) E -> T .
+    (11) T -> T . POR F
+    (12) T -> T . DIVIDE F
+
+    PyC             reduce using rule 10 (E -> T .)
+    MAS             reduce using rule 10 (E -> T .)
+    MENOS           reduce using rule 10 (E -> T .)
+    ParD            reduce using rule 10 (E -> T .)
+    POR             shift and go to state 22
+    DIVIDE          shift and go to state 23
+
+
+state 11
+
+    (13) T -> F .
+    (14) F -> F . POTENCIA H
+
+    POR             reduce using rule 13 (T -> F .)
+    DIVIDE          reduce using rule 13 (T -> F .)
+    PyC             reduce using rule 13 (T -> F .)
+    MAS             reduce using rule 13 (T -> F .)
+    MENOS           reduce using rule 13 (T -> F .)
+    ParD            reduce using rule 13 (T -> F .)
+    POTENCIA        shift and go to state 24
+
+
+state 12
+
+    (15) F -> H .
+
+    POTENCIA        reduce using rule 15 (F -> H .)
+    POR             reduce using rule 15 (F -> H .)
+    DIVIDE          reduce using rule 15 (F -> H .)
+    PyC             reduce using rule 15 (F -> H .)
+    MAS             reduce using rule 15 (F -> H .)
+    MENOS           reduce using rule 15 (F -> H .)
+    ParD            reduce using rule 15 (F -> H .)
+
+
+state 13
+
+    (16) H -> ParI . E ParD
+    (8) E -> . E MAS T
+    (9) E -> . E MENOS T
+    (10) E -> . T
+    (11) T -> . T POR F
+    (12) T -> . T DIVIDE F
+    (13) T -> . F
+    (14) F -> . F POTENCIA H
+    (15) F -> . H
+    (16) H -> . ParI E ParD
+    (17) H -> . ID
+    (18) H -> . ENTERO
+
+    ParI            shift and go to state 13
+    ID              shift and go to state 8
+    ENTERO          shift and go to state 14
+
+    E                              shift and go to state 25
+    T                              shift and go to state 10
+    F                              shift and go to state 11
+    H                              shift and go to state 12
+
+state 14
+
+    (18) H -> ENTERO .
+
+    POTENCIA        reduce using rule 18 (H -> ENTERO .)
+    POR             reduce using rule 18 (H -> ENTERO .)
+    DIVIDE          reduce using rule 18 (H -> ENTERO .)
+    PyC             reduce using rule 18 (H -> ENTERO .)
+    MAS             reduce using rule 18 (H -> ENTERO .)
+    MENOS           reduce using rule 18 (H -> ENTERO .)
+    ParD            reduce using rule 18 (H -> ENTERO .)
+
+
+state 15
+
+    (5) D -> int ID PyC C .
+
+    $end            reduce using rule 5 (D -> int ID PyC C .)
+
+
+state 16
+
+    (3) C -> D .
+
+    $end            reduce using rule 3 (C -> D .)
+
+
+state 17
+
+    (4) C -> empty .
+
+    $end            reduce using rule 4 (C -> empty .)
+
+
+state 18
+
+    (6) D -> int ID ASIGNA E . PyC C
+    (8) E -> E . MAS T
+    (9) E -> E . MENOS T
+
+    PyC             shift and go to state 26
+    MAS             shift and go to state 20
+    MENOS           shift and go to state 21
+
+
+state 19
+
+    (7) D -> ID ASIGNA E PyC . C
+    (3) C -> . D
+    (4) C -> . empty
+    (5) D -> . int ID PyC C
+    (6) D -> . int ID ASIGNA E PyC C
+    (7) D -> . ID ASIGNA E PyC C
+    (1) empty -> .
+
+    int             shift and go to state 2
+    ID              shift and go to state 3
+    $end            reduce using rule 1 (empty -> .)
+
+    C                              shift and go to state 27
+    D                              shift and go to state 16
+    empty                          shift and go to state 17
+
+state 20
+
+    (8) E -> E MAS . T
+    (11) T -> . T POR F
+    (12) T -> . T DIVIDE F
+    (13) T -> . F
+    (14) F -> . F POTENCIA H
+    (15) F -> . H
+    (16) H -> . ParI E ParD
+    (17) H -> . ID
+    (18) H -> . ENTERO
+
+    ParI            shift and go to state 13
+    ID              shift and go to state 8
+    ENTERO          shift and go to state 14
+
+    T                              shift and go to state 28
+    F                              shift and go to state 11
+    H                              shift and go to state 12
+
+state 21
+
+    (9) E -> E MENOS . T
+    (11) T -> . T POR F
+    (12) T -> . T DIVIDE F
+    (13) T -> . F
+    (14) F -> . F POTENCIA H
+    (15) F -> . H
+    (16) H -> . ParI E ParD
+    (17) H -> . ID
+    (18) H -> . ENTERO
+
+    ParI            shift and go to state 13
+    ID              shift and go to state 8
+    ENTERO          shift and go to state 14
+
+    T                              shift and go to state 29
+    F                              shift and go to state 11
+    H                              shift and go to state 12
+
+state 22
+
+    (11) T -> T POR . F
+    (14) F -> . F POTENCIA H
+    (15) F -> . H
+    (16) H -> . ParI E ParD
+    (17) H -> . ID
+    (18) H -> . ENTERO
+
+    ParI            shift and go to state 13
+    ID              shift and go to state 8
+    ENTERO          shift and go to state 14
+
+    F                              shift and go to state 30
+    H                              shift and go to state 12
+
+state 23
+
+    (12) T -> T DIVIDE . F
+    (14) F -> . F POTENCIA H
+    (15) F -> . H
+    (16) H -> . ParI E ParD
+    (17) H -> . ID
+    (18) H -> . ENTERO
+
+    ParI            shift and go to state 13
+    ID              shift and go to state 8
+    ENTERO          shift and go to state 14
+
+    F                              shift and go to state 31
+    H                              shift and go to state 12
+
+state 24
+
+    (14) F -> F POTENCIA . H
+    (16) H -> . ParI E ParD
+    (17) H -> . ID
+    (18) H -> . ENTERO
+
+    ParI            shift and go to state 13
+    ID              shift and go to state 8
+    ENTERO          shift and go to state 14
+
+    H                              shift and go to state 32
+
+state 25
+
+    (16) H -> ParI E . ParD
+    (8) E -> E . MAS T
+    (9) E -> E . MENOS T
+
+    ParD            shift and go to state 33
+    MAS             shift and go to state 20
+    MENOS           shift and go to state 21
+
+
+state 26
+
+    (6) D -> int ID ASIGNA E PyC . C
+    (3) C -> . D
+    (4) C -> . empty
+    (5) D -> . int ID PyC C
+    (6) D -> . int ID ASIGNA E PyC C
+    (7) D -> . ID ASIGNA E PyC C
+    (1) empty -> .
+
+    int             shift and go to state 2
+    ID              shift and go to state 3
+    $end            reduce using rule 1 (empty -> .)
+
+    C                              shift and go to state 34
+    D                              shift and go to state 16
+    empty                          shift and go to state 17
+
+state 27
+
+    (7) D -> ID ASIGNA E PyC C .
+
+    $end            reduce using rule 7 (D -> ID ASIGNA E PyC C .)
+
+
+state 28
+
+    (8) E -> E MAS T .
+    (11) T -> T . POR F
+    (12) T -> T . DIVIDE F
+
+    PyC             reduce using rule 8 (E -> E MAS T .)
+    MAS             reduce using rule 8 (E -> E MAS T .)
+    MENOS           reduce using rule 8 (E -> E MAS T .)
+    ParD            reduce using rule 8 (E -> E MAS T .)
+    POR             shift and go to state 22
+    DIVIDE          shift and go to state 23
+
+
+state 29
+
+    (9) E -> E MENOS T .
+    (11) T -> T . POR F
+    (12) T -> T . DIVIDE F
+
+    PyC             reduce using rule 9 (E -> E MENOS T .)
+    MAS             reduce using rule 9 (E -> E MENOS T .)
+    MENOS           reduce using rule 9 (E -> E MENOS T .)
+    ParD            reduce using rule 9 (E -> E MENOS T .)
+    POR             shift and go to state 22
+    DIVIDE          shift and go to state 23
+
+
+state 30
+
+    (11) T -> T POR F .
+    (14) F -> F . POTENCIA H
+
+    POR             reduce using rule 11 (T -> T POR F .)
+    DIVIDE          reduce using rule 11 (T -> T POR F .)
+    PyC             reduce using rule 11 (T -> T POR F .)
+    MAS             reduce using rule 11 (T -> T POR F .)
+    MENOS           reduce using rule 11 (T -> T POR F .)
+    ParD            reduce using rule 11 (T -> T POR F .)
+    POTENCIA        shift and go to state 24
+
+
+state 31
+
+    (12) T -> T DIVIDE F .
+    (14) F -> F . POTENCIA H
+
+    POR             reduce using rule 12 (T -> T DIVIDE F .)
+    DIVIDE          reduce using rule 12 (T -> T DIVIDE F .)
+    PyC             reduce using rule 12 (T -> T DIVIDE F .)
+    MAS             reduce using rule 12 (T -> T DIVIDE F .)
+    MENOS           reduce using rule 12 (T -> T DIVIDE F .)
+    ParD            reduce using rule 12 (T -> T DIVIDE F .)
+    POTENCIA        shift and go to state 24
+
+
+state 32
+
+    (14) F -> F POTENCIA H .
+
+    POTENCIA        reduce using rule 14 (F -> F POTENCIA H .)
+    POR             reduce using rule 14 (F -> F POTENCIA H .)
+    DIVIDE          reduce using rule 14 (F -> F POTENCIA H .)
+    PyC             reduce using rule 14 (F -> F POTENCIA H .)
+    MAS             reduce using rule 14 (F -> F POTENCIA H .)
+    MENOS           reduce using rule 14 (F -> F POTENCIA H .)
+    ParD            reduce using rule 14 (F -> F POTENCIA H .)
+
+
+state 33
+
+    (16) H -> ParI E ParD .
+
+    POTENCIA        reduce using rule 16 (H -> ParI E ParD .)
+    POR             reduce using rule 16 (H -> ParI E ParD .)
+    DIVIDE          reduce using rule 16 (H -> ParI E ParD .)
+    PyC             reduce using rule 16 (H -> ParI E ParD .)
+    MAS             reduce using rule 16 (H -> ParI E ParD .)
+    MENOS           reduce using rule 16 (H -> ParI E ParD .)
+    ParD            reduce using rule 16 (H -> ParI E ParD .)
+
+
+state 34
+
+    (6) D -> int ID ASIGNA E PyC C .
+
+    $end            reduce using rule 6 (D -> int ID ASIGNA E PyC C .)
+
