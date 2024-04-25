@@ -42,7 +42,7 @@ def p_D_integer_dec(t):
         symbolTable[t[2]] = t[4] #Se agrega a la tabla de simbolos
 
     elif len(t) == 6:
-        symbolTable[t[1]] = t[3] #Se asigna el valor (ID = E)
+            symbolTable[t[1]] = t[3] #Se asigna el valor (ID = E)
 
 # Regla para las expresiones aritmeticas mas y menos (mismo nivel de precedencia)
 def p_E_arith(t):
@@ -111,16 +111,6 @@ def parse_file(filename):
     print("Lexical analysis success")
     parser.parse(data)
 
-#parse_file("scode.c")
-
-codigo = [
-    "int perro_1 = 5*2+3;",
-    "int perro_2 = 6/2;",
-    "int perro_3 = 2**2;",
-    "int perro_4 = perro_1 + perro_2;"
-]
-
-for i in codigo:
-    parser.parse(i)
+parse_file("scode.c")
 
 print(symbolTable)

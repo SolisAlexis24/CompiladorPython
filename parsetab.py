@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'DleftMASMENOSleftPORDIVIDEleftPOTENCIAAND ASIGNA DIFERENTE DIVIDE ENTERO ID IGUAL LlaveD LlaveI MAS MAYOR MAYORIG MENOR MENORIG MENOS NOT OR POR POTENCIA ParD ParI PyC bool else false if int main return trueempty :P : int main LlaveI C return ENTERO PyC LlaveDC : D\n         | emptyD : int ID PyC C\n         | int ID ASIGNA E PyC C\n         | ID ASIGNA E PyC C E : E MAS T\n         | E MENOS TE : TT : T POR F\n         | T DIVIDE FT : FF : F POTENCIA HF : HH : ParI E ParDH : IDH : ENTERO'
+_lr_signature = 'PleftMASMENOSleftPORDIVIDEleftPOTENCIAAND ASIGNA DIFERENTE DIVIDE ENTERO ID IGUAL LlaveD LlaveI MAS MAYOR MAYORIG MENOR MENORIG MENOS NOT OR POR POTENCIA ParD ParI PyC bool else false if int main return trueempty :P : int main LlaveI C return ENTERO PyC LlaveDC : D\n         | emptyD : int ID PyC C\n         | int ID ASIGNA E PyC C\n         | ID ASIGNA E PyC C E : E MAS T\n         | E MENOS TE : TT : T POR F\n         | T DIVIDE FT : FF : F POTENCIA HF : HH : ParI E ParDH : IDH : ENTERO'
     
-_lr_action_items = {'int':([0,6,19,26,],[2,2,2,2,]),'ID':([0,2,5,6,7,13,19,20,21,22,23,24,26,],[3,4,8,3,8,8,3,8,8,8,8,8,3,]),'$end':([1,6,15,16,17,19,26,27,34,],[0,-1,-5,-3,-4,-1,-1,-7,-6,]),'ASIGNA':([3,4,],[5,7,]),'PyC':([4,8,9,10,11,12,14,18,28,29,30,31,32,33,],[6,-17,19,-10,-13,-15,-18,26,-8,-9,-11,-12,-14,-16,]),'ParI':([5,7,13,20,21,22,23,24,],[13,13,13,13,13,13,13,13,]),'ENTERO':([5,7,13,20,21,22,23,24,],[14,14,14,14,14,14,14,14,]),'POTENCIA':([8,11,12,14,30,31,32,33,],[-17,24,-15,-18,24,24,-14,-16,]),'POR':([8,10,11,12,14,28,29,30,31,32,33,],[-17,22,-13,-15,-18,22,22,-11,-12,-14,-16,]),'DIVIDE':([8,10,11,12,14,28,29,30,31,32,33,],[-17,23,-13,-15,-18,23,23,-11,-12,-14,-16,]),'MAS':([8,9,10,11,12,14,18,25,28,29,30,31,32,33,],[-17,20,-10,-13,-15,-18,20,20,-8,-9,-11,-12,-14,-16,]),'MENOS':([8,9,10,11,12,14,18,25,28,29,30,31,32,33,],[-17,21,-10,-13,-15,-18,21,21,-8,-9,-11,-12,-14,-16,]),'ParD':([8,10,11,12,14,25,28,29,30,31,32,33,],[-17,-10,-13,-15,-18,33,-8,-9,-11,-12,-14,-16,]),}
+_lr_action_items = {'int':([0,4,13,26,33,],[2,5,5,5,5,]),'$end':([1,34,],[0,-2,]),'main':([2,],[3,]),'LlaveI':([3,],[4,]),'ID':([4,5,12,13,14,21,26,27,28,29,30,31,33,],[9,10,16,9,16,16,9,16,16,16,16,16,9,]),'return':([4,6,7,8,13,23,26,33,35,42,],[-1,11,-3,-4,-1,-5,-1,-1,-7,-6,]),'ASIGNA':([9,10,],[12,14,]),'PyC':([10,15,16,17,18,19,20,22,24,36,37,38,39,40,41,],[13,25,-17,26,-10,-13,-15,-18,33,-8,-9,-11,-12,-14,-16,]),'ENTERO':([11,12,14,21,27,28,29,30,31,],[15,22,22,22,22,22,22,22,22,]),'ParI':([12,14,21,27,28,29,30,31,],[21,21,21,21,21,21,21,21,]),'POTENCIA':([16,19,20,22,38,39,40,41,],[-17,31,-15,-18,31,31,-14,-16,]),'POR':([16,18,19,20,22,36,37,38,39,40,41,],[-17,29,-13,-15,-18,29,29,-11,-12,-14,-16,]),'DIVIDE':([16,18,19,20,22,36,37,38,39,40,41,],[-17,30,-13,-15,-18,30,30,-11,-12,-14,-16,]),'MAS':([16,17,18,19,20,22,24,32,36,37,38,39,40,41,],[-17,27,-10,-13,-15,-18,27,27,-8,-9,-11,-12,-14,-16,]),'MENOS':([16,17,18,19,20,22,24,32,36,37,38,39,40,41,],[-17,28,-10,-13,-15,-18,28,28,-8,-9,-11,-12,-14,-16,]),'ParD':([16,18,19,20,22,32,36,37,38,39,40,41,],[-17,-10,-13,-15,-18,41,-8,-9,-11,-12,-14,-16,]),'LlaveD':([25,],[34,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'D':([0,6,19,26,],[1,16,16,16,]),'E':([5,7,13,],[9,18,25,]),'T':([5,7,13,20,21,],[10,10,10,28,29,]),'F':([5,7,13,20,21,22,23,],[11,11,11,11,11,30,31,]),'H':([5,7,13,20,21,22,23,24,],[12,12,12,12,12,12,12,32,]),'C':([6,19,26,],[15,27,34,]),'empty':([6,19,26,],[17,17,17,]),}
+_lr_goto_items = {'P':([0,],[1,]),'C':([4,13,26,33,],[6,23,35,42,]),'D':([4,13,26,33,],[7,7,7,7,]),'empty':([4,13,26,33,],[8,8,8,8,]),'E':([12,14,21,],[17,24,32,]),'T':([12,14,21,27,28,],[18,18,18,36,37,]),'F':([12,14,21,27,28,29,30,],[19,19,19,19,19,38,39,]),'H':([12,14,21,27,28,29,30,31,],[20,20,20,20,20,20,20,40,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,7 +26,7 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> D","S'",1,None,None,None),
+  ("S' -> P","S'",1,None,None,None),
   ('empty -> <empty>','empty',0,'p_empty','parser.py',19),
   ('P -> int main LlaveI C return ENTERO PyC LlaveD','P',8,'p_P_program','parser.py',24),
   ('C -> D','C',1,'p_C_code','parser.py',30),

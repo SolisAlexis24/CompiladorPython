@@ -19,7 +19,7 @@ Unused terminals:
 
 Grammar
 
-Rule 0     S' -> D
+Rule 0     S' -> P
 Rule 1     empty -> <empty>
 Rule 2     P -> int main LlaveI C return ENTERO PyC LlaveD
 Rule 3     C -> D
@@ -76,11 +76,11 @@ true                 :
 Nonterminals, with rules where they appear
 
 C                    : 2 5 6 7
-D                    : 3 0
+D                    : 3
 E                    : 6 7 8 9 16
 F                    : 11 12 13 14
 H                    : 14 15
-P                    : 
+P                    : 0
 T                    : 8 9 10 11 12
 empty                : 4
 
@@ -88,47 +88,104 @@ Parsing method: LALR
 
 state 0
 
-    (0) S' -> . D
-    (5) D -> . int ID PyC C
-    (6) D -> . int ID ASIGNA E PyC C
-    (7) D -> . ID ASIGNA E PyC C
+    (0) S' -> . P
+    (2) P -> . int main LlaveI C return ENTERO PyC LlaveD
 
     int             shift and go to state 2
-    ID              shift and go to state 3
 
-    D                              shift and go to state 1
+    P                              shift and go to state 1
 
 state 1
 
-    (0) S' -> D .
+    (0) S' -> P .
 
 
 
 state 2
 
-    (5) D -> int . ID PyC C
-    (6) D -> int . ID ASIGNA E PyC C
+    (2) P -> int . main LlaveI C return ENTERO PyC LlaveD
 
-    ID              shift and go to state 4
+    main            shift and go to state 3
 
 
 state 3
 
-    (7) D -> ID . ASIGNA E PyC C
+    (2) P -> int main . LlaveI C return ENTERO PyC LlaveD
 
-    ASIGNA          shift and go to state 5
+    LlaveI          shift and go to state 4
 
 
 state 4
 
+    (2) P -> int main LlaveI . C return ENTERO PyC LlaveD
+    (3) C -> . D
+    (4) C -> . empty
+    (5) D -> . int ID PyC C
+    (6) D -> . int ID ASIGNA E PyC C
+    (7) D -> . ID ASIGNA E PyC C
+    (1) empty -> .
+
+    int             shift and go to state 5
+    ID              shift and go to state 9
+    return          reduce using rule 1 (empty -> .)
+
+    C                              shift and go to state 6
+    D                              shift and go to state 7
+    empty                          shift and go to state 8
+
+state 5
+
+    (5) D -> int . ID PyC C
+    (6) D -> int . ID ASIGNA E PyC C
+
+    ID              shift and go to state 10
+
+
+state 6
+
+    (2) P -> int main LlaveI C . return ENTERO PyC LlaveD
+
+    return          shift and go to state 11
+
+
+state 7
+
+    (3) C -> D .
+
+    return          reduce using rule 3 (C -> D .)
+
+
+state 8
+
+    (4) C -> empty .
+
+    return          reduce using rule 4 (C -> empty .)
+
+
+state 9
+
+    (7) D -> ID . ASIGNA E PyC C
+
+    ASIGNA          shift and go to state 12
+
+
+state 10
+
     (5) D -> int ID . PyC C
     (6) D -> int ID . ASIGNA E PyC C
 
-    PyC             shift and go to state 6
-    ASIGNA          shift and go to state 7
+    PyC             shift and go to state 13
+    ASIGNA          shift and go to state 14
 
 
-state 5
+state 11
+
+    (2) P -> int main LlaveI C return . ENTERO PyC LlaveD
+
+    ENTERO          shift and go to state 15
+
+
+state 12
 
     (7) D -> ID ASIGNA . E PyC C
     (8) E -> . E MAS T
@@ -143,16 +200,16 @@ state 5
     (17) H -> . ID
     (18) H -> . ENTERO
 
-    ParI            shift and go to state 13
-    ID              shift and go to state 8
-    ENTERO          shift and go to state 14
+    ParI            shift and go to state 21
+    ID              shift and go to state 16
+    ENTERO          shift and go to state 22
 
-    E                              shift and go to state 9
-    T                              shift and go to state 10
-    F                              shift and go to state 11
-    H                              shift and go to state 12
+    E                              shift and go to state 17
+    T                              shift and go to state 18
+    F                              shift and go to state 19
+    H                              shift and go to state 20
 
-state 6
+state 13
 
     (5) D -> int ID PyC . C
     (3) C -> . D
@@ -162,15 +219,15 @@ state 6
     (7) D -> . ID ASIGNA E PyC C
     (1) empty -> .
 
-    int             shift and go to state 2
-    ID              shift and go to state 3
-    $end            reduce using rule 1 (empty -> .)
+    int             shift and go to state 5
+    ID              shift and go to state 9
+    return          reduce using rule 1 (empty -> .)
 
-    C                              shift and go to state 15
-    D                              shift and go to state 16
-    empty                          shift and go to state 17
+    C                              shift and go to state 23
+    D                              shift and go to state 7
+    empty                          shift and go to state 8
 
-state 7
+state 14
 
     (6) D -> int ID ASIGNA . E PyC C
     (8) E -> . E MAS T
@@ -185,16 +242,23 @@ state 7
     (17) H -> . ID
     (18) H -> . ENTERO
 
-    ParI            shift and go to state 13
-    ID              shift and go to state 8
-    ENTERO          shift and go to state 14
+    ParI            shift and go to state 21
+    ID              shift and go to state 16
+    ENTERO          shift and go to state 22
 
-    E                              shift and go to state 18
-    T                              shift and go to state 10
-    F                              shift and go to state 11
-    H                              shift and go to state 12
+    E                              shift and go to state 24
+    T                              shift and go to state 18
+    F                              shift and go to state 19
+    H                              shift and go to state 20
 
-state 8
+state 15
+
+    (2) P -> int main LlaveI C return ENTERO . PyC LlaveD
+
+    PyC             shift and go to state 25
+
+
+state 16
 
     (17) H -> ID .
 
@@ -207,18 +271,18 @@ state 8
     ParD            reduce using rule 17 (H -> ID .)
 
 
-state 9
+state 17
 
     (7) D -> ID ASIGNA E . PyC C
     (8) E -> E . MAS T
     (9) E -> E . MENOS T
 
-    PyC             shift and go to state 19
-    MAS             shift and go to state 20
-    MENOS           shift and go to state 21
+    PyC             shift and go to state 26
+    MAS             shift and go to state 27
+    MENOS           shift and go to state 28
 
 
-state 10
+state 18
 
     (10) E -> T .
     (11) T -> T . POR F
@@ -228,11 +292,11 @@ state 10
     MAS             reduce using rule 10 (E -> T .)
     MENOS           reduce using rule 10 (E -> T .)
     ParD            reduce using rule 10 (E -> T .)
-    POR             shift and go to state 22
-    DIVIDE          shift and go to state 23
+    POR             shift and go to state 29
+    DIVIDE          shift and go to state 30
 
 
-state 11
+state 19
 
     (13) T -> F .
     (14) F -> F . POTENCIA H
@@ -243,10 +307,10 @@ state 11
     MAS             reduce using rule 13 (T -> F .)
     MENOS           reduce using rule 13 (T -> F .)
     ParD            reduce using rule 13 (T -> F .)
-    POTENCIA        shift and go to state 24
+    POTENCIA        shift and go to state 31
 
 
-state 12
+state 20
 
     (15) F -> H .
 
@@ -259,7 +323,7 @@ state 12
     ParD            reduce using rule 15 (F -> H .)
 
 
-state 13
+state 21
 
     (16) H -> ParI . E ParD
     (8) E -> . E MAS T
@@ -274,16 +338,16 @@ state 13
     (17) H -> . ID
     (18) H -> . ENTERO
 
-    ParI            shift and go to state 13
-    ID              shift and go to state 8
-    ENTERO          shift and go to state 14
+    ParI            shift and go to state 21
+    ID              shift and go to state 16
+    ENTERO          shift and go to state 22
 
-    E                              shift and go to state 25
-    T                              shift and go to state 10
-    F                              shift and go to state 11
-    H                              shift and go to state 12
+    E                              shift and go to state 32
+    T                              shift and go to state 18
+    F                              shift and go to state 19
+    H                              shift and go to state 20
 
-state 14
+state 22
 
     (18) H -> ENTERO .
 
@@ -296,39 +360,32 @@ state 14
     ParD            reduce using rule 18 (H -> ENTERO .)
 
 
-state 15
+state 23
 
     (5) D -> int ID PyC C .
 
-    $end            reduce using rule 5 (D -> int ID PyC C .)
+    return          reduce using rule 5 (D -> int ID PyC C .)
 
 
-state 16
-
-    (3) C -> D .
-
-    $end            reduce using rule 3 (C -> D .)
-
-
-state 17
-
-    (4) C -> empty .
-
-    $end            reduce using rule 4 (C -> empty .)
-
-
-state 18
+state 24
 
     (6) D -> int ID ASIGNA E . PyC C
     (8) E -> E . MAS T
     (9) E -> E . MENOS T
 
-    PyC             shift and go to state 26
-    MAS             shift and go to state 20
-    MENOS           shift and go to state 21
+    PyC             shift and go to state 33
+    MAS             shift and go to state 27
+    MENOS           shift and go to state 28
 
 
-state 19
+state 25
+
+    (2) P -> int main LlaveI C return ENTERO PyC . LlaveD
+
+    LlaveD          shift and go to state 34
+
+
+state 26
 
     (7) D -> ID ASIGNA E PyC . C
     (3) C -> . D
@@ -338,15 +395,15 @@ state 19
     (7) D -> . ID ASIGNA E PyC C
     (1) empty -> .
 
-    int             shift and go to state 2
-    ID              shift and go to state 3
-    $end            reduce using rule 1 (empty -> .)
+    int             shift and go to state 5
+    ID              shift and go to state 9
+    return          reduce using rule 1 (empty -> .)
 
-    C                              shift and go to state 27
-    D                              shift and go to state 16
-    empty                          shift and go to state 17
+    C                              shift and go to state 35
+    D                              shift and go to state 7
+    empty                          shift and go to state 8
 
-state 20
+state 27
 
     (8) E -> E MAS . T
     (11) T -> . T POR F
@@ -358,15 +415,15 @@ state 20
     (17) H -> . ID
     (18) H -> . ENTERO
 
-    ParI            shift and go to state 13
-    ID              shift and go to state 8
-    ENTERO          shift and go to state 14
+    ParI            shift and go to state 21
+    ID              shift and go to state 16
+    ENTERO          shift and go to state 22
 
-    T                              shift and go to state 28
-    F                              shift and go to state 11
-    H                              shift and go to state 12
+    T                              shift and go to state 36
+    F                              shift and go to state 19
+    H                              shift and go to state 20
 
-state 21
+state 28
 
     (9) E -> E MENOS . T
     (11) T -> . T POR F
@@ -378,15 +435,15 @@ state 21
     (17) H -> . ID
     (18) H -> . ENTERO
 
-    ParI            shift and go to state 13
-    ID              shift and go to state 8
-    ENTERO          shift and go to state 14
+    ParI            shift and go to state 21
+    ID              shift and go to state 16
+    ENTERO          shift and go to state 22
 
-    T                              shift and go to state 29
-    F                              shift and go to state 11
-    H                              shift and go to state 12
+    T                              shift and go to state 37
+    F                              shift and go to state 19
+    H                              shift and go to state 20
 
-state 22
+state 29
 
     (11) T -> T POR . F
     (14) F -> . F POTENCIA H
@@ -395,14 +452,14 @@ state 22
     (17) H -> . ID
     (18) H -> . ENTERO
 
-    ParI            shift and go to state 13
-    ID              shift and go to state 8
-    ENTERO          shift and go to state 14
+    ParI            shift and go to state 21
+    ID              shift and go to state 16
+    ENTERO          shift and go to state 22
 
-    F                              shift and go to state 30
-    H                              shift and go to state 12
+    F                              shift and go to state 38
+    H                              shift and go to state 20
 
-state 23
+state 30
 
     (12) T -> T DIVIDE . F
     (14) F -> . F POTENCIA H
@@ -411,38 +468,38 @@ state 23
     (17) H -> . ID
     (18) H -> . ENTERO
 
-    ParI            shift and go to state 13
-    ID              shift and go to state 8
-    ENTERO          shift and go to state 14
+    ParI            shift and go to state 21
+    ID              shift and go to state 16
+    ENTERO          shift and go to state 22
 
-    F                              shift and go to state 31
-    H                              shift and go to state 12
+    F                              shift and go to state 39
+    H                              shift and go to state 20
 
-state 24
+state 31
 
     (14) F -> F POTENCIA . H
     (16) H -> . ParI E ParD
     (17) H -> . ID
     (18) H -> . ENTERO
 
-    ParI            shift and go to state 13
-    ID              shift and go to state 8
-    ENTERO          shift and go to state 14
+    ParI            shift and go to state 21
+    ID              shift and go to state 16
+    ENTERO          shift and go to state 22
 
-    H                              shift and go to state 32
+    H                              shift and go to state 40
 
-state 25
+state 32
 
     (16) H -> ParI E . ParD
     (8) E -> E . MAS T
     (9) E -> E . MENOS T
 
-    ParD            shift and go to state 33
-    MAS             shift and go to state 20
-    MENOS           shift and go to state 21
+    ParD            shift and go to state 41
+    MAS             shift and go to state 27
+    MENOS           shift and go to state 28
 
 
-state 26
+state 33
 
     (6) D -> int ID ASIGNA E PyC . C
     (3) C -> . D
@@ -452,22 +509,29 @@ state 26
     (7) D -> . ID ASIGNA E PyC C
     (1) empty -> .
 
-    int             shift and go to state 2
-    ID              shift and go to state 3
-    $end            reduce using rule 1 (empty -> .)
+    int             shift and go to state 5
+    ID              shift and go to state 9
+    return          reduce using rule 1 (empty -> .)
 
-    C                              shift and go to state 34
-    D                              shift and go to state 16
-    empty                          shift and go to state 17
+    C                              shift and go to state 42
+    D                              shift and go to state 7
+    empty                          shift and go to state 8
 
-state 27
+state 34
+
+    (2) P -> int main LlaveI C return ENTERO PyC LlaveD .
+
+    $end            reduce using rule 2 (P -> int main LlaveI C return ENTERO PyC LlaveD .)
+
+
+state 35
 
     (7) D -> ID ASIGNA E PyC C .
 
-    $end            reduce using rule 7 (D -> ID ASIGNA E PyC C .)
+    return          reduce using rule 7 (D -> ID ASIGNA E PyC C .)
 
 
-state 28
+state 36
 
     (8) E -> E MAS T .
     (11) T -> T . POR F
@@ -477,11 +541,11 @@ state 28
     MAS             reduce using rule 8 (E -> E MAS T .)
     MENOS           reduce using rule 8 (E -> E MAS T .)
     ParD            reduce using rule 8 (E -> E MAS T .)
-    POR             shift and go to state 22
-    DIVIDE          shift and go to state 23
+    POR             shift and go to state 29
+    DIVIDE          shift and go to state 30
 
 
-state 29
+state 37
 
     (9) E -> E MENOS T .
     (11) T -> T . POR F
@@ -491,11 +555,11 @@ state 29
     MAS             reduce using rule 9 (E -> E MENOS T .)
     MENOS           reduce using rule 9 (E -> E MENOS T .)
     ParD            reduce using rule 9 (E -> E MENOS T .)
-    POR             shift and go to state 22
-    DIVIDE          shift and go to state 23
+    POR             shift and go to state 29
+    DIVIDE          shift and go to state 30
 
 
-state 30
+state 38
 
     (11) T -> T POR F .
     (14) F -> F . POTENCIA H
@@ -506,10 +570,10 @@ state 30
     MAS             reduce using rule 11 (T -> T POR F .)
     MENOS           reduce using rule 11 (T -> T POR F .)
     ParD            reduce using rule 11 (T -> T POR F .)
-    POTENCIA        shift and go to state 24
+    POTENCIA        shift and go to state 31
 
 
-state 31
+state 39
 
     (12) T -> T DIVIDE F .
     (14) F -> F . POTENCIA H
@@ -520,10 +584,10 @@ state 31
     MAS             reduce using rule 12 (T -> T DIVIDE F .)
     MENOS           reduce using rule 12 (T -> T DIVIDE F .)
     ParD            reduce using rule 12 (T -> T DIVIDE F .)
-    POTENCIA        shift and go to state 24
+    POTENCIA        shift and go to state 31
 
 
-state 32
+state 40
 
     (14) F -> F POTENCIA H .
 
@@ -536,7 +600,7 @@ state 32
     ParD            reduce using rule 14 (F -> F POTENCIA H .)
 
 
-state 33
+state 41
 
     (16) H -> ParI E ParD .
 
@@ -549,9 +613,9 @@ state 33
     ParD            reduce using rule 16 (H -> ParI E ParD .)
 
 
-state 34
+state 42
 
     (6) D -> int ID ASIGNA E PyC C .
 
-    $end            reduce using rule 6 (D -> int ID ASIGNA E PyC C .)
+    return          reduce using rule 6 (D -> int ID ASIGNA E PyC C .)
 
