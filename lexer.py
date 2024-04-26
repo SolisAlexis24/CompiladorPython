@@ -1,7 +1,4 @@
 import ply.lex as lex
-import sys
-global code
-code = ""
 
 #Reserved words
 reserved = {
@@ -11,7 +8,9 @@ reserved = {
     'True': 'true',
     'False' : 'false',
     'int' : 'int',
-    'bool':'bool'
+    'bool':'bool',
+    'return' : 'return',
+    'main' : 'main'
 }
 #List of token names
 tokens = ['ENTERO','ID','MAS','MENOS','DIVIDE','POTENCIA','POR',
@@ -19,16 +18,6 @@ tokens = ['ENTERO','ID','MAS','MENOS','DIVIDE','POTENCIA','POR',
     'IGUAL','DIFERENTE','ASIGNA', 'PyC', 'ParI', 'ParD',
     'LlaveI', 'LlaveD'] + list(reserved.values())
 
-def codeGetter():
-    """This function read the content of a file and store the content onto the "code" variable"""
-    global code
-    if(len(sys.argv)!= 2):
-        sys.exit()
-    else:
-        file_name = sys.argv[1]
-        with open(file_name) as file:
-            for line in file.readlines():
-                code = code + line #Open the file and line by line, it reads the content and concatenate each line onto the string "code"
 
 def Lexer():
     #Tokens
@@ -82,6 +71,4 @@ def Lexer():
 
     return lex.lex()
 
-Lexer()
-codeGetter()
-lex.runmain(data = code)
+lexer = Lexer()
