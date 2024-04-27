@@ -1,16 +1,14 @@
-import ply.lex as lex
+import lex as lex
 
 #Reserved words
 reserved = {
     'if' : 'if',
     'else' : 'else',
     'return': 'return',
-    'True': 'true',
-    'False' : 'false',
+    'true': 'true',
+    'false' : 'false',
     'int' : 'int',
     'bool':'bool',
-    'return' : 'return',
-    'main' : 'main'
 }
 #List of token names
 tokens = ['ENTERO','ID','MAS','MENOS','DIVIDE','POTENCIA','POR',
@@ -72,3 +70,4 @@ def Lexer():
     return lex.lex()
 
 lexer = Lexer()
+
