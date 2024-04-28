@@ -1,0 +1,11 @@
+@Esto es un comentario
+
+int x=1;
+int w;
+bool y=true;
+if(x<10){
+	x=x+1;
+}
+else{
+	x=x-1;
+}
