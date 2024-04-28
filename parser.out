@@ -1,0 +1,2197 @@
+Created by PLY (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> code
+Rule 1     code -> declaration
+Rule 2     code -> definition
+Rule 3     code -> ifCond
+Rule 4     code -> empty
+Rule 5     declaration -> int ID asign PyC code
+Rule 6     declaration -> bool ID asign PyC code
+Rule 7     asign -> empty
+Rule 8     asign -> ASIGNA expression
+Rule 9     definition -> ID ASIGNA expression PyC code
+Rule 10    expression -> numexp
+Rule 11    expression -> logicexp
+Rule 12    expression -> ID
+Rule 13    expression -> testexp
+Rule 14    expression -> ParI expression ParD
+Rule 15    expression -> ENTERO
+Rule 16    numexp -> expression MAS expression
+Rule 17    numexp -> expression MENOS expression
+Rule 18    numexp -> expression POR expression
+Rule 19    numexp -> expression DIVIDE expression
+Rule 20    numexp -> expression POTENCIA expression
+Rule 21    logicexp -> expression OR expression
+Rule 22    logicexp -> expression AND expression
+Rule 23    logicexp -> NOT expression
+Rule 24    logicexp -> true
+Rule 25    logicexp -> false
+Rule 26    ifCond -> if ParI expression ParD LlaveI code LlaveD ifElse
+Rule 27    ifElse -> else LlaveI code LlaveD code
+Rule 28    ifElse -> code
+Rule 29    testexp -> expression IGUAL expression
+Rule 30    testexp -> expression DIFERENTE expression
+Rule 31    testexp -> expression MENOR expression
+Rule 32    testexp -> expression MAYOR expression
+Rule 33    testexp -> expression MENORIG expression
+Rule 34    testexp -> expression MAYORIG expression
+Rule 35    empty -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 22
+ASIGNA               : 8 9
+DIFERENTE            : 30
+DIVIDE               : 19
+ENTERO               : 15
+ID                   : 5 6 9 12
+IGUAL                : 29
+LlaveD               : 26 27
+LlaveI               : 26 27
+MAS                  : 16
+MAYOR                : 32
+MAYORIG              : 34
+MENOR                : 31
+MENORIG              : 33
+MENOS                : 17
+NOT                  : 23
+OR                   : 21
+POR                  : 18
+POTENCIA             : 20
+ParD                 : 14 26
+ParI                 : 14 26
+PyC                  : 5 6 9
+bool                 : 6
+else                 : 27
+error                : 
+false                : 25
+if                   : 26
+int                  : 5
+true                 : 24
+
+Nonterminals, with rules where they appear
+
+asign                : 5 6
+code                 : 5 6 9 26 27 27 28 0
+declaration          : 1
+definition           : 2
+empty                : 4 7
+expression           : 8 9 14 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 26 29 29 30 30 31 31 32 32 33 33 34 34
+ifCond               : 3
+ifElse               : 26
+logicexp             : 11
+numexp               : 10
+testexp              : 13
+
+
+state 0
+
+    (0) S' -> . code
+    (1) code -> . declaration
+    (2) code -> . definition
+    (3) code -> . ifCond
+    (4) code -> . empty
+    (5) declaration -> . int ID asign PyC code
+    (6) declaration -> . bool ID asign PyC code
+    (9) definition -> . ID ASIGNA expression PyC code
+    (26) ifCond -> . if ParI expression ParD LlaveI code LlaveD ifElse
+    (35) empty -> .
+
+    int             shift and go to state 6
+    bool            shift and go to state 8
+    ID              shift and go to state 7
+    if              shift and go to state 9
+    $end            reduce using rule 35 (empty -> .)
+
+    code                           shift and go to state 1
+    declaration                    shift and go to state 2
+    definition                     shift and go to state 3
+    ifCond                         shift and go to state 4
+    empty                          shift and go to state 5
+
+state 1
+
+    (0) S' -> code .
+
+
+
+state 2
+
+    (1) code -> declaration .
+
+    $end            reduce using rule 1 (code -> declaration .)
+    LlaveD          reduce using rule 1 (code -> declaration .)
+
+
+state 3
+
+    (2) code -> definition .
+
+    $end            reduce using rule 2 (code -> definition .)
+    LlaveD          reduce using rule 2 (code -> definition .)
+
+
+state 4
+
+    (3) code -> ifCond .
+
+    $end            reduce using rule 3 (code -> ifCond .)
+    LlaveD          reduce using rule 3 (code -> ifCond .)
+
+
+state 5
+
+    (4) code -> empty .
+
+    $end            reduce using rule 4 (code -> empty .)
+    LlaveD          reduce using rule 4 (code -> empty .)
+
+
+state 6
+
+    (5) declaration -> int . ID asign PyC code
+
+    ID              shift and go to state 10
+
+
+state 7
+
+    (9) definition -> ID . ASIGNA expression PyC code
+
+    ASIGNA          shift and go to state 11
+
+
+state 8
+
+    (6) declaration -> bool . ID asign PyC code
+
+    ID              shift and go to state 12
+
+
+state 9
+
+    (26) ifCond -> if . ParI expression ParD LlaveI code LlaveD ifElse
+
+    ParI            shift and go to state 13
+
+
+state 10
+
+    (5) declaration -> int ID . asign PyC code
+    (7) asign -> . empty
+    (8) asign -> . ASIGNA expression
+    (35) empty -> .
+
+    ASIGNA          shift and go to state 16
+    PyC             reduce using rule 35 (empty -> .)
+
+    asign                          shift and go to state 14
+    empty                          shift and go to state 15
+
+state 11
+
+    (9) definition -> ID ASIGNA . expression PyC code
+    (10) expression -> . numexp
+    (11) expression -> . logicexp
+    (12) expression -> . ID
+    (13) expression -> . testexp
+    (14) expression -> . ParI expression ParD
+    (15) expression -> . ENTERO
+    (16) numexp -> . expression MAS expression
+    (17) numexp -> . expression MENOS expression
+    (18) numexp -> . expression POR expression
+    (19) numexp -> . expression DIVIDE expression
+    (20) numexp -> . expression POTENCIA expression
+    (21) logicexp -> . expression OR expression
+    (22) logicexp -> . expression AND expression
+    (23) logicexp -> . NOT expression
+    (24) logicexp -> . true
+    (25) logicexp -> . false
+    (29) testexp -> . expression IGUAL expression
+    (30) testexp -> . expression DIFERENTE expression
+    (31) testexp -> . expression MENOR expression
+    (32) testexp -> . expression MAYOR expression
+    (33) testexp -> . expression MENORIG expression
+    (34) testexp -> . expression MAYORIG expression
+
+    ID              shift and go to state 17
+    ParI            shift and go to state 22
+    ENTERO          shift and go to state 23
+    NOT             shift and go to state 24
+    true            shift and go to state 25
+    false           shift and go to state 26
+
+    expression                     shift and go to state 18
+    numexp                         shift and go to state 19
+    logicexp                       shift and go to state 20
+    testexp                        shift and go to state 21
+
+state 12
+
+    (6) declaration -> bool ID . asign PyC code
+    (7) asign -> . empty
+    (8) asign -> . ASIGNA expression
+    (35) empty -> .
+
+    ASIGNA          shift and go to state 16
+    PyC             reduce using rule 35 (empty -> .)
+
+    asign                          shift and go to state 27
+    empty                          shift and go to state 15
+
+state 13
+
+    (26) ifCond -> if ParI . expression ParD LlaveI code LlaveD ifElse
+    (10) expression -> . numexp
+    (11) expression -> . logicexp
+    (12) expression -> . ID
+    (13) expression -> . testexp
+    (14) expression -> . ParI expression ParD
+    (15) expression -> . ENTERO
+    (16) numexp -> . expression MAS expression
+    (17) numexp -> . expression MENOS expression
+    (18) numexp -> . expression POR expression
+    (19) numexp -> . expression DIVIDE expression
+    (20) numexp -> . expression POTENCIA expression
+    (21) logicexp -> . expression OR expression
+    (22) logicexp -> . expression AND expression
+    (23) logicexp -> . NOT expression
+    (24) logicexp -> . true
+    (25) logicexp -> . false
+    (29) testexp -> . expression IGUAL expression
+    (30) testexp -> . expression DIFERENTE expression
+    (31) testexp -> . expression MENOR expression
+    (32) testexp -> . expression MAYOR expression
+    (33) testexp -> . expression MENORIG expression
+    (34) testexp -> . expression MAYORIG expression
+
+    ID              shift and go to state 17
+    ParI            shift and go to state 22
+    ENTERO          shift and go to state 23
+    NOT             shift and go to state 24
+    true            shift and go to state 25
+    false           shift and go to state 26
+
+    expression                     shift and go to state 28
+    numexp                         shift and go to state 19
+    logicexp                       shift and go to state 20
+    testexp                        shift and go to state 21
+
+state 14
+
+    (5) declaration -> int ID asign . PyC code
+
+    PyC             shift and go to state 29
+
+
+state 15
+
+    (7) asign -> empty .
+
+    PyC             reduce using rule 7 (asign -> empty .)
+
+
+state 16
+
+    (8) asign -> ASIGNA . expression
+    (10) expression -> . numexp
+    (11) expression -> . logicexp
+    (12) expression -> . ID
+    (13) expression -> . testexp
+    (14) expression -> . ParI expression ParD
+    (15) expression -> . ENTERO
+    (16) numexp -> . expression MAS expression
+    (17) numexp -> . expression MENOS expression
+    (18) numexp -> . expression POR expression
+    (19) numexp -> . expression DIVIDE expression
+    (20) numexp -> . expression POTENCIA expression
+    (21) logicexp -> . expression OR expression
+    (22) logicexp -> . expression AND expression
+    (23) logicexp -> . NOT expression
+    (24) logicexp -> . true
+    (25) logicexp -> . false
+    (29) testexp -> . expression IGUAL expression
+    (30) testexp -> . expression DIFERENTE expression
+    (31) testexp -> . expression MENOR expression
+    (32) testexp -> . expression MAYOR expression
+    (33) testexp -> . expression MENORIG expression
+    (34) testexp -> . expression MAYORIG expression
+
+    ID              shift and go to state 17
+    ParI            shift and go to state 22
+    ENTERO          shift and go to state 23
+    NOT             shift and go to state 24
+    true            shift and go to state 25
+    false           shift and go to state 26
+
+    expression                     shift and go to state 30
+    numexp                         shift and go to state 19
+    logicexp                       shift and go to state 20
+    testexp                        shift and go to state 21
+
+state 17
+
+    (12) expression -> ID .
+
+    PyC             reduce using rule 12 (expression -> ID .)
+    MAS             reduce using rule 12 (expression -> ID .)
+    MENOS           reduce using rule 12 (expression -> ID .)
+    POR             reduce using rule 12 (expression -> ID .)
+    DIVIDE          reduce using rule 12 (expression -> ID .)
+    POTENCIA        reduce using rule 12 (expression -> ID .)
+    OR              reduce using rule 12 (expression -> ID .)
+    AND             reduce using rule 12 (expression -> ID .)
+    IGUAL           reduce using rule 12 (expression -> ID .)
+    DIFERENTE       reduce using rule 12 (expression -> ID .)
+    MENOR           reduce using rule 12 (expression -> ID .)
+    MAYOR           reduce using rule 12 (expression -> ID .)
+    MENORIG         reduce using rule 12 (expression -> ID .)
+    MAYORIG         reduce using rule 12 (expression -> ID .)
+    ParD            reduce using rule 12 (expression -> ID .)
+
+
+state 18
+
+    (9) definition -> ID ASIGNA expression . PyC code
+    (16) numexp -> expression . MAS expression
+    (17) numexp -> expression . MENOS expression
+    (18) numexp -> expression . POR expression
+    (19) numexp -> expression . DIVIDE expression
+    (20) numexp -> expression . POTENCIA expression
+    (21) logicexp -> expression . OR expression
+    (22) logicexp -> expression . AND expression
+    (29) testexp -> expression . IGUAL expression
+    (30) testexp -> expression . DIFERENTE expression
+    (31) testexp -> expression . MENOR expression
+    (32) testexp -> expression . MAYOR expression
+    (33) testexp -> expression . MENORIG expression
+    (34) testexp -> expression . MAYORIG expression
+
+    PyC             shift and go to state 31
+    MAS             shift and go to state 32
+    MENOS           shift and go to state 33
+    POR             shift and go to state 34
+    DIVIDE          shift and go to state 35
+    POTENCIA        shift and go to state 36
+    OR              shift and go to state 37
+    AND             shift and go to state 38
+    IGUAL           shift and go to state 39
+    DIFERENTE       shift and go to state 40
+    MENOR           shift and go to state 41
+    MAYOR           shift and go to state 42
+    MENORIG         shift and go to state 43
+    MAYORIG         shift and go to state 44
+
+
+state 19
+
+    (10) expression -> numexp .
+
+    PyC             reduce using rule 10 (expression -> numexp .)
+    MAS             reduce using rule 10 (expression -> numexp .)
+    MENOS           reduce using rule 10 (expression -> numexp .)
+    POR             reduce using rule 10 (expression -> numexp .)
+    DIVIDE          reduce using rule 10 (expression -> numexp .)
+    POTENCIA        reduce using rule 10 (expression -> numexp .)
+    OR              reduce using rule 10 (expression -> numexp .)
+    AND             reduce using rule 10 (expression -> numexp .)
+    IGUAL           reduce using rule 10 (expression -> numexp .)
+    DIFERENTE       reduce using rule 10 (expression -> numexp .)
+    MENOR           reduce using rule 10 (expression -> numexp .)
+    MAYOR           reduce using rule 10 (expression -> numexp .)
+    MENORIG         reduce using rule 10 (expression -> numexp .)
+    MAYORIG         reduce using rule 10 (expression -> numexp .)
+    ParD            reduce using rule 10 (expression -> numexp .)
+
+
+state 20
+
+    (11) expression -> logicexp .
+
+    PyC             reduce using rule 11 (expression -> logicexp .)
+    MAS             reduce using rule 11 (expression -> logicexp .)
+    MENOS           reduce using rule 11 (expression -> logicexp .)
+    POR             reduce using rule 11 (expression -> logicexp .)
+    DIVIDE          reduce using rule 11 (expression -> logicexp .)
+    POTENCIA        reduce using rule 11 (expression -> logicexp .)
+    OR              reduce using rule 11 (expression -> logicexp .)
+    AND             reduce using rule 11 (expression -> logicexp .)
+    IGUAL           reduce using rule 11 (expression -> logicexp .)
+    DIFERENTE       reduce using rule 11 (expression -> logicexp .)
+    MENOR           reduce using rule 11 (expression -> logicexp .)
+    MAYOR           reduce using rule 11 (expression -> logicexp .)
+    MENORIG         reduce using rule 11 (expression -> logicexp .)
+    MAYORIG         reduce using rule 11 (expression -> logicexp .)
+    ParD            reduce using rule 11 (expression -> logicexp .)
+
+
+state 21
+
+    (13) expression -> testexp .
+
+    PyC             reduce using rule 13 (expression -> testexp .)
+    MAS             reduce using rule 13 (expression -> testexp .)
+    MENOS           reduce using rule 13 (expression -> testexp .)
+    POR             reduce using rule 13 (expression -> testexp .)
+    DIVIDE          reduce using rule 13 (expression -> testexp .)
+    POTENCIA        reduce using rule 13 (expression -> testexp .)
+    OR              reduce using rule 13 (expression -> testexp .)
+    AND             reduce using rule 13 (expression -> testexp .)
+    IGUAL           reduce using rule 13 (expression -> testexp .)
+    DIFERENTE       reduce using rule 13 (expression -> testexp .)
+    MENOR           reduce using rule 13 (expression -> testexp .)
+    MAYOR           reduce using rule 13 (expression -> testexp .)
+    MENORIG         reduce using rule 13 (expression -> testexp .)
+    MAYORIG         reduce using rule 13 (expression -> testexp .)
+    ParD            reduce using rule 13 (expression -> testexp .)
+
+
+state 22
+
+    (14) expression -> ParI . expression ParD
+    (10) expression -> . numexp
+    (11) expression -> . logicexp
+    (12) expression -> . ID
+    (13) expression -> . testexp
+    (14) expression -> . ParI expression ParD
+    (15) expression -> . ENTERO
+    (16) numexp -> . expression MAS expression
+    (17) numexp -> . expression MENOS expression
+    (18) numexp -> . expression POR expression
+    (19) numexp -> . expression DIVIDE expression
+    (20) numexp -> . expression POTENCIA expression
+    (21) logicexp -> . expression OR expression
+    (22) logicexp -> . expression AND expression
+    (23) logicexp -> . NOT expression
+    (24) logicexp -> . true
+    (25) logicexp -> . false
+    (29) testexp -> . expression IGUAL expression
+    (30) testexp -> . expression DIFERENTE expression
+    (31) testexp -> . expression MENOR expression
+    (32) testexp -> . expression MAYOR expression
+    (33) testexp -> . expression MENORIG expression
+    (34) testexp -> . expression MAYORIG expression
+
+    ID              shift and go to state 17
+    ParI            shift and go to state 22
+    ENTERO          shift and go to state 23
+    NOT             shift and go to state 24
+    true            shift and go to state 25
+    false           shift and go to state 26
+
+    expression                     shift and go to state 45
+    numexp                         shift and go to state 19
+    logicexp                       shift and go to state 20
+    testexp                        shift and go to state 21
+
+state 23
+
+    (15) expression -> ENTERO .
+
+    PyC             reduce using rule 15 (expression -> ENTERO .)
+    MAS             reduce using rule 15 (expression -> ENTERO .)
+    MENOS           reduce using rule 15 (expression -> ENTERO .)
+    POR             reduce using rule 15 (expression -> ENTERO .)
+    DIVIDE          reduce using rule 15 (expression -> ENTERO .)
+    POTENCIA        reduce using rule 15 (expression -> ENTERO .)
+    OR              reduce using rule 15 (expression -> ENTERO .)
+    AND             reduce using rule 15 (expression -> ENTERO .)
+    IGUAL           reduce using rule 15 (expression -> ENTERO .)
+    DIFERENTE       reduce using rule 15 (expression -> ENTERO .)
+    MENOR           reduce using rule 15 (expression -> ENTERO .)
+    MAYOR           reduce using rule 15 (expression -> ENTERO .)
+    MENORIG         reduce using rule 15 (expression -> ENTERO .)
+    MAYORIG         reduce using rule 15 (expression -> ENTERO .)
+    ParD            reduce using rule 15 (expression -> ENTERO .)
+
+
+state 24
+
+    (23) logicexp -> NOT . expression
+    (10) expression -> . numexp
+    (11) expression -> . logicexp
+    (12) expression -> . ID
+    (13) expression -> . testexp
+    (14) expression -> . ParI expression ParD
+    (15) expression -> . ENTERO
+    (16) numexp -> . expression MAS expression
+    (17) numexp -> . expression MENOS expression
+    (18) numexp -> . expression POR expression
+    (19) numexp -> . expression DIVIDE expression
+    (20) numexp -> . expression POTENCIA expression
+    (21) logicexp -> . expression OR expression
+    (22) logicexp -> . expression AND expression
+    (23) logicexp -> . NOT expression
+    (24) logicexp -> . true
+    (25) logicexp -> . false
+    (29) testexp -> . expression IGUAL expression
+    (30) testexp -> . expression DIFERENTE expression
+    (31) testexp -> . expression MENOR expression
+    (32) testexp -> . expression MAYOR expression
+    (33) testexp -> . expression MENORIG expression
+    (34) testexp -> . expression MAYORIG expression
+
+    ID              shift and go to state 17
+    ParI            shift and go to state 22
+    ENTERO          shift and go to state 23
+    NOT             shift and go to state 24
+    true            shift and go to state 25
+    false           shift and go to state 26
+
+    expression                     shift and go to state 46
+    numexp                         shift and go to state 19
+    logicexp                       shift and go to state 20
+    testexp                        shift and go to state 21
+
+state 25
+
+    (24) logicexp -> true .
+
+    PyC             reduce using rule 24 (logicexp -> true .)
+    MAS             reduce using rule 24 (logicexp -> true .)
+    MENOS           reduce using rule 24 (logicexp -> true .)
+    POR             reduce using rule 24 (logicexp -> true .)
+    DIVIDE          reduce using rule 24 (logicexp -> true .)
+    POTENCIA        reduce using rule 24 (logicexp -> true .)
+    OR              reduce using rule 24 (logicexp -> true .)
+    AND             reduce using rule 24 (logicexp -> true .)
+    IGUAL           reduce using rule 24 (logicexp -> true .)
+    DIFERENTE       reduce using rule 24 (logicexp -> true .)
+    MENOR           reduce using rule 24 (logicexp -> true .)
+    MAYOR           reduce using rule 24 (logicexp -> true .)
+    MENORIG         reduce using rule 24 (logicexp -> true .)
+    MAYORIG         reduce using rule 24 (logicexp -> true .)
+    ParD            reduce using rule 24 (logicexp -> true .)
+
+
+state 26
+
+    (25) logicexp -> false .
+
+    PyC             reduce using rule 25 (logicexp -> false .)
+    MAS             reduce using rule 25 (logicexp -> false .)
+    MENOS           reduce using rule 25 (logicexp -> false .)
+    POR             reduce using rule 25 (logicexp -> false .)
+    DIVIDE          reduce using rule 25 (logicexp -> false .)
+    POTENCIA        reduce using rule 25 (logicexp -> false .)
+    OR              reduce using rule 25 (logicexp -> false .)
+    AND             reduce using rule 25 (logicexp -> false .)
+    IGUAL           reduce using rule 25 (logicexp -> false .)
+    DIFERENTE       reduce using rule 25 (logicexp -> false .)
+    MENOR           reduce using rule 25 (logicexp -> false .)
+    MAYOR           reduce using rule 25 (logicexp -> false .)
+    MENORIG         reduce using rule 25 (logicexp -> false .)
+    MAYORIG         reduce using rule 25 (logicexp -> false .)
+    ParD            reduce using rule 25 (logicexp -> false .)
+
+
+state 27
+
+    (6) declaration -> bool ID asign . PyC code
+
+    PyC             shift and go to state 47
+
+
+state 28
+
+    (26) ifCond -> if ParI expression . ParD LlaveI code LlaveD ifElse
+    (16) numexp -> expression . MAS expression
+    (17) numexp -> expression . MENOS expression
+    (18) numexp -> expression . POR expression
+    (19) numexp -> expression . DIVIDE expression
+    (20) numexp -> expression . POTENCIA expression
+    (21) logicexp -> expression . OR expression
+    (22) logicexp -> expression . AND expression
+    (29) testexp -> expression . IGUAL expression
+    (30) testexp -> expression . DIFERENTE expression
+    (31) testexp -> expression . MENOR expression
+    (32) testexp -> expression . MAYOR expression
+    (33) testexp -> expression . MENORIG expression
+    (34) testexp -> expression . MAYORIG expression
+
+    ParD            shift and go to state 48
+    MAS             shift and go to state 32
+    MENOS           shift and go to state 33
+    POR             shift and go to state 34
+    DIVIDE          shift and go to state 35
+    POTENCIA        shift and go to state 36
+    OR              shift and go to state 37
+    AND             shift and go to state 38
+    IGUAL           shift and go to state 39
+    DIFERENTE       shift and go to state 40
+    MENOR           shift and go to state 41
+    MAYOR           shift and go to state 42
+    MENORIG         shift and go to state 43
+    MAYORIG         shift and go to state 44
+
+
+state 29
+
+    (5) declaration -> int ID asign PyC . code
+    (1) code -> . declaration
+    (2) code -> . definition
+    (3) code -> . ifCond
+    (4) code -> . empty
+    (5) declaration -> . int ID asign PyC code
+    (6) declaration -> . bool ID asign PyC code
+    (9) definition -> . ID ASIGNA expression PyC code
+    (26) ifCond -> . if ParI expression ParD LlaveI code LlaveD ifElse
+    (35) empty -> .
+
+    int             shift and go to state 6
+    bool            shift and go to state 8
+    ID              shift and go to state 7
+    if              shift and go to state 9
+    $end            reduce using rule 35 (empty -> .)
+    LlaveD          reduce using rule 35 (empty -> .)
+
+    code                           shift and go to state 49
+    declaration                    shift and go to state 2
+    definition                     shift and go to state 3
+    ifCond                         shift and go to state 4
+    empty                          shift and go to state 5
+
+state 30
+
+    (8) asign -> ASIGNA expression .
+    (16) numexp -> expression . MAS expression
+    (17) numexp -> expression . MENOS expression
+    (18) numexp -> expression . POR expression
+    (19) numexp -> expression . DIVIDE expression
+    (20) numexp -> expression . POTENCIA expression
+    (21) logicexp -> expression . OR expression
+    (22) logicexp -> expression . AND expression
+    (29) testexp -> expression . IGUAL expression
+    (30) testexp -> expression . DIFERENTE expression
+    (31) testexp -> expression . MENOR expression
+    (32) testexp -> expression . MAYOR expression
+    (33) testexp -> expression . MENORIG expression
+    (34) testexp -> expression . MAYORIG expression
+
+    PyC             reduce using rule 8 (asign -> ASIGNA expression .)
+    MAS             shift and go to state 32
+    MENOS           shift and go to state 33
+    POR             shift and go to state 34
+    DIVIDE          shift and go to state 35
+    POTENCIA        shift and go to state 36
+    OR              shift and go to state 37
+    AND             shift and go to state 38
+    IGUAL           shift and go to state 39
+    DIFERENTE       shift and go to state 40
+    MENOR           shift and go to state 41
+    MAYOR           shift and go to state 42
+    MENORIG         shift and go to state 43
+    MAYORIG         shift and go to state 44
+
+
+state 31
+
+    (9) definition -> ID ASIGNA expression PyC . code
+    (1) code -> . declaration
+    (2) code -> . definition
+    (3) code -> . ifCond
+    (4) code -> . empty
+    (5) declaration -> . int ID asign PyC code
+    (6) declaration -> . bool ID asign PyC code
+    (9) definition -> . ID ASIGNA expression PyC code
+    (26) ifCond -> . if ParI expression ParD LlaveI code LlaveD ifElse
+    (35) empty -> .
+
+    int             shift and go to state 6
+    bool            shift and go to state 8
+    ID              shift and go to state 7
+    if              shift and go to state 9
+    $end            reduce using rule 35 (empty -> .)
+    LlaveD          reduce using rule 35 (empty -> .)
+
+    code                           shift and go to state 50
+    declaration                    shift and go to state 2
+    definition                     shift and go to state 3
+    ifCond                         shift and go to state 4
+    empty                          shift and go to state 5
+
+state 32
+
+    (16) numexp -> expression MAS . expression
+    (10) expression -> . numexp
+    (11) expression -> . logicexp
+    (12) expression -> . ID
+    (13) expression -> . testexp
+    (14) expression -> . ParI expression ParD
+    (15) expression -> . ENTERO
+    (16) numexp -> . expression MAS expression
+    (17) numexp -> . expression MENOS expression
+    (18) numexp -> . expression POR expression
+    (19) numexp -> . expression DIVIDE expression
+    (20) numexp -> . expression POTENCIA expression
+    (21) logicexp -> . expression OR expression
+    (22) logicexp -> . expression AND expression
+    (23) logicexp -> . NOT expression
+    (24) logicexp -> . true
+    (25) logicexp -> . false
+    (29) testexp -> . expression IGUAL expression
+    (30) testexp -> . expression DIFERENTE expression
+    (31) testexp -> . expression MENOR expression
+    (32) testexp -> . expression MAYOR expression
+    (33) testexp -> . expression MENORIG expression
+    (34) testexp -> . expression MAYORIG expression
+
+    ID              shift and go to state 17
+    ParI            shift and go to state 22
+    ENTERO          shift and go to state 23
+    NOT             shift and go to state 24
+    true            shift and go to state 25
+    false           shift and go to state 26
+
+    expression                     shift and go to state 51
+    numexp                         shift and go to state 19
+    logicexp                       shift and go to state 20
+    testexp                        shift and go to state 21
+
+state 33
+
+    (17) numexp -> expression MENOS . expression
+    (10) expression -> . numexp
+    (11) expression -> . logicexp
+    (12) expression -> . ID
+    (13) expression -> . testexp
+    (14) expression -> . ParI expression ParD
+    (15) expression -> . ENTERO
+    (16) numexp -> . expression MAS expression
+    (17) numexp -> . expression MENOS expression
+    (18) numexp -> . expression POR expression
+    (19) numexp -> . expression DIVIDE expression
+    (20) numexp -> . expression POTENCIA expression
+    (21) logicexp -> . expression OR expression
+    (22) logicexp -> . expression AND expression
+    (23) logicexp -> . NOT expression
+    (24) logicexp -> . true
+    (25) logicexp -> . false
+    (29) testexp -> . expression IGUAL expression
+    (30) testexp -> . expression DIFERENTE expression
+    (31) testexp -> . expression MENOR expression
+    (32) testexp -> . expression MAYOR expression
+    (33) testexp -> . expression MENORIG expression
+    (34) testexp -> . expression MAYORIG expression
+
+    ID              shift and go to state 17
+    ParI            shift and go to state 22
+    ENTERO          shift and go to state 23
+    NOT             shift and go to state 24
+    true            shift and go to state 25
+    false           shift and go to state 26
+
+    expression                     shift and go to state 52
+    numexp                         shift and go to state 19
+    logicexp                       shift and go to state 20
+    testexp                        shift and go to state 21
+
+state 34
+
+    (18) numexp -> expression POR . expression
+    (10) expression -> . numexp
+    (11) expression -> . logicexp
+    (12) expression -> . ID
+    (13) expression -> . testexp
+    (14) expression -> . ParI expression ParD
+    (15) expression -> . ENTERO
+    (16) numexp -> . expression MAS expression
+    (17) numexp -> . expression MENOS expression
+    (18) numexp -> . expression POR expression
+    (19) numexp -> . expression DIVIDE expression
+    (20) numexp -> . expression POTENCIA expression
+    (21) logicexp -> . expression OR expression
+    (22) logicexp -> . expression AND expression
+    (23) logicexp -> . NOT expression
+    (24) logicexp -> . true
+    (25) logicexp -> . false
+    (29) testexp -> . expression IGUAL expression
+    (30) testexp -> . expression DIFERENTE expression
+    (31) testexp -> . expression MENOR expression
+    (32) testexp -> . expression MAYOR expression
+    (33) testexp -> . expression MENORIG expression
+    (34) testexp -> . expression MAYORIG expression
+
+    ID              shift and go to state 17
+    ParI            shift and go to state 22
+    ENTERO          shift and go to state 23
+    NOT             shift and go to state 24
+    true            shift and go to state 25
+    false           shift and go to state 26
+
+    expression                     shift and go to state 53
+    numexp                         shift and go to state 19
+    logicexp                       shift and go to state 20
+    testexp                        shift and go to state 21
+
+state 35
+
+    (19) numexp -> expression DIVIDE . expression
+    (10) expression -> . numexp
+    (11) expression -> . logicexp
+    (12) expression -> . ID
+    (13) expression -> . testexp
+    (14) expression -> . ParI expression ParD
+    (15) expression -> . ENTERO
+    (16) numexp -> . expression MAS expression
+    (17) numexp -> . expression MENOS expression
+    (18) numexp -> . expression POR expression
+    (19) numexp -> . expression DIVIDE expression
+    (20) numexp -> . expression POTENCIA expression
+    (21) logicexp -> . expression OR expression
+    (22) logicexp -> . expression AND expression
+    (23) logicexp -> . NOT expression
+    (24) logicexp -> . true
+    (25) logicexp -> . false
+    (29) testexp -> . expression IGUAL expression
+    (30) testexp -> . expression DIFERENTE expression
+    (31) testexp -> . expression MENOR expression
+    (32) testexp -> . expression MAYOR expression
+    (33) testexp -> . expression MENORIG expression
+    (34) testexp -> . expression MAYORIG expression
+
+    ID              shift and go to state 17
+    ParI            shift and go to state 22
+    ENTERO          shift and go to state 23
+    NOT             shift and go to state 24
+    true            shift and go to state 25
+    false           shift and go to state 26
+
+    expression                     shift and go to state 54
+    numexp                         shift and go to state 19
+    logicexp                       shift and go to state 20
+    testexp                        shift and go to state 21
+
+state 36
+
+    (20) numexp -> expression POTENCIA . expression
+    (10) expression -> . numexp
+    (11) expression -> . logicexp
+    (12) expression -> . ID
+    (13) expression -> . testexp
+    (14) expression -> . ParI expression ParD
+    (15) expression -> . ENTERO
+    (16) numexp -> . expression MAS expression
+    (17) numexp -> . expression MENOS expression
+    (18) numexp -> . expression POR expression
+    (19) numexp -> . expression DIVIDE expression
+    (20) numexp -> . expression POTENCIA expression
+    (21) logicexp -> . expression OR expression
+    (22) logicexp -> . expression AND expression
+    (23) logicexp -> . NOT expression
+    (24) logicexp -> . true
+    (25) logicexp -> . false
+    (29) testexp -> . expression IGUAL expression
+    (30) testexp -> . expression DIFERENTE expression
+    (31) testexp -> . expression MENOR expression
+    (32) testexp -> . expression MAYOR expression
+    (33) testexp -> . expression MENORIG expression
+    (34) testexp -> . expression MAYORIG expression
+
+    ID              shift and go to state 17
+    ParI            shift and go to state 22
+    ENTERO          shift and go to state 23
+    NOT             shift and go to state 24
+    true            shift and go to state 25
+    false           shift and go to state 26
+
+    expression                     shift and go to state 55
+    numexp                         shift and go to state 19
+    logicexp                       shift and go to state 20
+    testexp                        shift and go to state 21
+
+state 37
+
+    (21) logicexp -> expression OR . expression
+    (10) expression -> . numexp
+    (11) expression -> . logicexp
+    (12) expression -> . ID
+    (13) expression -> . testexp
+    (14) expression -> . ParI expression ParD
+    (15) expression -> . ENTERO
+    (16) numexp -> . expression MAS expression
+    (17) numexp -> . expression MENOS expression
+    (18) numexp -> . expression POR expression
+    (19) numexp -> . expression DIVIDE expression
+    (20) numexp -> . expression POTENCIA expression
+    (21) logicexp -> . expression OR expression
+    (22) logicexp -> . expression AND expression
+    (23) logicexp -> . NOT expression
+    (24) logicexp -> . true
+    (25) logicexp -> . false
+    (29) testexp -> . expression IGUAL expression
+    (30) testexp -> . expression DIFERENTE expression
+    (31) testexp -> . expression MENOR expression
+    (32) testexp -> . expression MAYOR expression
+    (33) testexp -> . expression MENORIG expression
+    (34) testexp -> . expression MAYORIG expression
+
+    ID              shift and go to state 17
+    ParI            shift and go to state 22
+    ENTERO          shift and go to state 23
+    NOT             shift and go to state 24
+    true            shift and go to state 25
+    false           shift and go to state 26
+
+    expression                     shift and go to state 56
+    numexp                         shift and go to state 19
+    logicexp                       shift and go to state 20
+    testexp                        shift and go to state 21
+
+state 38
+
+    (22) logicexp -> expression AND . expression
+    (10) expression -> . numexp
+    (11) expression -> . logicexp
+    (12) expression -> . ID
+    (13) expression -> . testexp
+    (14) expression -> . ParI expression ParD
+    (15) expression -> . ENTERO
+    (16) numexp -> . expression MAS expression
+    (17) numexp -> . expression MENOS expression
+    (18) numexp -> . expression POR expression
+    (19) numexp -> . expression DIVIDE expression
+    (20) numexp -> . expression POTENCIA expression
+    (21) logicexp -> . expression OR expression
+    (22) logicexp -> . expression AND expression
+    (23) logicexp -> . NOT expression
+    (24) logicexp -> . true
+    (25) logicexp -> . false
+    (29) testexp -> . expression IGUAL expression
+    (30) testexp -> . expression DIFERENTE expression
+    (31) testexp -> . expression MENOR expression
+    (32) testexp -> . expression MAYOR expression
+    (33) testexp -> . expression MENORIG expression
+    (34) testexp -> . expression MAYORIG expression
+
+    ID              shift and go to state 17
+    ParI            shift and go to state 22
+    ENTERO          shift and go to state 23
+    NOT             shift and go to state 24
+    true            shift and go to state 25
+    false           shift and go to state 26
+
+    expression                     shift and go to state 57
+    numexp                         shift and go to state 19
+    logicexp                       shift and go to state 20
+    testexp                        shift and go to state 21
+
+state 39
+
+    (29) testexp -> expression IGUAL . expression
+    (10) expression -> . numexp
+    (11) expression -> . logicexp
+    (12) expression -> . ID
+    (13) expression -> . testexp
+    (14) expression -> . ParI expression ParD
+    (15) expression -> . ENTERO
+    (16) numexp -> . expression MAS expression
+    (17) numexp -> . expression MENOS expression
+    (18) numexp -> . expression POR expression
+    (19) numexp -> . expression DIVIDE expression
+    (20) numexp -> . expression POTENCIA expression
+    (21) logicexp -> . expression OR expression
+    (22) logicexp -> . expression AND expression
+    (23) logicexp -> . NOT expression
+    (24) logicexp -> . true
+    (25) logicexp -> . false
+    (29) testexp -> . expression IGUAL expression
+    (30) testexp -> . expression DIFERENTE expression
+    (31) testexp -> . expression MENOR expression
+    (32) testexp -> . expression MAYOR expression
+    (33) testexp -> . expression MENORIG expression
+    (34) testexp -> . expression MAYORIG expression
+
+    ID              shift and go to state 17
+    ParI            shift and go to state 22
+    ENTERO          shift and go to state 23
+    NOT             shift and go to state 24
+    true            shift and go to state 25
+    false           shift and go to state 26
+
+    expression                     shift and go to state 58
+    numexp                         shift and go to state 19
+    logicexp                       shift and go to state 20
+    testexp                        shift and go to state 21
+
+state 40
+
+    (30) testexp -> expression DIFERENTE . expression
+    (10) expression -> . numexp
+    (11) expression -> . logicexp
+    (12) expression -> . ID
+    (13) expression -> . testexp
+    (14) expression -> . ParI expression ParD
+    (15) expression -> . ENTERO
+    (16) numexp -> . expression MAS expression
+    (17) numexp -> . expression MENOS expression
+    (18) numexp -> . expression POR expression
+    (19) numexp -> . expression DIVIDE expression
+    (20) numexp -> . expression POTENCIA expression
+    (21) logicexp -> . expression OR expression
+    (22) logicexp -> . expression AND expression
+    (23) logicexp -> . NOT expression
+    (24) logicexp -> . true
+    (25) logicexp -> . false
+    (29) testexp -> . expression IGUAL expression
+    (30) testexp -> . expression DIFERENTE expression
+    (31) testexp -> . expression MENOR expression
+    (32) testexp -> . expression MAYOR expression
+    (33) testexp -> . expression MENORIG expression
+    (34) testexp -> . expression MAYORIG expression
+
+    ID              shift and go to state 17
+    ParI            shift and go to state 22
+    ENTERO          shift and go to state 23
+    NOT             shift and go to state 24
+    true            shift and go to state 25
+    false           shift and go to state 26
+
+    expression                     shift and go to state 59
+    numexp                         shift and go to state 19
+    logicexp                       shift and go to state 20
+    testexp                        shift and go to state 21
+
+state 41
+
+    (31) testexp -> expression MENOR . expression
+    (10) expression -> . numexp
+    (11) expression -> . logicexp
+    (12) expression -> . ID
+    (13) expression -> . testexp
+    (14) expression -> . ParI expression ParD
+    (15) expression -> . ENTERO
+    (16) numexp -> . expression MAS expression
+    (17) numexp -> . expression MENOS expression
+    (18) numexp -> . expression POR expression
+    (19) numexp -> . expression DIVIDE expression
+    (20) numexp -> . expression POTENCIA expression
+    (21) logicexp -> . expression OR expression
+    (22) logicexp -> . expression AND expression
+    (23) logicexp -> . NOT expression
+    (24) logicexp -> . true
+    (25) logicexp -> . false
+    (29) testexp -> . expression IGUAL expression
+    (30) testexp -> . expression DIFERENTE expression
+    (31) testexp -> . expression MENOR expression
+    (32) testexp -> . expression MAYOR expression
+    (33) testexp -> . expression MENORIG expression
+    (34) testexp -> . expression MAYORIG expression
+
+    ID              shift and go to state 17
+    ParI            shift and go to state 22
+    ENTERO          shift and go to state 23
+    NOT             shift and go to state 24
+    true            shift and go to state 25
+    false           shift and go to state 26
+
+    expression                     shift and go to state 60
+    numexp                         shift and go to state 19
+    logicexp                       shift and go to state 20
+    testexp                        shift and go to state 21
+
+state 42
+
+    (32) testexp -> expression MAYOR . expression
+    (10) expression -> . numexp
+    (11) expression -> . logicexp
+    (12) expression -> . ID
+    (13) expression -> . testexp
+    (14) expression -> . ParI expression ParD
+    (15) expression -> . ENTERO
+    (16) numexp -> . expression MAS expression
+    (17) numexp -> . expression MENOS expression
+    (18) numexp -> . expression POR expression
+    (19) numexp -> . expression DIVIDE expression
+    (20) numexp -> . expression POTENCIA expression
+    (21) logicexp -> . expression OR expression
+    (22) logicexp -> . expression AND expression
+    (23) logicexp -> . NOT expression
+    (24) logicexp -> . true
+    (25) logicexp -> . false
+    (29) testexp -> . expression IGUAL expression
+    (30) testexp -> . expression DIFERENTE expression
+    (31) testexp -> . expression MENOR expression
+    (32) testexp -> . expression MAYOR expression
+    (33) testexp -> . expression MENORIG expression
+    (34) testexp -> . expression MAYORIG expression
+
+    ID              shift and go to state 17
+    ParI            shift and go to state 22
+    ENTERO          shift and go to state 23
+    NOT             shift and go to state 24
+    true            shift and go to state 25
+    false           shift and go to state 26
+
+    expression                     shift and go to state 61
+    numexp                         shift and go to state 19
+    logicexp                       shift and go to state 20
+    testexp                        shift and go to state 21
+
+state 43
+
+    (33) testexp -> expression MENORIG . expression
+    (10) expression -> . numexp
+    (11) expression -> . logicexp
+    (12) expression -> . ID
+    (13) expression -> . testexp
+    (14) expression -> . ParI expression ParD
+    (15) expression -> . ENTERO
+    (16) numexp -> . expression MAS expression
+    (17) numexp -> . expression MENOS expression
+    (18) numexp -> . expression POR expression
+    (19) numexp -> . expression DIVIDE expression
+    (20) numexp -> . expression POTENCIA expression
+    (21) logicexp -> . expression OR expression
+    (22) logicexp -> . expression AND expression
+    (23) logicexp -> . NOT expression
+    (24) logicexp -> . true
+    (25) logicexp -> . false
+    (29) testexp -> . expression IGUAL expression
+    (30) testexp -> . expression DIFERENTE expression
+    (31) testexp -> . expression MENOR expression
+    (32) testexp -> . expression MAYOR expression
+    (33) testexp -> . expression MENORIG expression
+    (34) testexp -> . expression MAYORIG expression
+
+    ID              shift and go to state 17
+    ParI            shift and go to state 22
+    ENTERO          shift and go to state 23
+    NOT             shift and go to state 24
+    true            shift and go to state 25
+    false           shift and go to state 26
+
+    expression                     shift and go to state 62
+    numexp                         shift and go to state 19
+    logicexp                       shift and go to state 20
+    testexp                        shift and go to state 21
+
+state 44
+
+    (34) testexp -> expression MAYORIG . expression
+    (10) expression -> . numexp
+    (11) expression -> . logicexp
+    (12) expression -> . ID
+    (13) expression -> . testexp
+    (14) expression -> . ParI expression ParD
+    (15) expression -> . ENTERO
+    (16) numexp -> . expression MAS expression
+    (17) numexp -> . expression MENOS expression
+    (18) numexp -> . expression POR expression
+    (19) numexp -> . expression DIVIDE expression
+    (20) numexp -> . expression POTENCIA expression
+    (21) logicexp -> . expression OR expression
+    (22) logicexp -> . expression AND expression
+    (23) logicexp -> . NOT expression
+    (24) logicexp -> . true
+    (25) logicexp -> . false
+    (29) testexp -> . expression IGUAL expression
+    (30) testexp -> . expression DIFERENTE expression
+    (31) testexp -> . expression MENOR expression
+    (32) testexp -> . expression MAYOR expression
+    (33) testexp -> . expression MENORIG expression
+    (34) testexp -> . expression MAYORIG expression
+
+    ID              shift and go to state 17
+    ParI            shift and go to state 22
+    ENTERO          shift and go to state 23
+    NOT             shift and go to state 24
+    true            shift and go to state 25
+    false           shift and go to state 26
+
+    expression                     shift and go to state 63
+    numexp                         shift and go to state 19
+    logicexp                       shift and go to state 20
+    testexp                        shift and go to state 21
+
+state 45
+
+    (14) expression -> ParI expression . ParD
+    (16) numexp -> expression . MAS expression
+    (17) numexp -> expression . MENOS expression
+    (18) numexp -> expression . POR expression
+    (19) numexp -> expression . DIVIDE expression
+    (20) numexp -> expression . POTENCIA expression
+    (21) logicexp -> expression . OR expression
+    (22) logicexp -> expression . AND expression
+    (29) testexp -> expression . IGUAL expression
+    (30) testexp -> expression . DIFERENTE expression
+    (31) testexp -> expression . MENOR expression
+    (32) testexp -> expression . MAYOR expression
+    (33) testexp -> expression . MENORIG expression
+    (34) testexp -> expression . MAYORIG expression
+
+    ParD            shift and go to state 64
+    MAS             shift and go to state 32
+    MENOS           shift and go to state 33
+    POR             shift and go to state 34
+    DIVIDE          shift and go to state 35
+    POTENCIA        shift and go to state 36
+    OR              shift and go to state 37
+    AND             shift and go to state 38
+    IGUAL           shift and go to state 39
+    DIFERENTE       shift and go to state 40
+    MENOR           shift and go to state 41
+    MAYOR           shift and go to state 42
+    MENORIG         shift and go to state 43
+    MAYORIG         shift and go to state 44
+
+
+state 46
+
+    (23) logicexp -> NOT expression .
+    (16) numexp -> expression . MAS expression
+    (17) numexp -> expression . MENOS expression
+    (18) numexp -> expression . POR expression
+    (19) numexp -> expression . DIVIDE expression
+    (20) numexp -> expression . POTENCIA expression
+    (21) logicexp -> expression . OR expression
+    (22) logicexp -> expression . AND expression
+    (29) testexp -> expression . IGUAL expression
+    (30) testexp -> expression . DIFERENTE expression
+    (31) testexp -> expression . MENOR expression
+    (32) testexp -> expression . MAYOR expression
+    (33) testexp -> expression . MENORIG expression
+    (34) testexp -> expression . MAYORIG expression
+
+    PyC             reduce using rule 23 (logicexp -> NOT expression .)
+    MAS             reduce using rule 23 (logicexp -> NOT expression .)
+    MENOS           reduce using rule 23 (logicexp -> NOT expression .)
+    POR             reduce using rule 23 (logicexp -> NOT expression .)
+    DIVIDE          reduce using rule 23 (logicexp -> NOT expression .)
+    POTENCIA        reduce using rule 23 (logicexp -> NOT expression .)
+    OR              reduce using rule 23 (logicexp -> NOT expression .)
+    AND             reduce using rule 23 (logicexp -> NOT expression .)
+    IGUAL           reduce using rule 23 (logicexp -> NOT expression .)
+    DIFERENTE       reduce using rule 23 (logicexp -> NOT expression .)
+    MENOR           reduce using rule 23 (logicexp -> NOT expression .)
+    MAYOR           reduce using rule 23 (logicexp -> NOT expression .)
+    MENORIG         reduce using rule 23 (logicexp -> NOT expression .)
+    MAYORIG         reduce using rule 23 (logicexp -> NOT expression .)
+    ParD            reduce using rule 23 (logicexp -> NOT expression .)
+
+  ! MAS             [ shift and go to state 32 ]
+  ! MENOS           [ shift and go to state 33 ]
+  ! POR             [ shift and go to state 34 ]
+  ! DIVIDE          [ shift and go to state 35 ]
+  ! POTENCIA        [ shift and go to state 36 ]
+  ! OR              [ shift and go to state 37 ]
+  ! AND             [ shift and go to state 38 ]
+  ! IGUAL           [ shift and go to state 39 ]
+  ! DIFERENTE       [ shift and go to state 40 ]
+  ! MENOR           [ shift and go to state 41 ]
+  ! MAYOR           [ shift and go to state 42 ]
+  ! MENORIG         [ shift and go to state 43 ]
+  ! MAYORIG         [ shift and go to state 44 ]
+
+
+state 47
+
+    (6) declaration -> bool ID asign PyC . code
+    (1) code -> . declaration
+    (2) code -> . definition
+    (3) code -> . ifCond
+    (4) code -> . empty
+    (5) declaration -> . int ID asign PyC code
+    (6) declaration -> . bool ID asign PyC code
+    (9) definition -> . ID ASIGNA expression PyC code
+    (26) ifCond -> . if ParI expression ParD LlaveI code LlaveD ifElse
+    (35) empty -> .
+
+    int             shift and go to state 6
+    bool            shift and go to state 8
+    ID              shift and go to state 7
+    if              shift and go to state 9
+    $end            reduce using rule 35 (empty -> .)
+    LlaveD          reduce using rule 35 (empty -> .)
+
+    code                           shift and go to state 65
+    declaration                    shift and go to state 2
+    definition                     shift and go to state 3
+    ifCond                         shift and go to state 4
+    empty                          shift and go to state 5
+
+state 48
+
+    (26) ifCond -> if ParI expression ParD . LlaveI code LlaveD ifElse
+
+    LlaveI          shift and go to state 66
+
+
+state 49
+
+    (5) declaration -> int ID asign PyC code .
+
+    $end            reduce using rule 5 (declaration -> int ID asign PyC code .)
+    LlaveD          reduce using rule 5 (declaration -> int ID asign PyC code .)
+
+
+state 50
+
+    (9) definition -> ID ASIGNA expression PyC code .
+
+    $end            reduce using rule 9 (definition -> ID ASIGNA expression PyC code .)
+    LlaveD          reduce using rule 9 (definition -> ID ASIGNA expression PyC code .)
+
+
+state 51
+
+    (16) numexp -> expression MAS expression .
+    (16) numexp -> expression . MAS expression
+    (17) numexp -> expression . MENOS expression
+    (18) numexp -> expression . POR expression
+    (19) numexp -> expression . DIVIDE expression
+    (20) numexp -> expression . POTENCIA expression
+    (21) logicexp -> expression . OR expression
+    (22) logicexp -> expression . AND expression
+    (29) testexp -> expression . IGUAL expression
+    (30) testexp -> expression . DIFERENTE expression
+    (31) testexp -> expression . MENOR expression
+    (32) testexp -> expression . MAYOR expression
+    (33) testexp -> expression . MENORIG expression
+    (34) testexp -> expression . MAYORIG expression
+
+    PyC             reduce using rule 16 (numexp -> expression MAS expression .)
+    MAS             reduce using rule 16 (numexp -> expression MAS expression .)
+    MENOS           reduce using rule 16 (numexp -> expression MAS expression .)
+    OR              reduce using rule 16 (numexp -> expression MAS expression .)
+    IGUAL           reduce using rule 16 (numexp -> expression MAS expression .)
+    DIFERENTE       reduce using rule 16 (numexp -> expression MAS expression .)
+    MENOR           reduce using rule 16 (numexp -> expression MAS expression .)
+    MAYOR           reduce using rule 16 (numexp -> expression MAS expression .)
+    MENORIG         reduce using rule 16 (numexp -> expression MAS expression .)
+    MAYORIG         reduce using rule 16 (numexp -> expression MAS expression .)
+    ParD            reduce using rule 16 (numexp -> expression MAS expression .)
+    POR             shift and go to state 34
+    DIVIDE          shift and go to state 35
+    POTENCIA        shift and go to state 36
+    AND             shift and go to state 38
+
+  ! POR             [ reduce using rule 16 (numexp -> expression MAS expression .) ]
+  ! DIVIDE          [ reduce using rule 16 (numexp -> expression MAS expression .) ]
+  ! POTENCIA        [ reduce using rule 16 (numexp -> expression MAS expression .) ]
+  ! AND             [ reduce using rule 16 (numexp -> expression MAS expression .) ]
+  ! MAS             [ shift and go to state 32 ]
+  ! MENOS           [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 37 ]
+  ! IGUAL           [ shift and go to state 39 ]
+  ! DIFERENTE       [ shift and go to state 40 ]
+  ! MENOR           [ shift and go to state 41 ]
+  ! MAYOR           [ shift and go to state 42 ]
+  ! MENORIG         [ shift and go to state 43 ]
+  ! MAYORIG         [ shift and go to state 44 ]
+
+
+state 52
+
+    (17) numexp -> expression MENOS expression .
+    (16) numexp -> expression . MAS expression
+    (17) numexp -> expression . MENOS expression
+    (18) numexp -> expression . POR expression
+    (19) numexp -> expression . DIVIDE expression
+    (20) numexp -> expression . POTENCIA expression
+    (21) logicexp -> expression . OR expression
+    (22) logicexp -> expression . AND expression
+    (29) testexp -> expression . IGUAL expression
+    (30) testexp -> expression . DIFERENTE expression
+    (31) testexp -> expression . MENOR expression
+    (32) testexp -> expression . MAYOR expression
+    (33) testexp -> expression . MENORIG expression
+    (34) testexp -> expression . MAYORIG expression
+
+    PyC             reduce using rule 17 (numexp -> expression MENOS expression .)
+    MAS             reduce using rule 17 (numexp -> expression MENOS expression .)
+    MENOS           reduce using rule 17 (numexp -> expression MENOS expression .)
+    OR              reduce using rule 17 (numexp -> expression MENOS expression .)
+    IGUAL           reduce using rule 17 (numexp -> expression MENOS expression .)
+    DIFERENTE       reduce using rule 17 (numexp -> expression MENOS expression .)
+    MENOR           reduce using rule 17 (numexp -> expression MENOS expression .)
+    MAYOR           reduce using rule 17 (numexp -> expression MENOS expression .)
+    MENORIG         reduce using rule 17 (numexp -> expression MENOS expression .)
+    MAYORIG         reduce using rule 17 (numexp -> expression MENOS expression .)
+    ParD            reduce using rule 17 (numexp -> expression MENOS expression .)
+    POR             shift and go to state 34
+    DIVIDE          shift and go to state 35
+    POTENCIA        shift and go to state 36
+    AND             shift and go to state 38
+
+  ! POR             [ reduce using rule 17 (numexp -> expression MENOS expression .) ]
+  ! DIVIDE          [ reduce using rule 17 (numexp -> expression MENOS expression .) ]
+  ! POTENCIA        [ reduce using rule 17 (numexp -> expression MENOS expression .) ]
+  ! AND             [ reduce using rule 17 (numexp -> expression MENOS expression .) ]
+  ! MAS             [ shift and go to state 32 ]
+  ! MENOS           [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 37 ]
+  ! IGUAL           [ shift and go to state 39 ]
+  ! DIFERENTE       [ shift and go to state 40 ]
+  ! MENOR           [ shift and go to state 41 ]
+  ! MAYOR           [ shift and go to state 42 ]
+  ! MENORIG         [ shift and go to state 43 ]
+  ! MAYORIG         [ shift and go to state 44 ]
+
+
+state 53
+
+    (18) numexp -> expression POR expression .
+    (16) numexp -> expression . MAS expression
+    (17) numexp -> expression . MENOS expression
+    (18) numexp -> expression . POR expression
+    (19) numexp -> expression . DIVIDE expression
+    (20) numexp -> expression . POTENCIA expression
+    (21) logicexp -> expression . OR expression
+    (22) logicexp -> expression . AND expression
+    (29) testexp -> expression . IGUAL expression
+    (30) testexp -> expression . DIFERENTE expression
+    (31) testexp -> expression . MENOR expression
+    (32) testexp -> expression . MAYOR expression
+    (33) testexp -> expression . MENORIG expression
+    (34) testexp -> expression . MAYORIG expression
+
+    PyC             reduce using rule 18 (numexp -> expression POR expression .)
+    MAS             reduce using rule 18 (numexp -> expression POR expression .)
+    MENOS           reduce using rule 18 (numexp -> expression POR expression .)
+    POR             reduce using rule 18 (numexp -> expression POR expression .)
+    DIVIDE          reduce using rule 18 (numexp -> expression POR expression .)
+    OR              reduce using rule 18 (numexp -> expression POR expression .)
+    AND             reduce using rule 18 (numexp -> expression POR expression .)
+    IGUAL           reduce using rule 18 (numexp -> expression POR expression .)
+    DIFERENTE       reduce using rule 18 (numexp -> expression POR expression .)
+    MENOR           reduce using rule 18 (numexp -> expression POR expression .)
+    MAYOR           reduce using rule 18 (numexp -> expression POR expression .)
+    MENORIG         reduce using rule 18 (numexp -> expression POR expression .)
+    MAYORIG         reduce using rule 18 (numexp -> expression POR expression .)
+    ParD            reduce using rule 18 (numexp -> expression POR expression .)
+    POTENCIA        shift and go to state 36
+
+  ! POTENCIA        [ reduce using rule 18 (numexp -> expression POR expression .) ]
+  ! MAS             [ shift and go to state 32 ]
+  ! MENOS           [ shift and go to state 33 ]
+  ! POR             [ shift and go to state 34 ]
+  ! DIVIDE          [ shift and go to state 35 ]
+  ! OR              [ shift and go to state 37 ]
+  ! AND             [ shift and go to state 38 ]
+  ! IGUAL           [ shift and go to state 39 ]
+  ! DIFERENTE       [ shift and go to state 40 ]
+  ! MENOR           [ shift and go to state 41 ]
+  ! MAYOR           [ shift and go to state 42 ]
+  ! MENORIG         [ shift and go to state 43 ]
+  ! MAYORIG         [ shift and go to state 44 ]
+
+
+state 54
+
+    (19) numexp -> expression DIVIDE expression .
+    (16) numexp -> expression . MAS expression
+    (17) numexp -> expression . MENOS expression
+    (18) numexp -> expression . POR expression
+    (19) numexp -> expression . DIVIDE expression
+    (20) numexp -> expression . POTENCIA expression
+    (21) logicexp -> expression . OR expression
+    (22) logicexp -> expression . AND expression
+    (29) testexp -> expression . IGUAL expression
+    (30) testexp -> expression . DIFERENTE expression
+    (31) testexp -> expression . MENOR expression
+    (32) testexp -> expression . MAYOR expression
+    (33) testexp -> expression . MENORIG expression
+    (34) testexp -> expression . MAYORIG expression
+
+    PyC             reduce using rule 19 (numexp -> expression DIVIDE expression .)
+    MAS             reduce using rule 19 (numexp -> expression DIVIDE expression .)
+    MENOS           reduce using rule 19 (numexp -> expression DIVIDE expression .)
+    POR             reduce using rule 19 (numexp -> expression DIVIDE expression .)
+    DIVIDE          reduce using rule 19 (numexp -> expression DIVIDE expression .)
+    OR              reduce using rule 19 (numexp -> expression DIVIDE expression .)
+    AND             reduce using rule 19 (numexp -> expression DIVIDE expression .)
+    IGUAL           reduce using rule 19 (numexp -> expression DIVIDE expression .)
+    DIFERENTE       reduce using rule 19 (numexp -> expression DIVIDE expression .)
+    MENOR           reduce using rule 19 (numexp -> expression DIVIDE expression .)
+    MAYOR           reduce using rule 19 (numexp -> expression DIVIDE expression .)
+    MENORIG         reduce using rule 19 (numexp -> expression DIVIDE expression .)
+    MAYORIG         reduce using rule 19 (numexp -> expression DIVIDE expression .)
+    ParD            reduce using rule 19 (numexp -> expression DIVIDE expression .)
+    POTENCIA        shift and go to state 36
+
+  ! POTENCIA        [ reduce using rule 19 (numexp -> expression DIVIDE expression .) ]
+  ! MAS             [ shift and go to state 32 ]
+  ! MENOS           [ shift and go to state 33 ]
+  ! POR             [ shift and go to state 34 ]
+  ! DIVIDE          [ shift and go to state 35 ]
+  ! OR              [ shift and go to state 37 ]
+  ! AND             [ shift and go to state 38 ]
+  ! IGUAL           [ shift and go to state 39 ]
+  ! DIFERENTE       [ shift and go to state 40 ]
+  ! MENOR           [ shift and go to state 41 ]
+  ! MAYOR           [ shift and go to state 42 ]
+  ! MENORIG         [ shift and go to state 43 ]
+  ! MAYORIG         [ shift and go to state 44 ]
+
+
+state 55
+
+    (20) numexp -> expression POTENCIA expression .
+    (16) numexp -> expression . MAS expression
+    (17) numexp -> expression . MENOS expression
+    (18) numexp -> expression . POR expression
+    (19) numexp -> expression . DIVIDE expression
+    (20) numexp -> expression . POTENCIA expression
+    (21) logicexp -> expression . OR expression
+    (22) logicexp -> expression . AND expression
+    (29) testexp -> expression . IGUAL expression
+    (30) testexp -> expression . DIFERENTE expression
+    (31) testexp -> expression . MENOR expression
+    (32) testexp -> expression . MAYOR expression
+    (33) testexp -> expression . MENORIG expression
+    (34) testexp -> expression . MAYORIG expression
+
+    PyC             reduce using rule 20 (numexp -> expression POTENCIA expression .)
+    MAS             reduce using rule 20 (numexp -> expression POTENCIA expression .)
+    MENOS           reduce using rule 20 (numexp -> expression POTENCIA expression .)
+    POR             reduce using rule 20 (numexp -> expression POTENCIA expression .)
+    DIVIDE          reduce using rule 20 (numexp -> expression POTENCIA expression .)
+    POTENCIA        reduce using rule 20 (numexp -> expression POTENCIA expression .)
+    OR              reduce using rule 20 (numexp -> expression POTENCIA expression .)
+    AND             reduce using rule 20 (numexp -> expression POTENCIA expression .)
+    IGUAL           reduce using rule 20 (numexp -> expression POTENCIA expression .)
+    DIFERENTE       reduce using rule 20 (numexp -> expression POTENCIA expression .)
+    MENOR           reduce using rule 20 (numexp -> expression POTENCIA expression .)
+    MAYOR           reduce using rule 20 (numexp -> expression POTENCIA expression .)
+    MENORIG         reduce using rule 20 (numexp -> expression POTENCIA expression .)
+    MAYORIG         reduce using rule 20 (numexp -> expression POTENCIA expression .)
+    ParD            reduce using rule 20 (numexp -> expression POTENCIA expression .)
+
+  ! MAS             [ shift and go to state 32 ]
+  ! MENOS           [ shift and go to state 33 ]
+  ! POR             [ shift and go to state 34 ]
+  ! DIVIDE          [ shift and go to state 35 ]
+  ! POTENCIA        [ shift and go to state 36 ]
+  ! OR              [ shift and go to state 37 ]
+  ! AND             [ shift and go to state 38 ]
+  ! IGUAL           [ shift and go to state 39 ]
+  ! DIFERENTE       [ shift and go to state 40 ]
+  ! MENOR           [ shift and go to state 41 ]
+  ! MAYOR           [ shift and go to state 42 ]
+  ! MENORIG         [ shift and go to state 43 ]
+  ! MAYORIG         [ shift and go to state 44 ]
+
+
+state 56
+
+    (21) logicexp -> expression OR expression .
+    (16) numexp -> expression . MAS expression
+    (17) numexp -> expression . MENOS expression
+    (18) numexp -> expression . POR expression
+    (19) numexp -> expression . DIVIDE expression
+    (20) numexp -> expression . POTENCIA expression
+    (21) logicexp -> expression . OR expression
+    (22) logicexp -> expression . AND expression
+    (29) testexp -> expression . IGUAL expression
+    (30) testexp -> expression . DIFERENTE expression
+    (31) testexp -> expression . MENOR expression
+    (32) testexp -> expression . MAYOR expression
+    (33) testexp -> expression . MENORIG expression
+    (34) testexp -> expression . MAYORIG expression
+
+    PyC             reduce using rule 21 (logicexp -> expression OR expression .)
+    MAS             reduce using rule 21 (logicexp -> expression OR expression .)
+    MENOS           reduce using rule 21 (logicexp -> expression OR expression .)
+    OR              reduce using rule 21 (logicexp -> expression OR expression .)
+    IGUAL           reduce using rule 21 (logicexp -> expression OR expression .)
+    DIFERENTE       reduce using rule 21 (logicexp -> expression OR expression .)
+    MENOR           reduce using rule 21 (logicexp -> expression OR expression .)
+    MAYOR           reduce using rule 21 (logicexp -> expression OR expression .)
+    MENORIG         reduce using rule 21 (logicexp -> expression OR expression .)
+    MAYORIG         reduce using rule 21 (logicexp -> expression OR expression .)
+    ParD            reduce using rule 21 (logicexp -> expression OR expression .)
+    POR             shift and go to state 34
+    DIVIDE          shift and go to state 35
+    POTENCIA        shift and go to state 36
+    AND             shift and go to state 38
+
+  ! POR             [ reduce using rule 21 (logicexp -> expression OR expression .) ]
+  ! DIVIDE          [ reduce using rule 21 (logicexp -> expression OR expression .) ]
+  ! POTENCIA        [ reduce using rule 21 (logicexp -> expression OR expression .) ]
+  ! AND             [ reduce using rule 21 (logicexp -> expression OR expression .) ]
+  ! MAS             [ shift and go to state 32 ]
+  ! MENOS           [ shift and go to state 33 ]
+  ! OR              [ shift and go to state 37 ]
+  ! IGUAL           [ shift and go to state 39 ]
+  ! DIFERENTE       [ shift and go to state 40 ]
+  ! MENOR           [ shift and go to state 41 ]
+  ! MAYOR           [ shift and go to state 42 ]
+  ! MENORIG         [ shift and go to state 43 ]
+  ! MAYORIG         [ shift and go to state 44 ]
+
+
+state 57
+
+    (22) logicexp -> expression AND expression .
+    (16) numexp -> expression . MAS expression
+    (17) numexp -> expression . MENOS expression
+    (18) numexp -> expression . POR expression
+    (19) numexp -> expression . DIVIDE expression
+    (20) numexp -> expression . POTENCIA expression
+    (21) logicexp -> expression . OR expression
+    (22) logicexp -> expression . AND expression
+    (29) testexp -> expression . IGUAL expression
+    (30) testexp -> expression . DIFERENTE expression
+    (31) testexp -> expression . MENOR expression
+    (32) testexp -> expression . MAYOR expression
+    (33) testexp -> expression . MENORIG expression
+    (34) testexp -> expression . MAYORIG expression
+
+    PyC             reduce using rule 22 (logicexp -> expression AND expression .)
+    MAS             reduce using rule 22 (logicexp -> expression AND expression .)
+    MENOS           reduce using rule 22 (logicexp -> expression AND expression .)
+    POR             reduce using rule 22 (logicexp -> expression AND expression .)
+    DIVIDE          reduce using rule 22 (logicexp -> expression AND expression .)
+    OR              reduce using rule 22 (logicexp -> expression AND expression .)
+    AND             reduce using rule 22 (logicexp -> expression AND expression .)
+    IGUAL           reduce using rule 22 (logicexp -> expression AND expression .)
+    DIFERENTE       reduce using rule 22 (logicexp -> expression AND expression .)
+    MENOR           reduce using rule 22 (logicexp -> expression AND expression .)
+    MAYOR           reduce using rule 22 (logicexp -> expression AND expression .)
+    MENORIG         reduce using rule 22 (logicexp -> expression AND expression .)
+    MAYORIG         reduce using rule 22 (logicexp -> expression AND expression .)
+    ParD            reduce using rule 22 (logicexp -> expression AND expression .)
+    POTENCIA        shift and go to state 36
+
+  ! POTENCIA        [ reduce using rule 22 (logicexp -> expression AND expression .) ]
+  ! MAS             [ shift and go to state 32 ]
+  ! MENOS           [ shift and go to state 33 ]
+  ! POR             [ shift and go to state 34 ]
+  ! DIVIDE          [ shift and go to state 35 ]
+  ! OR              [ shift and go to state 37 ]
+  ! AND             [ shift and go to state 38 ]
+  ! IGUAL           [ shift and go to state 39 ]
+  ! DIFERENTE       [ shift and go to state 40 ]
+  ! MENOR           [ shift and go to state 41 ]
+  ! MAYOR           [ shift and go to state 42 ]
+  ! MENORIG         [ shift and go to state 43 ]
+  ! MAYORIG         [ shift and go to state 44 ]
+
+
+state 58
+
+    (29) testexp -> expression IGUAL expression .
+    (16) numexp -> expression . MAS expression
+    (17) numexp -> expression . MENOS expression
+    (18) numexp -> expression . POR expression
+    (19) numexp -> expression . DIVIDE expression
+    (20) numexp -> expression . POTENCIA expression
+    (21) logicexp -> expression . OR expression
+    (22) logicexp -> expression . AND expression
+    (29) testexp -> expression . IGUAL expression
+    (30) testexp -> expression . DIFERENTE expression
+    (31) testexp -> expression . MENOR expression
+    (32) testexp -> expression . MAYOR expression
+    (33) testexp -> expression . MENORIG expression
+    (34) testexp -> expression . MAYORIG ex
+    pression
+
+  ! shift/reduce conflict for MAS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for POR resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for POTENCIA resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MAYOR resolved as shift
+  ! shift/reduce conflict for MENORIG resolved as shift
+  ! shift/reduce conflict for MAYORIG resolved as shift
+    PyC             reduce using rule 29 (testexp -> expression IGUAL expression .)
+    ParD            reduce using rule 29 (testexp -> expression IGUAL expression .)
+    MAS             shift and go to state 32
+    MENOS           shift and go to state 33
+    POR             shift and go to state 34
+    DIVIDE          shift and go to state 35
+    POTENCIA        shift and go to state 36
+    OR              shift and go to state 37
+    AND             shift and go to state 38
+    IGUAL           shift and go to state 39
+    DIFERENTE       shift and go to state 40
+    MENOR           shift and go to state 41
+    MAYOR           shift and go to state 42
+    MENORIG         shift and go to state 43
+    MAYORIG         shift and go to state 44
+
+  ! MAS             [ reduce using rule 29 (testexp -> expression IGUAL expression .) ]
+  ! MENOS           [ reduce using rule 29 (testexp -> expression IGUAL expression .) ]
+  ! POR             [ reduce using rule 29 (testexp -> expression IGUAL expression .) ]
+  ! DIVIDE          [ reduce using rule 29 (testexp -> expression IGUAL expression .) ]
+  ! POTENCIA        [ reduce using rule 29 (testexp -> expression IGUAL expression .) ]
+  ! OR              [ reduce using rule 29 (testexp -> expression IGUAL expression .) ]
+  ! AND             [ reduce using rule 29 (testexp -> expression IGUAL expression .) ]
+  ! IGUAL           [ reduce using rule 29 (testexp -> expression IGUAL expression .) ]
+  ! DIFERENTE       [ reduce using rule 29 (testexp -> expression IGUAL expression .) ]
+  ! MENOR           [ reduce using rule 29 (testexp -> expression IGUAL expression .) ]
+  ! MAYOR           [ reduce using rule 29 (testexp -> expression IGUAL expression .) ]
+  ! MENORIG         [ reduce using rule 29 (testexp -> expression IGUAL expression .) ]
+  ! MAYORIG         [ reduce using rule 29 (testexp -> expression IGUAL expression .) ]
+
+
+state 59
+
+    (30) testexp -> expression DIFERENTE expression .
+    (16) numexp -> expression . MAS expression
+    (17) numexp -> expression . MENOS expression
+    (18) numexp -> expression . POR expression
+    (19) numexp -> expression . DIVIDE expression
+    (20) numexp -> expression . POTENCIA expression
+    (21) logicexp -> expression . OR expression
+    (22) logicexp -> expression . AND expression
+    (29) testexp -> expression . IGUAL expression
+    (30) testexp -> expression . DIFERENTE expression
+    (31) testexp -> expression . MENOR expression
+    (32) testexp -> expression . MAYOR expression
+    (33) testexp -> expression . MENORIG expression
+    (34) testexp -> expression . MAYORIG expression
+
+  ! shift/reduce conflict for MAS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for POR resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for POTENCIA resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MAYOR resolved as shift
+  ! shift/reduce conflict for MENORIG resolved as shift
+  ! shift/reduce conflict for MAYORIG resolved as shift
+    PyC             reduce using rule 30 (testexp -> expression DIFERENTE expression .)
+    ParD            reduce using rule 30 (testexp -> expression DIFERENTE expression .)
+    MAS             shift and go to state 32
+    MENOS           shift and go to state 33
+    POR             shift and go to state 34
+    DIVIDE          shift and go to state 35
+    POTENCIA        shift and go to state 36
+    OR              shift and go to state 37
+    AND             shift and go to state 38
+    IGUAL           shift and go to state 39
+    DIFERENTE       shift and go to state 40
+    MENOR           shift and go to state 41
+    MAYOR           shift and go to state 42
+    MENORIG         shift and go to state 43
+    MAYORIG         shift and go to state 44
+
+  ! MAS             [ reduce using rule 30 (testexp -> expression DIFERENTE expression .) ]
+  ! MENOS           [ reduce using rule 30 (testexp -> expression DIFERENTE expression .) ]
+  ! POR             [ reduce using rule 30 (testexp -> expression DIFERENTE expression .) ]
+  ! DIVIDE          [ reduce using rule 30 (testexp -> expression DIFERENTE expression .) ]
+  ! POTENCIA        [ reduce using rule 30 (testexp -> expression DIFERENTE expression .) ]
+  ! OR              [ reduce using rule 30 (testexp -> expression DIFERENTE expression .) ]
+  ! AND             [ reduce using rule 30 (testexp -> expression DIFERENTE expression .) ]
+  ! IGUAL           [ reduce using rule 30 (testexp -> expression DIFERENTE expression .) ]
+  ! DIFERENTE       [ reduce using rule 30 (testexp -> expression DIFERENTE expression .) ]
+  ! MENOR           [ reduce using rule 30 (testexp -> expression DIFERENTE expression .) ]
+  ! MAYOR           [ reduce using rule 30 (testexp -> expression DIFERENTE expression .) ]
+  ! MENORIG         [ reduce using rule 30 (testexp -> expression DIFERENTE expression .) ]
+  ! MAYORIG         [ reduce using rule 30 (testexp -> expression DIFERENTE expression .) ]
+
+
+state 60
+
+    (31) testexp -> expression MENOR expression .
+    (16) numexp -> expression . MAS expression
+    (17) numexp -> expression . MENOS expression
+    (18) numexp -> expression . POR expression
+    (19) numexp -> expression . DIVIDE expression
+    (20) numexp -> expression . POTENCIA expression
+    (21) logicexp -> expression . OR expression
+    (22) logicexp -> expression . AND expression
+    (29) testexp -> expression . IGUAL expression
+    (30) testexp -> expression . DIFERENTE expression
+    (31) testexp -> expression . MENOR expression
+    (32) testexp -> expression . MAYOR expression
+    (33) testexp -> expression . MENORIG expression
+    (34) testexp -> expression . MAYORIG expression
+
+    PyC             reduce using rule 31 (testexp -> expression MENOR expression .)
+    IGUAL           reduce using rule 31 (testexp -> expression MENOR expression .)
+    DIFERENTE       reduce using rule 31 (testexp -> expression MENOR expression .)
+    MENOR           reduce using rule 31 (testexp -> expression MENOR expression .)
+    MAYOR           reduce using rule 31 (testexp -> expression MENOR expression .)
+    MENORIG         reduce using rule 31 (testexp -> expression MENOR expression .)
+    MAYORIG         reduce using rule 31 (testexp -> expression MENOR expression .)
+    ParD            reduce using rule 31 (testexp -> expression MENOR expression .)
+    MAS             shift and go to state 32
+    MENOS           shift and go to state 33
+    POR             shift and go to state 34
+    DIVIDE          shift and go to state 35
+    POTENCIA        shift and go to state 36
+    OR              shift and go to state 37
+    AND             shift and go to state 38
+
+  ! MAS             [ reduce using rule 31 (testexp -> expression MENOR expression .) ]
+  ! MENOS           [ reduce using rule 31 (testexp -> expression MENOR expression .) ]
+  ! POR             [ reduce using rule 31 (testexp -> expression MENOR expression .) ]
+  ! DIVIDE          [ reduce using rule 31 (testexp -> expression MENOR expression .) ]
+  ! POTENCIA        [ reduce using rule 31 (testexp -> expression MENOR expression .) ]
+  ! OR              [ reduce using rule 31 (testexp -> expression MENOR expression .) ]
+  ! AND             [ reduce using rule 31 (testexp -> expression MENOR expression .) ]
+  ! IGUAL           [ shift and go to state 39 ]
+  ! DIFERENTE       [ shift and go to state 40 ]
+  ! MENOR           [ shift and go to state 41 ]
+  ! MAYOR           [ shift and go to state 42 ]
+  ! MENORIG         [ shift and go to state 43 ]
+  ! MAYORIG         [ shift and go to state 44 ]
+
+
+state 61
+
+    (32) testexp -> expression MAYOR expression .
+    (16) numexp -> expression . MAS expression
+    (17) numexp -> expression . MENOS expression
+    (18) numexp -> expression . POR expression
+    (19) numexp -> expression . DIVIDE expression
+    (20) numexp -> expression . POTENCIA expression
+    (21) logicexp -> expression . OR expression
+    (22) logicexp -> expression . AND expression
+    (29) testexp -> expression . IGUAL expression
+    (30) testexp -> expression . DIFERENTE expression
+    (31) testexp -> expression . MENOR expression
+    (32) testexp -> expression . MAYOR expression
+    (33) testexp -> expression . MENORIG expression
+    (34) testexp -> expression . MAYORIG expression
+
+    PyC             reduce using rule 32 (testexp -> expression MAYOR expression .)
+    IGUAL           reduce using rule 32 (testexp -> expression MAYOR expression .)
+    DIFERENTE       reduce using rule 32 (testexp -> expression MAYOR expression .)
+    MENOR           reduce using rule 32 (testexp -> expression MAYOR expression .)
+    MAYOR           reduce using rule 32 (testexp -> expression MAYOR expression .)
+    MENORIG         reduce using rule 32 (testexp -> expression MAYOR expression .)
+    MAYORIG         reduce using rule 32 (testexp -> expression MAYOR expression .)
+    ParD            reduce using rule 32 (testexp -> expression MAYOR expression .)
+    MAS             shift and go to state 32
+    MENOS           shift and go to state 33
+    POR             shift and go to state 34
+    DIVIDE          shift and go to state 35
+    POTENCIA        shift and go to state 36
+    OR              shift and go to state 37
+    AND             shift and go to state 38
+
+  ! MAS             [ reduce using rule 32 (testexp -> expression MAYOR expression .) ]
+  ! MENOS           [ reduce using rule 32 (testexp -> expression MAYOR expression .) ]
+  ! POR             [ reduce using rule 32 (testexp -> expression MAYOR expression .) ]
+  ! DIVIDE          [ reduce using rule 32 (testexp -> expression MAYOR expression .) ]
+  ! POTENCIA        [ reduce using rule 32 (testexp -> expression MAYOR expression .) ]
+  ! OR              [ reduce using rule 32 (testexp -> expression MAYOR expression .) ]
+  ! AND             [ reduce using rule 32 (testexp -> expression MAYOR expression .) ]
+  ! IGUAL           [ shift and go to state 39 ]
+  ! DIFERENTE       [ shift and go to state 40 ]
+  ! MENOR           [ shift and go to state 41 ]
+  ! MAYOR           [ shift and go to state 42 ]
+  ! MENORIG         [ shift and go to state 43 ]
+  ! MAYORIG         [ shift and go to state 44 ]
+
+
+state 62
+
+    (33) testexp -> expression MENORIG expression .
+    (16) numexp -> expression . MAS expression
+    (17) numexp -> expression . MENOS expression
+    (18) numexp -> expression . POR expression
+    (19) numexp -> expression . DIVIDE expression
+    (20) numexp -> expression . POTENCIA expression
+    (21) logicexp -> expression . OR expression
+    (22) logicexp -> expression . AND expression
+    (29) testexp -> expression . IGUAL expression
+    (30) testexp -> expression . DIFERENTE expression
+    (31) testexp -> expression . MENOR expression
+    (32) testexp -> expression . MAYOR expression
+    (33) testexp -> expression . MENORIG expression
+    (34) testexp -> expression . MAYORIG expression
+
+    PyC             reduce using rule 33 (testexp -> expression MENORIG expression .)
+    IGUAL           reduce using rule 33 (testexp -> expression MENORIG expression .)
+    DIFERENTE       reduce using rule 33 (testexp -> expression MENORIG expression .)
+    MENOR           reduce using rule 33 (testexp -> expression MENORIG expression .)
+    MAYOR           reduce using rule 33 (testexp -> expression MENORIG expression .)
+    MENORIG         reduce using rule 33 (testexp -> expression MENORIG expression .)
+    MAYORIG         reduce using rule 33 (testexp -> expression MENORIG expression .)
+    ParD            reduce using rule 33 (testexp -> expression MENORIG expression .)
+    MAS             shift and go to state 32
+    MENOS           shift and go to state 33
+    POR             shift and go to state 34
+    DIVIDE          shift and go to state 35
+    POTENCIA        shift and go to state 36
+    OR              shift and go to state 37
+    AND             shift and go to state 38
+
+  ! MAS             [ reduce using rule 33 (testexp -> expression MENORIG expression .) ]
+  ! MENOS           [ reduce using rule 33 (testexp -> expression MENORIG expression .) ]
+  ! POR             [ reduce using rule 33 (testexp -> expression MENORIG expression .) ]
+  ! DIVIDE          [ reduce using rule 33 (testexp -> expression MENORIG expression .) ]
+  ! POTENCIA        [ reduce using rule 33 (testexp -> expression MENORIG expression .) ]
+  ! OR              [ reduce using rule 33 (testexp -> expression MENORIG expression .) ]
+  ! AND             [ reduce using rule 33 (testexp -> expression MENORIG expression .) ]
+  ! IGUAL           [ shift and go to state 39 ]
+  ! DIFERENTE       [ shift and go to state 40 ]
+  ! MENOR           [ shift and go to state 41 ]
+  ! MAYOR           [ shift and go to state 42 ]
+  ! MENORIG         [ shift and go to state 43 ]
+  ! MAYORIG         [ shift and go to state 44 ]
+
+
+state 63
+
+    (34) testexp -> expression MAYORIG expression .
+    (16) numexp -> expression . MAS expression
+    (17) numexp -> expression . MENOS expression
+    (18) numexp -> expression . POR expression
+    (19) numexp -> expression . DIVIDE expression
+    (20) numexp -> expression . POTENCIA expression
+    (21) logicexp -> expression . OR expression
+    (22) logicexp -> expression . AND expression
+    (29) testexp -> expression . IGUAL expression
+    (30) testexp -> expression . DIFERENTE expression
+    (31) testexp -> expression . MENOR expression
+    (32) testexp -> expression . MAYOR expression
+    (33) testexp -> expression . MENORIG expression
+    (34) testexp -> expression . MAYORIG expression
+
+    PyC             reduce using rule 34 (testexp -> expression MAYORIG expression .)
+    IGUAL           reduce using rule 34 (testexp -> expression MAYORIG expression .)
+    DIFERENTE       reduce using rule 34 (testexp -> expression MAYORIG expression .)
+    MENOR           reduce using rule 34 (testexp -> expression MAYORIG expression .)
+    MAYOR           reduce using rule 34 (testexp -> expression MAYORIG expression .)
+    MENORIG         reduce using rule 34 (testexp -> expression MAYORIG expression .)
+    MAYORIG         reduce using rule 34 (testexp -> expression MAYORIG expression .)
+    ParD            reduce using rule 34 (testexp -> expression MAYORIG expression .)
+    MAS             shift and go to state 32
+    MENOS           shift and go to state 33
+    POR             shift and go to state 34
+    DIVIDE          shift and go to state 35
+    POTENCIA        shift and go to state 36
+    OR              shift and go to state 37
+    AND             shift and go to state 38
+
+  ! MAS             [ reduce using rule 34 (testexp -> expression MAYORIG expression .) ]
+  ! MENOS           [ reduce using rule 34 (testexp -> expression MAYORIG expression .) ]
+  ! POR             [ reduce using rule 34 (testexp -> expression MAYORIG expression .) ]
+  ! DIVIDE          [ reduce using rule 34 (testexp -> expression MAYORIG expression .) ]
+  ! POTENCIA        [ reduce using rule 34 (testexp -> expression MAYORIG expression .) ]
+  ! OR              [ reduce using rule 34 (testexp -> expression MAYORIG expression .) ]
+  ! AND             [ reduce using rule 34 (testexp -> expression MAYORIG expression .) ]
+  ! IGUAL           [ shift and go to state 39 ]
+  ! DIFERENTE       [ shift and go to state 40 ]
+  ! MENOR           [ shift and go to state 41 ]
+  ! MAYOR           [ shift and go to state 42 ]
+  ! MENORIG         [ shift and go to state 43 ]
+  ! MAYORIG         [ shift and go to state 44 ]
+
+
+state 64
+
+    (14) expression -> ParI expression ParD .
+
+    PyC             reduce using rule 14 (expression -> ParI expression ParD .)
+    MAS             reduce using rule 14 (expression -> ParI expression ParD .)
+    MENOS           reduce using rule 14 (expression -> ParI expression ParD .)
+    POR             reduce using rule 14 (expression -> ParI expression ParD .)
+    DIVIDE          reduce using rule 14 (expression -> ParI expression ParD .)
+    POTENCIA        reduce using rule 14 (expression -> ParI expression ParD .)
+    OR              reduce using rule 14 (expression -> ParI expression ParD .)
+    AND             reduce using rule 14 (expression -> ParI expression ParD .)
+    IGUAL           reduce using rule 14 (expression -> ParI expression ParD .)
+    DIFERENTE       reduce using rule 14 (expression -> ParI expression ParD .)
+    MENOR           reduce using rule 14 (expression -> ParI expression ParD .)
+    MAYOR           reduce using rule 14 (expression -> ParI expression ParD .)
+    MENORIG         reduce using rule 14 (expression -> ParI expression ParD .)
+    MAYORIG         reduce using rule 14 (expression -> ParI expression ParD .)
+    ParD            reduce using rule 14 (expression -> ParI expression ParD .)
+
+
+state 65
+
+    (6) declaration -> bool ID asign PyC code .
+
+    $end            reduce using rule 6 (declaration -> bool ID asign PyC code .)
+    LlaveD          reduce using rule 6 (declaration -> bool ID asign PyC code .)
+
+
+state 66
+
+    (26) ifCond -> if ParI expression ParD LlaveI . code LlaveD ifElse
+    (1) code -> . declaration
+    (2) code -> . definition
+    (3) code -> . ifCond
+    (4) code -> . empty
+    (5) declaration -> . int ID asign PyC code
+    (6) declaration -> . bool ID asign PyC code
+    (9) definition -> . ID ASIGNA expression PyC code
+    (26) ifCond -> . if ParI expression ParD LlaveI code LlaveD ifElse
+    (35) empty -> .
+
+    int             shift and go to state 6
+    bool            shift and go to state 8
+    ID              shift and go to state 7
+    if              shift and go to state 9
+    LlaveD          reduce using rule 35 (empty -> .)
+
+    code                           shift and go to state 67
+    declaration                    shift and go to state 2
+    definition                     shift and go to state 3
+    ifCond                         shift and go to state 4
+    empty                          shift and go to state 5
+
+state 67
+
+    (26) ifCond -> if ParI expression ParD LlaveI code . LlaveD ifElse
+
+    LlaveD          shift and go to state 68
+
+
+state 68
+
+    (26) ifCond -> if ParI expression ParD LlaveI code LlaveD . ifElse
+    (27) ifElse -> . else LlaveI code LlaveD code
+    (28) ifElse -> . code
+    (1) code -> . declaration
+    (2) code -> . definition
+    (3) code -> . ifCond
+    (4) code -> . empty
+    (5) declaration -> . int ID asign PyC code
+    (6) declaration -> . bool ID asign PyC code
+    (9) definition -> . ID ASIGNA expression PyC code
+    (26) ifCond -> . if ParI expression ParD LlaveI code LlaveD ifElse
+    (35) empty -> .
+
+    else            shift and go to state 71
+    int             shift and go to state 6
+    bool            shift and go to state 8
+    ID              shift and go to state 7
+    if              shift and go to state 9
+    $end            reduce using rule 35 (empty -> .)
+    LlaveD          reduce using rule 35 (empty -> .)
+
+    code                           shift and go to state 69
+    ifElse                         shift and go to state 70
+    declaration                    shift and go to state 2
+    definition                     shift and go to state 3
+    ifCond                         shift and go to state 4
+    empty                          shift and go to state 5
+
+state 69
+
+    (28) ifElse -> code .
+
+    $end            reduce using rule 28 (ifElse -> code .)
+    LlaveD          reduce using rule 28 (ifElse -> code .)
+
+
+state 70
+
+    (26) ifCond -> if ParI expression ParD LlaveI code LlaveD ifElse .
+
+    $end            reduce using rule 26 (ifCond -> if ParI expression ParD LlaveI code LlaveD ifElse .)
+    LlaveD          reduce using rule 26 (ifCond -> if ParI expression ParD LlaveI code LlaveD ifElse .)
+
+
+state 71
+
+    (27) ifElse -> else . LlaveI code LlaveD code
+
+    LlaveI          shift and go to state 72
+
+
+state 72
+
+    (27) ifElse -> else LlaveI . code LlaveD code
+    (1) code -> . declaration
+    (2) code -> . definition
+    (3) code -> . ifCond
+    (4) code -> . empty
+    (5) declaration -> . int ID asign PyC code
+    (6) declaration -> . bool ID asign PyC code
+    (9) definition -> . ID ASIGNA expression PyC code
+    (26) ifCond -> . if ParI expression ParD LlaveI code LlaveD ifElse
+    (35) empty -> .
+
+    int             shift and go to state 6
+    bool            shift and go to state 8
+    ID              shift and go to state 7
+    if              shift and go to state 9
+    LlaveD          reduce using rule 35 (empty -> .)
+
+    code                           shift and go to state 73
+    declaration                    shift and go to state 2
+    definition                     shift and go to state 3
+    ifCond                         shift and go to state 4
+    empty                          shift and go to state 5
+
+state 73
+
+    (27) ifElse -> else LlaveI code . LlaveD code
+
+    LlaveD          shift and go to state 74
+
+
+state 74
+
+    (27) ifElse -> else LlaveI code LlaveD . code
+    (1) code -> . declaration
+    (2) code -> . definition
+    (3) code -> . ifCond
+    (4) code -> . empty
+    (5) declaration -> . int ID asign PyC code
+    (6) declaration -> . bool ID asign PyC code
+    (9) definition -> . ID ASIGNA expression PyC code
+    (26) ifCond -> . if ParI expression ParD LlaveI code LlaveD ifElse
+    (35) empty -> .
+
+    int             shift and go to state 6
+    bool            shift and go to state 8
+    ID              shift and go to state 7
+    if              shift and go to state 9
+    $end            reduce using rule 35 (empty -> .)
+    LlaveD          reduce using rule 35 (empty -> .)
+
+    code                           shift and go to state 75
+    declaration                    shift and go to state 2
+    definition                     shift and go to state 3
+    ifCond                         shift and go to state 4
+    empty                          shift and go to state 5
+
+state 75
+
+    (27) ifElse -> else LlaveI code LlaveD code .
+
+    $end            reduce using rule 27 (ifElse -> else LlaveI code LlaveD code .)
+    LlaveD          reduce using rule 27 (ifElse -> else LlaveI code LlaveD code .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for MAS in state 58 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 58 resolved as shift
+WARNING: shift/reduce conflict for POR in state 58 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 58 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 58 resolved as shift
+WARNING: shift/reduce conflict for OR in state 58 resolved as shift
+WARNING: shift/reduce conflict for AND in state 58 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 58 resolved as shift
+WARNING: shift/reduce conflict for DIFERENTE in state 58 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 58 resolved as shift
+WARNING: shift/reduce conflict for MAYOR in state 58 resolved as shift
+WARNING: shift/reduce conflict for MENORIG in state 58 resolved as shift
+WARNING: shift/reduce conflict for MAYORIG in state 58 resolved as shift
+WARNING: shift/reduce conflict for MAS in state 59 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 59 resolved as shift
+WARNING: shift/reduce conflict for POR in state 59 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 59 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 59 resolved as shift
+WARNING: shift/reduce conflict for OR in state 59 resolved as shift
+WARNING: shift/reduce conflict for AND in state 59 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 59 resolved as shift
+WARNING: shift/reduce conflict for DIFERENTE in state 59 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 59 resolved as shift
+WARNING: shift/reduce conflict for MAYOR in state 59 resolved as shift
+WARNING: shift/reduce conflict for MENORIG in state 59 resolved as shift
+WARNING: shift/reduce conflict for MAYORIG in state 59 resolved as shift
