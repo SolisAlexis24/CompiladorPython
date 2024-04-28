@@ -4,11 +4,10 @@ import lex as lex
 reserved = {
     'if' : 'if',
     'else' : 'else',
-    'return': 'return',
     'true': 'true',
     'false' : 'false',
     'int' : 'int',
-    'bool':'bool',
+    'bool':'bool'
 }
 #List of token names
 tokens = ['ENTERO','ID','MAS','MENOS','DIVIDE','POTENCIA','POR',
