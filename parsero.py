@@ -2,6 +2,20 @@ import yacc as yacc
 from lexer import tokens, lexer
 import sys
 
+
+class Nodo:
+    def __init__(self,padre = None,hijos=None):
+         self.padre = padre
+         if hijos:
+              self.hijos = hijos
+         else:
+              self.hijos = [ ]
+
+arbol = []
+global pasada
+pasada = 1
+symbolTable = {}
+
 precedence = (
     ('nonassoc', 'MENOR', 'MAYOR', 'MENORIG', 'MAYORIG'),
     ('left', 'MAS', 'MENOS', 'OR'),
@@ -22,10 +36,12 @@ def p_code(t):
 def p_declaration(t):
     '''declaration : int ID asign PyC code
                    | bool ID asign PyC code'''
+    symbolTable[t[2]] = None
 
 def p_asign(t):
     '''asign : empty
-             | ASIGNA expression''' 
+             | ASIGNA expression'''
+
 
 def p_definition(t):
     'definition : ID ASIGNA expression PyC code'
@@ -33,10 +49,20 @@ def p_definition(t):
 def p_expression(t):
     '''expression : numexp
                   | logicexp
-                  | ID
+                  | identifier
                   | testexp
                   | ParI expression ParD
                   | ENTERO'''
+
+def p_identifier(t):
+    'identifier : ID'
+    if pasada == 2:
+        try:
+            symbolTable[t[1]]
+        except LookupError:
+            print(f"Variable '{t[1]}' no definida antes.")
+    else:
+        pass
 
 # Regla para suma y resta
 def p_numexp(t):
@@ -60,6 +86,7 @@ def p_ifElse(t):
     '''ifElse : else LlaveI code LlaveD code
               | code'''
 
+
 def p_testexp(t):
     '''testexp : expression IGUAL expression
                | expression DIFERENTE expression
@@ -70,22 +97,30 @@ def p_testexp(t):
 
 #  Regla para los errores
 def p_error(t):
-    print(f"Error sintactico en '{t.value}'")
-    exit
+    if(t):
+        print(f"Error sintactico en '{t.value}' .")
+    else:
+        print("Error sintatcico en el archivo de entrada.")
 
 #  Regla para la produccion vacia epsilon
 def p_empty(t):
     'empty :'
-    pass
+
 
 parser = yacc.yacc()
 
+
+
 def main():
     code = input("Nombre del archivo a parsear: ")
+    global pasada
     try :
         with open(code, 'r') as file:
             data = file.read()
             parser.parse(data, lexer)
+            pasada = pasada + 1
+            parser.parse(data, lexer)
+            print(symbolTable)
     except FileNotFoundError:
         print("No se pudo encontrar el archivo referido")
         exit
