@@ -72,7 +72,7 @@ import inspect
 # Change these to modify the default behavior of yacc (if you wish)
 #-----------------------------------------------------------------------------
 
-yaccdebug   = False            # Debugging mode.  If set, yacc generates a
+yaccdebug   = True            # Debugging mode.  If set, yacc generates a
                                # a 'parser.out' file in the current directory
 
 debug_file  = 'parser.out'     # Default name of the debugging file
@@ -289,7 +289,7 @@ class LRParser:
 
         # If no lexer was given, we will try to use the lex module
         if not lexer:
-            from . import lex
+            import lex
             lexer = lex.lexer
 
         # Set up the lexer and parser objects on pslice

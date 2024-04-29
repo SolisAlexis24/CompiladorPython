@@ -1,7 +1,4 @@
-import ply.lex as lex
-import sys
-global code
-code = ""
+import lex as lex
 #Reserved words
 reserved = {
     'if' : 'if',
@@ -77,11 +74,3 @@ def Lexer():
 
 
 lexer = Lexer()
-
-def lex_file(filename):
-    with open(filename, 'r') as file:
-        data = file.read()
-        lexer.input(data)
-    print("Lexical analysis success!")
-
-#lex_file("scode.c")

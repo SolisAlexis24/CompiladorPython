@@ -1,95 +1,111 @@
-Created by PLY version 3.11 (http://www.dabeaz.com/ply)
-
-Unused terminals:
-
-    AND
-    DIFERENTE
-    IGUAL
-    MAYOR
-    MAYORIG
-    MENOR
-    MENORIG
-    NOT
-    OR
-    bool
-    else
-    false
-    if
-    true
+Created by PLY (http://www.dabeaz.com/ply)
 
 Grammar
 
 Rule 0     S' -> P
 Rule 1     empty -> <empty>
-Rule 2     P -> int main LlaveI C return ENTERO PyC LlaveD
-Rule 3     C -> D
-Rule 4     C -> empty
-Rule 5     D -> int ID PyC C
-Rule 6     D -> int ID ASIGNA E PyC C
-Rule 7     D -> ID ASIGNA E PyC C
-Rule 8     E -> E MAS T
-Rule 9     E -> E MENOS T
-Rule 10    E -> T
-Rule 11    T -> T POR F
-Rule 12    T -> T DIVIDE F
-Rule 13    T -> F
-Rule 14    F -> F POTENCIA H
-Rule 15    F -> H
-Rule 16    H -> ParI E ParD
-Rule 17    H -> ID
-Rule 18    H -> ENTERO
+Rule 2     P -> int main LlaveI code return ENTERO PyC LlaveD
+Rule 3     code -> declaration
+Rule 4     code -> definition
+Rule 5     code -> ifCond
+Rule 6     code -> empty
+Rule 7     declaration -> int ID asign PyC code
+Rule 8     declaration -> bool ID asign PyC code
+Rule 9     definition -> identifier ASIGNA expression PyC code
+Rule 10    asign -> empty
+Rule 11    asign -> ASIGNA expression
+Rule 12    expression -> expression OR A
+Rule 13    expression -> A
+Rule 14    A -> A AND B
+Rule 15    A -> B
+Rule 16    B -> NOT B
+Rule 17    B -> C
+Rule 18    B -> true
+Rule 19    B -> false
+Rule 20    C -> C IGUAL D
+Rule 21    C -> C DIFERENTE D
+Rule 22    C -> D
+Rule 23    D -> D MENOR expression1
+Rule 24    D -> D MAYOR expression1
+Rule 25    D -> D MENORIG expression1
+Rule 26    D -> D MAYORIG expression1
+Rule 27    D -> expression1
+Rule 28    expression1 -> expression1 MAS T
+Rule 29    expression1 -> expression1 MENOS T
+Rule 30    expression1 -> T
+Rule 31    T -> T POR F
+Rule 32    T -> T DIVIDE F
+Rule 33    T -> F
+Rule 34    F -> H POTENCIA F
+Rule 35    F -> H
+Rule 36    H -> ParI expression ParD
+Rule 37    H -> identifier
+Rule 38    H -> ENTERO
+Rule 39    identifier -> ID
+Rule 40    ifCond -> if ParI expression ParD LlaveI code LlaveD ifElse
+Rule 41    ifElse -> else LlaveI code LlaveD code
+Rule 42    ifElse -> code
 
 Terminals, with rules where they appear
 
-AND                  : 
-ASIGNA               : 6 7
-DIFERENTE            : 
-DIVIDE               : 12
-ENTERO               : 2 18
-ID                   : 5 6 7 17
-IGUAL                : 
-LlaveD               : 2
-LlaveI               : 2
-MAS                  : 8
-MAYOR                : 
-MAYORIG              : 
-MENOR                : 
-MENORIG              : 
-MENOS                : 9
-NOT                  : 
-OR                   : 
-POR                  : 11
-POTENCIA             : 14
-ParD                 : 16
-ParI                 : 16
-PyC                  : 2 5 6 7
-bool                 : 
-else                 : 
+AND                  : 14
+ASIGNA               : 9 11
+DIFERENTE            : 21
+DIVIDE               : 32
+ENTERO               : 2 38
+ID                   : 7 8 39
+IGUAL                : 20
+LlaveD               : 2 40 41
+LlaveI               : 2 40 41
+MAS                  : 28
+MAYOR                : 24
+MAYORIG              : 26
+MENOR                : 23
+MENORIG              : 25
+MENOS                : 29
+NOT                  : 16
+OR                   : 12
+POR                  : 31
+POTENCIA             : 34
+ParD                 : 36 40
+ParI                 : 36 40
+PyC                  : 2 7 8 9
+bool                 : 8
+else                 : 41
 error                : 
-false                : 
-if                   : 
-int                  : 2 5 6
+false                : 19
+if                   : 40
+int                  : 2 7
 main                 : 2
 return               : 2
-true                 : 
+true                 : 18
 
 Nonterminals, with rules where they appear
 
-C                    : 2 5 6 7
-D                    : 3
-E                    : 6 7 8 9 16
-F                    : 11 12 13 14
-H                    : 14 15
+A                    : 12 13 14
+B                    : 14 15 16
+C                    : 17 20 21
+D                    : 20 21 22 23 24 25 26
+F                    : 31 32 33 34
+H                    : 34 35
 P                    : 0
-T                    : 8 9 10 11 12
-empty                : 4
+T                    : 28 29 30 31 32
+asign                : 7 8
+code                 : 2 7 8 9 40 41 41 42
+declaration          : 3
+definition           : 4
+empty                : 6 10
+expression           : 9 11 12 36 40
+expression1          : 23 24 25 26 27 28 29
+identifier           : 9 37
+ifCond               : 5
+ifElse               : 40
 
-Parsing method: LALR
 
 state 0
 
     (0) S' -> . P
-    (2) P -> . int main LlaveI C return ENTERO PyC LlaveD
+    (2) P -> . int main LlaveI code return ENTERO PyC LlaveD
 
     int             shift and go to state 2
 
@@ -103,519 +119,1593 @@ state 1
 
 state 2
 
-    (2) P -> int . main LlaveI C return ENTERO PyC LlaveD
+    (2) P -> int . main LlaveI code return ENTERO PyC LlaveD
 
     main            shift and go to state 3
 
 
 state 3
 
-    (2) P -> int main . LlaveI C return ENTERO PyC LlaveD
+    (2) P -> int main . LlaveI code return ENTERO PyC LlaveD
 
     LlaveI          shift and go to state 4
 
 
 state 4
 
-    (2) P -> int main LlaveI . C return ENTERO PyC LlaveD
-    (3) C -> . D
-    (4) C -> . empty
-    (5) D -> . int ID PyC C
-    (6) D -> . int ID ASIGNA E PyC C
-    (7) D -> . ID ASIGNA E PyC C
+    (2) P -> int main LlaveI . code return ENTERO PyC LlaveD
+    (3) code -> . declaration
+    (4) code -> . definition
+    (5) code -> . ifCond
+    (6) code -> . empty
+    (7) declaration -> . int ID asign PyC code
+    (8) declaration -> . bool ID asign PyC code
+    (9) definition -> . identifier ASIGNA expression PyC code
+    (40) ifCond -> . if ParI expression ParD LlaveI code LlaveD ifElse
     (1) empty -> .
+    (39) identifier -> . ID
 
     int             shift and go to state 5
-    ID              shift and go to state 9
+    bool            shift and go to state 12
+    if              shift and go to state 14
     return          reduce using rule 1 (empty -> .)
+    ID              shift and go to state 11
 
-    C                              shift and go to state 6
-    D                              shift and go to state 7
-    empty                          shift and go to state 8
+    code                           shift and go to state 6
+    declaration                    shift and go to state 7
+    definition                     shift and go to state 8
+    ifCond                         shift and go to state 9
+    empty                          shift and go to state 10
+    identifier                     shift and go to state 13
 
 state 5
 
-    (5) D -> int . ID PyC C
-    (6) D -> int . ID ASIGNA E PyC C
+    (7) declaration -> int . ID asign PyC code
 
-    ID              shift and go to state 10
+    ID              shift and go to state 15
 
 
 state 6
 
-    (2) P -> int main LlaveI C . return ENTERO PyC LlaveD
+    (2) P -> int main LlaveI code . return ENTERO PyC LlaveD
 
-    return          shift and go to state 11
+    return          shift and go to state 16
 
 
 state 7
 
-    (3) C -> D .
+    (3) code -> declaration .
 
-    return          reduce using rule 3 (C -> D .)
+    return          reduce using rule 3 (code -> declaration .)
+    LlaveD          reduce using rule 3 (code -> declaration .)
 
 
 state 8
 
-    (4) C -> empty .
+    (4) code -> definition .
 
-    return          reduce using rule 4 (C -> empty .)
+    return          reduce using rule 4 (code -> definition .)
+    LlaveD          reduce using rule 4 (code -> definition .)
 
 
 state 9
 
-    (7) D -> ID . ASIGNA E PyC C
+    (5) code -> ifCond .
 
-    ASIGNA          shift and go to state 12
+    return          reduce using rule 5 (code -> ifCond .)
+    LlaveD          reduce using rule 5 (code -> ifCond .)
 
 
 state 10
 
-    (5) D -> int ID . PyC C
-    (6) D -> int ID . ASIGNA E PyC C
+    (6) code -> empty .
 
-    PyC             shift and go to state 13
-    ASIGNA          shift and go to state 14
+    return          reduce using rule 6 (code -> empty .)
+    LlaveD          reduce using rule 6 (code -> empty .)
 
 
 state 11
 
-    (2) P -> int main LlaveI C return . ENTERO PyC LlaveD
+    (39) identifier -> ID .
 
-    ENTERO          shift and go to state 15
+    ASIGNA          reduce using rule 39 (identifier -> ID .)
+    POTENCIA        reduce using rule 39 (identifier -> ID .)
+    POR             reduce using rule 39 (identifier -> ID .)
+    DIVIDE          reduce using rule 39 (identifier -> ID .)
+    MAS             reduce using rule 39 (identifier -> ID .)
+    MENOS           reduce using rule 39 (identifier -> ID .)
+    MENOR           reduce using rule 39 (identifier -> ID .)
+    MAYOR           reduce using rule 39 (identifier -> ID .)
+    MENORIG         reduce using rule 39 (identifier -> ID .)
+    MAYORIG         reduce using rule 39 (identifier -> ID .)
+    IGUAL           reduce using rule 39 (identifier -> ID .)
+    DIFERENTE       reduce using rule 39 (identifier -> ID .)
+    AND             reduce using rule 39 (identifier -> ID .)
+    PyC             reduce using rule 39 (identifier -> ID .)
+    OR              reduce using rule 39 (identifier -> ID .)
+    ParD            reduce using rule 39 (identifier -> ID .)
 
 
 state 12
 
-    (7) D -> ID ASIGNA . E PyC C
-    (8) E -> . E MAS T
-    (9) E -> . E MENOS T
-    (10) E -> . T
-    (11) T -> . T POR F
-    (12) T -> . T DIVIDE F
-    (13) T -> . F
-    (14) F -> . F POTENCIA H
-    (15) F -> . H
-    (16) H -> . ParI E ParD
-    (17) H -> . ID
-    (18) H -> . ENTERO
+    (8) declaration -> bool . ID asign PyC code
 
-    ParI            shift and go to state 21
-    ID              shift and go to state 16
-    ENTERO          shift and go to state 22
+    ID              shift and go to state 17
 
-    E                              shift and go to state 17
-    T                              shift and go to state 18
-    F                              shift and go to state 19
-    H                              shift and go to state 20
 
 state 13
 
-    (5) D -> int ID PyC . C
-    (3) C -> . D
-    (4) C -> . empty
-    (5) D -> . int ID PyC C
-    (6) D -> . int ID ASIGNA E PyC C
-    (7) D -> . ID ASIGNA E PyC C
-    (1) empty -> .
+    (9) definition -> identifier . ASIGNA expression PyC code
 
-    int             shift and go to state 5
-    ID              shift and go to state 9
-    return          reduce using rule 1 (empty -> .)
+    ASIGNA          shift and go to state 18
 
-    C                              shift and go to state 23
-    D                              shift and go to state 7
-    empty                          shift and go to state 8
 
 state 14
 
-    (6) D -> int ID ASIGNA . E PyC C
-    (8) E -> . E MAS T
-    (9) E -> . E MENOS T
-    (10) E -> . T
-    (11) T -> . T POR F
-    (12) T -> . T DIVIDE F
-    (13) T -> . F
-    (14) F -> . F POTENCIA H
-    (15) F -> . H
-    (16) H -> . ParI E ParD
-    (17) H -> . ID
-    (18) H -> . ENTERO
+    (40) ifCond -> if . ParI expression ParD LlaveI code LlaveD ifElse
 
-    ParI            shift and go to state 21
-    ID              shift and go to state 16
-    ENTERO          shift and go to state 22
+    ParI            shift and go to state 19
 
-    E                              shift and go to state 24
-    T                              shift and go to state 18
-    F                              shift and go to state 19
-    H                              shift and go to state 20
 
 state 15
 
-    (2) P -> int main LlaveI C return ENTERO . PyC LlaveD
+    (7) declaration -> int ID . asign PyC code
+    (10) asign -> . empty
+    (11) asign -> . ASIGNA expression
+    (1) empty -> .
 
-    PyC             shift and go to state 25
+    ASIGNA          shift and go to state 22
+    PyC             reduce using rule 1 (empty -> .)
 
+    asign                          shift and go to state 20
+    empty                          shift and go to state 21
 
 state 16
 
-    (17) H -> ID .
+    (2) P -> int main LlaveI code return . ENTERO PyC LlaveD
 
-    POTENCIA        reduce using rule 17 (H -> ID .)
-    POR             reduce using rule 17 (H -> ID .)
-    DIVIDE          reduce using rule 17 (H -> ID .)
-    PyC             reduce using rule 17 (H -> ID .)
-    MAS             reduce using rule 17 (H -> ID .)
-    MENOS           reduce using rule 17 (H -> ID .)
-    ParD            reduce using rule 17 (H -> ID .)
+    ENTERO          shift and go to state 23
 
 
 state 17
 
-    (7) D -> ID ASIGNA E . PyC C
-    (8) E -> E . MAS T
-    (9) E -> E . MENOS T
+    (8) declaration -> bool ID . asign PyC code
+    (10) asign -> . empty
+    (11) asign -> . ASIGNA expression
+    (1) empty -> .
 
-    PyC             shift and go to state 26
-    MAS             shift and go to state 27
-    MENOS           shift and go to state 28
+    ASIGNA          shift and go to state 22
+    PyC             reduce using rule 1 (empty -> .)
 
+    asign                          shift and go to state 24
+    empty                          shift and go to state 21
 
 state 18
 
-    (10) E -> T .
-    (11) T -> T . POR F
-    (12) T -> T . DIVIDE F
+    (9) definition -> identifier ASIGNA . expression PyC code
+    (12) expression -> . expression OR A
+    (13) expression -> . A
+    (14) A -> . A AND B
+    (15) A -> . B
+    (16) B -> . NOT B
+    (17) B -> . C
+    (18) B -> . true
+    (19) B -> . false
+    (20) C -> . C IGUAL D
+    (21) C -> . C DIFERENTE D
+    (22) C -> . D
+    (23) D -> . D MENOR expression1
+    (24) D -> . D MAYOR expression1
+    (25) D -> . D MENORIG expression1
+    (26) D -> . D MAYORIG expression1
+    (27) D -> . expression1
+    (28) expression1 -> . expression1 MAS T
+    (29) expression1 -> . expression1 MENOS T
+    (30) expression1 -> . T
+    (31) T -> . T POR F
+    (32) T -> . T DIVIDE F
+    (33) T -> . F
+    (34) F -> . H POTENCIA F
+    (35) F -> . H
+    (36) H -> . ParI expression ParD
+    (37) H -> . identifier
+    (38) H -> . ENTERO
+    (39) identifier -> . ID
 
-    PyC             reduce using rule 10 (E -> T .)
-    MAS             reduce using rule 10 (E -> T .)
-    MENOS           reduce using rule 10 (E -> T .)
-    ParD            reduce using rule 10 (E -> T .)
-    POR             shift and go to state 29
-    DIVIDE          shift and go to state 30
+    NOT             shift and go to state 29
+    true            shift and go to state 31
+    false           shift and go to state 32
+    ParI            shift and go to state 38
+    ENTERO          shift and go to state 39
+    ID              shift and go to state 11
 
+    identifier                     shift and go to state 25
+    expression                     shift and go to state 26
+    A                              shift and go to state 27
+    B                              shift and go to state 28
+    C                              shift and go to state 30
+    D                              shift and go to state 33
+    expression1                    shift and go to state 34
+    T                              shift and go to state 35
+    F                              shift and go to state 36
+    H                              shift and go to state 37
 
 state 19
 
-    (13) T -> F .
-    (14) F -> F . POTENCIA H
+    (40) ifCond -> if ParI . expression ParD LlaveI code LlaveD ifElse
+    (12) expression -> . expression OR A
+    (13) expression -> . A
+    (14) A -> . A AND B
+    (15) A -> . B
+    (16) B -> . NOT B
+    (17) B -> . C
+    (18) B -> . true
+    (19) B -> . false
+    (20) C -> . C IGUAL D
+    (21) C -> . C DIFERENTE D
+    (22) C -> . D
+    (23) D -> . D MENOR expression1
+    (24) D -> . D MAYOR expression1
+    (25) D -> . D MENORIG expression1
+    (26) D -> . D MAYORIG expression1
+    (27) D -> . expression1
+    (28) expression1 -> . expression1 MAS T
+    (29) expression1 -> . expression1 MENOS T
+    (30) expression1 -> . T
+    (31) T -> . T POR F
+    (32) T -> . T DIVIDE F
+    (33) T -> . F
+    (34) F -> . H POTENCIA F
+    (35) F -> . H
+    (36) H -> . ParI expression ParD
+    (37) H -> . identifier
+    (38) H -> . ENTERO
+    (39) identifier -> . ID
 
-    POR             reduce using rule 13 (T -> F .)
-    DIVIDE          reduce using rule 13 (T -> F .)
-    PyC             reduce using rule 13 (T -> F .)
-    MAS             reduce using rule 13 (T -> F .)
-    MENOS           reduce using rule 13 (T -> F .)
-    ParD            reduce using rule 13 (T -> F .)
-    POTENCIA        shift and go to state 31
+    NOT             shift and go to state 29
+    true            shift and go to state 31
+    false           shift and go to state 32
+    ParI            shift and go to state 38
+    ENTERO          shift and go to state 39
+    ID              shift and go to state 11
 
+    expression                     shift and go to state 40
+    A                              shift and go to state 27
+    B                              shift and go to state 28
+    C                              shift and go to state 30
+    D                              shift and go to state 33
+    expression1                    shift and go to state 34
+    T                              shift and go to state 35
+    F                              shift and go to state 36
+    H                              shift and go to state 37
+    identifier                     shift and go to state 25
 
 state 20
 
-    (15) F -> H .
+    (7) declaration -> int ID asign . PyC code
 
-    POTENCIA        reduce using rule 15 (F -> H .)
-    POR             reduce using rule 15 (F -> H .)
-    DIVIDE          reduce using rule 15 (F -> H .)
-    PyC             reduce using rule 15 (F -> H .)
-    MAS             reduce using rule 15 (F -> H .)
-    MENOS           reduce using rule 15 (F -> H .)
-    ParD            reduce using rule 15 (F -> H .)
+    PyC             shift and go to state 41
 
 
 state 21
 
-    (16) H -> ParI . E ParD
-    (8) E -> . E MAS T
-    (9) E -> . E MENOS T
-    (10) E -> . T
-    (11) T -> . T POR F
-    (12) T -> . T DIVIDE F
-    (13) T -> . F
-    (14) F -> . F POTENCIA H
-    (15) F -> . H
-    (16) H -> . ParI E ParD
-    (17) H -> . ID
-    (18) H -> . ENTERO
+    (10) asign -> empty .
 
-    ParI            shift and go to state 21
-    ID              shift and go to state 16
-    ENTERO          shift and go to state 22
+    PyC             reduce using rule 10 (asign -> empty .)
 
-    E                              shift and go to state 32
-    T                              shift and go to state 18
-    F                              shift and go to state 19
-    H                              shift and go to state 20
 
 state 22
 
-    (18) H -> ENTERO .
+    (11) asign -> ASIGNA . expression
+    (12) expression -> . expression OR A
+    (13) expression -> . A
+    (14) A -> . A AND B
+    (15) A -> . B
+    (16) B -> . NOT B
+    (17) B -> . C
+    (18) B -> . true
+    (19) B -> . false
+    (20) C -> . C IGUAL D
+    (21) C -> . C DIFERENTE D
+    (22) C -> . D
+    (23) D -> . D MENOR expression1
+    (24) D -> . D MAYOR expression1
+    (25) D -> . D MENORIG expression1
+    (26) D -> . D MAYORIG expression1
+    (27) D -> . expression1
+    (28) expression1 -> . expression1 MAS T
+    (29) expression1 -> . expression1 MENOS T
+    (30) expression1 -> . T
+    (31) T -> . T POR F
+    (32) T -> . T DIVIDE F
+    (33) T -> . F
+    (34) F -> . H POTENCIA F
+    (35) F -> . H
+    (36) H -> . ParI expression ParD
+    (37) H -> . identifier
+    (38) H -> . ENTERO
+    (39) identifier -> . ID
 
-    POTENCIA        reduce using rule 18 (H -> ENTERO .)
-    POR             reduce using rule 18 (H -> ENTERO .)
-    DIVIDE          reduce using rule 18 (H -> ENTERO .)
-    PyC             reduce using rule 18 (H -> ENTERO .)
-    MAS             reduce using rule 18 (H -> ENTERO .)
-    MENOS           reduce using rule 18 (H -> ENTERO .)
-    ParD            reduce using rule 18 (H -> ENTERO .)
+    NOT             shift and go to state 29
+    true            shift and go to state 31
+    false           shift and go to state 32
+    ParI            shift and go to state 38
+    ENTERO          shift and go to state 39
+    ID              shift and go to state 11
 
+    expression                     shift and go to state 42
+    A                              shift and go to state 27
+    B                              shift and go to state 28
+    C                              shift and go to state 30
+    D                              shift and go to state 33
+    expression1                    shift and go to state 34
+    T                              shift and go to state 35
+    F                              shift and go to state 36
+    H                              shift and go to state 37
+    identifier                     shift and go to state 25
 
 state 23
 
-    (5) D -> int ID PyC C .
+    (2) P -> int main LlaveI code return ENTERO . PyC LlaveD
 
-    return          reduce using rule 5 (D -> int ID PyC C .)
+    PyC             shift and go to state 43
 
 
 state 24
 
-    (6) D -> int ID ASIGNA E . PyC C
-    (8) E -> E . MAS T
-    (9) E -> E . MENOS T
+    (8) declaration -> bool ID asign . PyC code
 
-    PyC             shift and go to state 33
-    MAS             shift and go to state 27
-    MENOS           shift and go to state 28
+    PyC             shift and go to state 44
 
 
 state 25
 
-    (2) P -> int main LlaveI C return ENTERO PyC . LlaveD
+    (37) H -> identifier .
 
-    LlaveD          shift and go to state 34
+    POTENCIA        reduce using rule 37 (H -> identifier .)
+    POR             reduce using rule 37 (H -> identifier .)
+    DIVIDE          reduce using rule 37 (H -> identifier .)
+    MAS             reduce using rule 37 (H -> identifier .)
+    MENOS           reduce using rule 37 (H -> identifier .)
+    MENOR           reduce using rule 37 (H -> identifier .)
+    MAYOR           reduce using rule 37 (H -> identifier .)
+    MENORIG         reduce using rule 37 (H -> identifier .)
+    MAYORIG         reduce using rule 37 (H -> identifier .)
+    IGUAL           reduce using rule 37 (H -> identifier .)
+    DIFERENTE       reduce using rule 37 (H -> identifier .)
+    AND             reduce using rule 37 (H -> identifier .)
+    PyC             reduce using rule 37 (H -> identifier .)
+    OR              reduce using rule 37 (H -> identifier .)
+    ParD            reduce using rule 37 (H -> identifier .)
 
 
 state 26
 
-    (7) D -> ID ASIGNA E PyC . C
-    (3) C -> . D
-    (4) C -> . empty
-    (5) D -> . int ID PyC C
-    (6) D -> . int ID ASIGNA E PyC C
-    (7) D -> . ID ASIGNA E PyC C
-    (1) empty -> .
+    (9) definition -> identifier ASIGNA expression . PyC code
+    (12) expression -> expression . OR A
 
-    int             shift and go to state 5
-    ID              shift and go to state 9
-    return          reduce using rule 1 (empty -> .)
+    PyC             shift and go to state 45
+    OR              shift and go to state 46
 
-    C                              shift and go to state 35
-    D                              shift and go to state 7
-    empty                          shift and go to state 8
 
 state 27
 
-    (8) E -> E MAS . T
-    (11) T -> . T POR F
-    (12) T -> . T DIVIDE F
-    (13) T -> . F
-    (14) F -> . F POTENCIA H
-    (15) F -> . H
-    (16) H -> . ParI E ParD
-    (17) H -> . ID
-    (18) H -> . ENTERO
+    (13) expression -> A .
+    (14) A -> A . AND B
 
-    ParI            shift and go to state 21
-    ID              shift and go to state 16
-    ENTERO          shift and go to state 22
+    PyC             reduce using rule 13 (expression -> A .)
+    OR              reduce using rule 13 (expression -> A .)
+    ParD            reduce using rule 13 (expression -> A .)
+    AND             shift and go to state 47
 
-    T                              shift and go to state 36
-    F                              shift and go to state 19
-    H                              shift and go to state 20
 
 state 28
 
-    (9) E -> E MENOS . T
-    (11) T -> . T POR F
-    (12) T -> . T DIVIDE F
-    (13) T -> . F
-    (14) F -> . F POTENCIA H
-    (15) F -> . H
-    (16) H -> . ParI E ParD
-    (17) H -> . ID
-    (18) H -> . ENTERO
+    (15) A -> B .
 
-    ParI            shift and go to state 21
-    ID              shift and go to state 16
-    ENTERO          shift and go to state 22
+    AND             reduce using rule 15 (A -> B .)
+    PyC             reduce using rule 15 (A -> B .)
+    OR              reduce using rule 15 (A -> B .)
+    ParD            reduce using rule 15 (A -> B .)
 
-    T                              shift and go to state 37
-    F                              shift and go to state 19
-    H                              shift and go to state 20
 
 state 29
 
-    (11) T -> T POR . F
-    (14) F -> . F POTENCIA H
-    (15) F -> . H
-    (16) H -> . ParI E ParD
-    (17) H -> . ID
-    (18) H -> . ENTERO
+    (16) B -> NOT . B
+    (16) B -> . NOT B
+    (17) B -> . C
+    (18) B -> . true
+    (19) B -> . false
+    (20) C -> . C IGUAL D
+    (21) C -> . C DIFERENTE D
+    (22) C -> . D
+    (23) D -> . D MENOR expression1
+    (24) D -> . D MAYOR expression1
+    (25) D -> . D MENORIG expression1
+    (26) D -> . D MAYORIG expression1
+    (27) D -> . expression1
+    (28) expression1 -> . expression1 MAS T
+    (29) expression1 -> . expression1 MENOS T
+    (30) expression1 -> . T
+    (31) T -> . T POR F
+    (32) T -> . T DIVIDE F
+    (33) T -> . F
+    (34) F -> . H POTENCIA F
+    (35) F -> . H
+    (36) H -> . ParI expression ParD
+    (37) H -> . identifier
+    (38) H -> . ENTERO
+    (39) identifier -> . ID
 
-    ParI            shift and go to state 21
-    ID              shift and go to state 16
-    ENTERO          shift and go to state 22
+    NOT             shift and go to state 29
+    true            shift and go to state 31
+    false           shift and go to state 32
+    ParI            shift and go to state 38
+    ENTERO          shift and go to state 39
+    ID              shift and go to state 11
 
-    F                              shift and go to state 38
-    H                              shift and go to state 20
+    B                              shift and go to state 48
+    C                              shift and go to state 30
+    D                              shift and go to state 33
+    expression1                    shift and go to state 34
+    T                              shift and go to state 35
+    F                              shift and go to state 36
+    H                              shift and go to state 37
+    identifier                     shift and go to state 25
 
 state 30
 
-    (12) T -> T DIVIDE . F
-    (14) F -> . F POTENCIA H
-    (15) F -> . H
-    (16) H -> . ParI E ParD
-    (17) H -> . ID
-    (18) H -> . ENTERO
+    (17) B -> C .
+    (20) C -> C . IGUAL D
+    (21) C -> C . DIFERENTE D
 
-    ParI            shift and go to state 21
-    ID              shift and go to state 16
-    ENTERO          shift and go to state 22
+    AND             reduce using rule 17 (B -> C .)
+    PyC             reduce using rule 17 (B -> C .)
+    OR              reduce using rule 17 (B -> C .)
+    ParD            reduce using rule 17 (B -> C .)
+    IGUAL           shift and go to state 49
+    DIFERENTE       shift and go to state 50
 
-    F                              shift and go to state 39
-    H                              shift and go to state 20
 
 state 31
 
-    (14) F -> F POTENCIA . H
-    (16) H -> . ParI E ParD
-    (17) H -> . ID
-    (18) H -> . ENTERO
+    (18) B -> true .
 
-    ParI            shift and go to state 21
-    ID              shift and go to state 16
-    ENTERO          shift and go to state 22
+    AND             reduce using rule 18 (B -> true .)
+    PyC             reduce using rule 18 (B -> true .)
+    OR              reduce using rule 18 (B -> true .)
+    ParD            reduce using rule 18 (B -> true .)
 
-    H                              shift and go to state 40
 
 state 32
 
-    (16) H -> ParI E . ParD
-    (8) E -> E . MAS T
-    (9) E -> E . MENOS T
+    (19) B -> false .
 
-    ParD            shift and go to state 41
-    MAS             shift and go to state 27
-    MENOS           shift and go to state 28
+    AND             reduce using rule 19 (B -> false .)
+    PyC             reduce using rule 19 (B -> false .)
+    OR              reduce using rule 19 (B -> false .)
+    ParD            reduce using rule 19 (B -> false .)
 
 
 state 33
 
-    (6) D -> int ID ASIGNA E PyC . C
-    (3) C -> . D
-    (4) C -> . empty
-    (5) D -> . int ID PyC C
-    (6) D -> . int ID ASIGNA E PyC C
-    (7) D -> . ID ASIGNA E PyC C
-    (1) empty -> .
+    (22) C -> D .
+    (23) D -> D . MENOR expression1
+    (24) D -> D . MAYOR expression1
+    (25) D -> D . MENORIG expression1
+    (26) D -> D . MAYORIG expression1
 
-    int             shift and go to state 5
-    ID              shift and go to state 9
-    return          reduce using rule 1 (empty -> .)
+    IGUAL           reduce using rule 22 (C -> D .)
+    DIFERENTE       reduce using rule 22 (C -> D .)
+    AND             reduce using rule 22 (C -> D .)
+    PyC             reduce using rule 22 (C -> D .)
+    OR              reduce using rule 22 (C -> D .)
+    ParD            reduce using rule 22 (C -> D .)
+    MENOR           shift and go to state 51
+    MAYOR           shift and go to state 52
+    MENORIG         shift and go to state 53
+    MAYORIG         shift and go to state 54
 
-    C                              shift and go to state 42
-    D                              shift and go to state 7
-    empty                          shift and go to state 8
 
 state 34
 
-    (2) P -> int main LlaveI C return ENTERO PyC LlaveD .
+    (27) D -> expression1 .
+    (28) expression1 -> expression1 . MAS T
+    (29) expression1 -> expression1 . MENOS T
 
-    $end            reduce using rule 2 (P -> int main LlaveI C return ENTERO PyC LlaveD .)
+    MENOR           reduce using rule 27 (D -> expression1 .)
+    MAYOR           reduce using rule 27 (D -> expression1 .)
+    MENORIG         reduce using rule 27 (D -> expression1 .)
+    MAYORIG         reduce using rule 27 (D -> expression1 .)
+    IGUAL           reduce using rule 27 (D -> expression1 .)
+    DIFERENTE       reduce using rule 27 (D -> expression1 .)
+    AND             reduce using rule 27 (D -> expression1 .)
+    PyC             reduce using rule 27 (D -> expression1 .)
+    OR              reduce using rule 27 (D -> expression1 .)
+    ParD            reduce using rule 27 (D -> expression1 .)
+    MAS             shift and go to state 55
+    MENOS           shift and go to state 56
 
 
 state 35
 
-    (7) D -> ID ASIGNA E PyC C .
+    (30) expression1 -> T .
+    (31) T -> T . POR F
+    (32) T -> T . DIVIDE F
 
-    return          reduce using rule 7 (D -> ID ASIGNA E PyC C .)
+    MAS             reduce using rule 30 (expression1 -> T .)
+    MENOS           reduce using rule 30 (expression1 -> T .)
+    MENOR           reduce using rule 30 (expression1 -> T .)
+    MAYOR           reduce using rule 30 (expression1 -> T .)
+    MENORIG         reduce using rule 30 (expression1 -> T .)
+    MAYORIG         reduce using rule 30 (expression1 -> T .)
+    IGUAL           reduce using rule 30 (expression1 -> T .)
+    DIFERENTE       reduce using rule 30 (expression1 -> T .)
+    AND             reduce using rule 30 (expression1 -> T .)
+    PyC             reduce using rule 30 (expression1 -> T .)
+    OR              reduce using rule 30 (expression1 -> T .)
+    ParD            reduce using rule 30 (expression1 -> T .)
+    POR             shift and go to state 57
+    DIVIDE          shift and go to state 58
 
 
 state 36
 
-    (8) E -> E MAS T .
-    (11) T -> T . POR F
-    (12) T -> T . DIVIDE F
+    (33) T -> F .
 
-    PyC             reduce using rule 8 (E -> E MAS T .)
-    MAS             reduce using rule 8 (E -> E MAS T .)
-    MENOS           reduce using rule 8 (E -> E MAS T .)
-    ParD            reduce using rule 8 (E -> E MAS T .)
-    POR             shift and go to state 29
-    DIVIDE          shift and go to state 30
+    POR             reduce using rule 33 (T -> F .)
+    DIVIDE          reduce using rule 33 (T -> F .)
+    MAS             reduce using rule 33 (T -> F .)
+    MENOS           reduce using rule 33 (T -> F .)
+    MENOR           reduce using rule 33 (T -> F .)
+    MAYOR           reduce using rule 33 (T -> F .)
+    MENORIG         reduce using rule 33 (T -> F .)
+    MAYORIG         reduce using rule 33 (T -> F .)
+    IGUAL           reduce using rule 33 (T -> F .)
+    DIFERENTE       reduce using rule 33 (T -> F .)
+    AND             reduce using rule 33 (T -> F .)
+    PyC             reduce using rule 33 (T -> F .)
+    OR              reduce using rule 33 (T -> F .)
+    ParD            reduce using rule 33 (T -> F .)
 
 
 state 37
 
-    (9) E -> E MENOS T .
-    (11) T -> T . POR F
-    (12) T -> T . DIVIDE F
+    (34) F -> H . POTENCIA F
+    (35) F -> H .
 
-    PyC             reduce using rule 9 (E -> E MENOS T .)
-    MAS             reduce using rule 9 (E -> E MENOS T .)
-    MENOS           reduce using rule 9 (E -> E MENOS T .)
-    ParD            reduce using rule 9 (E -> E MENOS T .)
-    POR             shift and go to state 29
-    DIVIDE          shift and go to state 30
+    POTENCIA        shift and go to state 59
+    POR             reduce using rule 35 (F -> H .)
+    DIVIDE          reduce using rule 35 (F -> H .)
+    MAS             reduce using rule 35 (F -> H .)
+    MENOS           reduce using rule 35 (F -> H .)
+    MENOR           reduce using rule 35 (F -> H .)
+    MAYOR           reduce using rule 35 (F -> H .)
+    MENORIG         reduce using rule 35 (F -> H .)
+    MAYORIG         reduce using rule 35 (F -> H .)
+    IGUAL           reduce using rule 35 (F -> H .)
+    DIFERENTE       reduce using rule 35 (F -> H .)
+    AND             reduce using rule 35 (F -> H .)
+    PyC             reduce using rule 35 (F -> H .)
+    OR              reduce using rule 35 (F -> H .)
+    ParD            reduce using rule 35 (F -> H .)
 
 
 state 38
 
-    (11) T -> T POR F .
-    (14) F -> F . POTENCIA H
+    (36) H -> ParI . expression ParD
+    (12) expression -> . expression OR A
+    (13) expression -> . A
+    (14) A -> . A AND B
+    (15) A -> . B
+    (16) B -> . NOT B
+    (17) B -> . C
+    (18) B -> . true
+    (19) B -> . false
+    (20) C -> . C IGUAL D
+    (21) C -> . C DIFERENTE D
+    (22) C -> . D
+    (23) D -> . D MENOR expression1
+    (24) D -> . D MAYOR expression1
+    (25) D -> . D MENORIG expression1
+    (26) D -> . D MAYORIG expression1
+    (27) D -> . expression1
+    (28) expression1 -> . expression1 MAS T
+    (29) expression1 -> . expression1 MENOS T
+    (30) expression1 -> . T
+    (31) T -> . T POR F
+    (32) T -> . T DIVIDE F
+    (33) T -> . F
+    (34) F -> . H POTENCIA F
+    (35) F -> . H
+    (36) H -> . ParI expression ParD
+    (37) H -> . identifier
+    (38) H -> . ENTERO
+    (39) identifier -> . ID
 
-    POR             reduce using rule 11 (T -> T POR F .)
-    DIVIDE          reduce using rule 11 (T -> T POR F .)
-    PyC             reduce using rule 11 (T -> T POR F .)
-    MAS             reduce using rule 11 (T -> T POR F .)
-    MENOS           reduce using rule 11 (T -> T POR F .)
-    ParD            reduce using rule 11 (T -> T POR F .)
-    POTENCIA        shift and go to state 31
+    NOT             shift and go to state 29
+    true            shift and go to state 31
+    false           shift and go to state 32
+    ParI            shift and go to state 38
+    ENTERO          shift and go to state 39
+    ID              shift and go to state 11
 
+    expression                     shift and go to state 60
+    A                              shift and go to state 27
+    B                              shift and go to state 28
+    C                              shift and go to state 30
+    D                              shift and go to state 33
+    expression1                    shift and go to state 34
+    T                              shift and go to state 35
+    F                              shift and go to state 36
+    H                              shift and go to state 37
+    identifier                     shift and go to state 25
 
 state 39
 
-    (12) T -> T DIVIDE F .
-    (14) F -> F . POTENCIA H
+    (38) H -> ENTERO .
 
-    POR             reduce using rule 12 (T -> T DIVIDE F .)
-    DIVIDE          reduce using rule 12 (T -> T DIVIDE F .)
-    PyC             reduce using rule 12 (T -> T DIVIDE F .)
-    MAS             reduce using rule 12 (T -> T DIVIDE F .)
-    MENOS           reduce using rule 12 (T -> T DIVIDE F .)
-    ParD            reduce using rule 12 (T -> T DIVIDE F .)
-    POTENCIA        shift and go to state 31
+    POTENCIA        reduce using rule 38 (H -> ENTERO .)
+    POR             reduce using rule 38 (H -> ENTERO .)
+    DIVIDE          reduce using rule 38 (H -> ENTERO .)
+    MAS             reduce using rule 38 (H -> ENTERO .)
+    MENOS           reduce using rule 38 (H -> ENTERO .)
+    MENOR           reduce using rule 38 (H -> ENTERO .)
+    MAYOR           reduce using rule 38 (H -> ENTERO .)
+    MENORIG         reduce using rule 38 (H -> ENTERO .)
+    MAYORIG         reduce using rule 38 (H -> ENTERO .)
+    IGUAL           reduce using rule 38 (H -> ENTERO .)
+    DIFERENTE       reduce using rule 38 (H -> ENTERO .)
+    AND             reduce using rule 38 (H -> ENTERO .)
+    PyC             reduce using rule 38 (H -> ENTERO .)
+    OR              reduce using rule 38 (H -> ENTERO .)
+    ParD            reduce using rule 38 (H -> ENTERO .)
 
 
 state 40
 
-    (14) F -> F POTENCIA H .
+    (40) ifCond -> if ParI expression . ParD LlaveI code LlaveD ifElse
+    (12) expression -> expression . OR A
 
-    POTENCIA        reduce using rule 14 (F -> F POTENCIA H .)
-    POR             reduce using rule 14 (F -> F POTENCIA H .)
-    DIVIDE          reduce using rule 14 (F -> F POTENCIA H .)
-    PyC             reduce using rule 14 (F -> F POTENCIA H .)
-    MAS             reduce using rule 14 (F -> F POTENCIA H .)
-    MENOS           reduce using rule 14 (F -> F POTENCIA H .)
-    ParD            reduce using rule 14 (F -> F POTENCIA H .)
+    ParD            shift and go to state 61
+    OR              shift and go to state 46
 
 
 state 41
 
-    (16) H -> ParI E ParD .
+    (7) declaration -> int ID asign PyC . code
+    (3) code -> . declaration
+    (4) code -> . definition
+    (5) code -> . ifCond
+    (6) code -> . empty
+    (7) declaration -> . int ID asign PyC code
+    (8) declaration -> . bool ID asign PyC code
+    (9) definition -> . identifier ASIGNA expression PyC code
+    (40) ifCond -> . if ParI expression ParD LlaveI code LlaveD ifElse
+    (1) empty -> .
+    (39) identifier -> . ID
 
-    POTENCIA        reduce using rule 16 (H -> ParI E ParD .)
-    POR             reduce using rule 16 (H -> ParI E ParD .)
-    DIVIDE          reduce using rule 16 (H -> ParI E ParD .)
-    PyC             reduce using rule 16 (H -> ParI E ParD .)
-    MAS             reduce using rule 16 (H -> ParI E ParD .)
-    MENOS           reduce using rule 16 (H -> ParI E ParD .)
-    ParD            reduce using rule 16 (H -> ParI E ParD .)
+    int             shift and go to state 5
+    bool            shift and go to state 12
+    if              shift and go to state 14
+    return          reduce using rule 1 (empty -> .)
+    LlaveD          reduce using rule 1 (empty -> .)
+    ID              shift and go to state 11
 
+    code                           shift and go to state 62
+    declaration                    shift and go to state 7
+    definition                     shift and go to state 8
+    ifCond                         shift and go to state 9
+    empty                          shift and go to state 10
+    identifier                     shift and go to state 13
 
 state 42
 
-    (6) D -> int ID ASIGNA E PyC C .
+    (11) asign -> ASIGNA expression .
+    (12) expression -> expression . OR A
 
-    return          reduce using rule 6 (D -> int ID ASIGNA E PyC C .)
+    PyC             reduce using rule 11 (asign -> ASIGNA expression .)
+    OR              shift and go to state 46
+
+
+state 43
+
+    (2) P -> int main LlaveI code return ENTERO PyC . LlaveD
+
+    LlaveD          shift and go to state 63
+
+
+state 44
+
+    (8) declaration -> bool ID asign PyC . code
+    (3) code -> . declaration
+    (4) code -> . definition
+    (5) code -> . ifCond
+    (6) code -> . empty
+    (7) declaration -> . int ID asign PyC code
+    (8) declaration -> . bool ID asign PyC code
+    (9) definition -> . identifier ASIGNA expression PyC code
+    (40) ifCond -> . if ParI expression ParD LlaveI code LlaveD ifElse
+    (1) empty -> .
+    (39) identifier -> . ID
+
+    int             shift and go to state 5
+    bool            shift and go to state 12
+    if              shift and go to state 14
+    return          reduce using rule 1 (empty -> .)
+    LlaveD          reduce using rule 1 (empty -> .)
+    ID              shift and go to state 11
+
+    code                           shift and go to state 64
+    declaration                    shift and go to state 7
+    definition                     shift and go to state 8
+    ifCond                         shift and go to state 9
+    empty                          shift and go to state 10
+    identifier                     shift and go to state 13
+
+state 45
+
+    (9) definition -> identifier ASIGNA expression PyC . code
+    (3) code -> . declaration
+    (4) code -> . definition
+    (5) code -> . ifCond
+    (6) code -> . empty
+    (7) declaration -> . int ID asign PyC code
+    (8) declaration -> . bool ID asign PyC code
+    (9) definition -> . identifier ASIGNA expression PyC code
+    (40) ifCond -> . if ParI expression ParD LlaveI code LlaveD ifElse
+    (1) empty -> .
+    (39) identifier -> . ID
+
+    int             shift and go to state 5
+    bool            shift and go to state 12
+    if              shift and go to state 14
+    return          reduce using rule 1 (empty -> .)
+    LlaveD          reduce using rule 1 (empty -> .)
+    ID              shift and go to state 11
+
+    identifier                     shift and go to state 13
+    code                           shift and go to state 65
+    declaration                    shift and go to state 7
+    definition                     shift and go to state 8
+    ifCond                         shift and go to state 9
+    empty                          shift and go to state 10
+
+state 46
+
+    (12) expression -> expression OR . A
+    (14) A -> . A AND B
+    (15) A -> . B
+    (16) B -> . NOT B
+    (17) B -> . C
+    (18) B -> . true
+    (19) B -> . false
+    (20) C -> . C IGUAL D
+    (21) C -> . C DIFERENTE D
+    (22) C -> . D
+    (23) D -> . D MENOR expression1
+    (24) D -> . D MAYOR expression1
+    (25) D -> . D MENORIG expression1
+    (26) D -> . D MAYORIG expression1
+    (27) D -> . expression1
+    (28) expression1 -> . expression1 MAS T
+    (29) expression1 -> . expression1 MENOS T
+    (30) expression1 -> . T
+    (31) T -> . T POR F
+    (32) T -> . T DIVIDE F
+    (33) T -> . F
+    (34) F -> . H POTENCIA F
+    (35) F -> . H
+    (36) H -> . ParI expression ParD
+    (37) H -> . identifier
+    (38) H -> . ENTERO
+    (39) identifier -> . ID
+
+    NOT             shift and go to state 29
+    true            shift and go to state 31
+    false           shift and go to state 32
+    ParI            shift and go to state 38
+    ENTERO          shift and go to state 39
+    ID              shift and go to state 11
+
+    A                              shift and go to state 66
+    B                              shift and go to state 28
+    C                              shift and go to state 30
+    D                              shift and go to state 33
+    expression1                    shift and go to state 34
+    T                              shift and go to state 35
+    F                              shift and go to state 36
+    H                              shift and go to state 37
+    identifier                     shift and go to state 25
+
+state 47
+
+    (14) A -> A AND . B
+    (16) B -> . NOT B
+    (17) B -> . C
+    (18) B -> . true
+    (19) B -> . false
+    (20) C -> . C IGUAL D
+    (21) C -> . C DIFERENTE D
+    (22) C -> . D
+    (23) D -> . D MENOR expression1
+    (24) D -> . D MAYOR expression1
+    (25) D -> . D MENORIG expression1
+    (26) D -> . D MAYORIG expression1
+    (27) D -> . expression1
+    (28) expression1 -> . expression1 MAS T
+    (29) expression1 -> . expression1 MENOS T
+    (30) expression1 -> . T
+    (31) T -> . T POR F
+    (32) T -> . T DIVIDE F
+    (33) T -> . F
+    (34) F -> . H POTENCIA F
+    (35) F -> . H
+    (36) H -> . ParI expression ParD
+    (37) H -> . identifier
+    (38) H -> . ENTERO
+    (39) identifier -> . ID
+
+    NOT             shift and go to state 29
+    true            shift and go to state 31
+    false           shift and go to state 32
+    ParI            shift and go to state 38
+    ENTERO          shift and go to state 39
+    ID              shift and go to state 11
+
+    B                              shift and go to state 67
+    C                              shift and go to state 30
+    D                              shift and go to state 33
+    expression1                    shift and go to state 34
+    T                              shift and go to state 35
+    F                              shift and go to state 36
+    H                              shift and go to state 37
+    identifier                     shift and go to state 25
+
+state 48
+
+    (16) B -> NOT B .
+
+    AND             reduce using rule 16 (B -> NOT B .)
+    PyC             reduce using rule 16 (B -> NOT B .)
+    OR              reduce using rule 16 (B -> NOT B .)
+    ParD            reduce using rule 16 (B -> NOT B .)
+
+
+state 49
+
+    (20) C -> C IGUAL . D
+    (23) D -> . D MENOR expression1
+    (24) D -> . D MAYOR expression1
+    (25) D -> . D MENORIG expression1
+    (26) D -> . D MAYORIG expression1
+    (27) D -> . expression1
+    (28) expression1 -> . expression1 MAS T
+    (29) expression1 -> . expression1 MENOS T
+    (30) expression1 -> . T
+    (31) T -> . T POR F
+    (32) T -> . T DIVIDE F
+    (33) T -> . F
+    (34) F -> . H POTENCIA F
+    (35) F -> . H
+    (36) H -> . ParI expression ParD
+    (37) H -> . identifier
+    (38) H -> . ENTERO
+    (39) identifier -> . ID
+
+    ParI            shift and go to state 38
+    ENTERO          shift and go to state 39
+    ID              shift and go to state 11
+
+    D                              shift and go to state 68
+    expression1                    shift and go to state 34
+    T                              shift and go to state 35
+    F                              shift and go to state 36
+    H                              shift and go to state 37
+    identifier                     shift and go to state 25
+
+state 50
+
+    (21) C -> C DIFERENTE . D
+    (23) D -> . D MENOR expression1
+    (24) D -> . D MAYOR expression1
+    (25) D -> . D MENORIG expression1
+    (26) D -> . D MAYORIG expression1
+    (27) D -> . expression1
+    (28) expression1 -> . expression1 MAS T
+    (29) expression1 -> . expression1 MENOS T
+    (30) expression1 -> . T
+    (31) T -> . T POR F
+    (32) T -> . T DIVIDE F
+    (33) T -> . F
+    (34) F -> . H POTENCIA F
+    (35) F -> . H
+    (36) H -> . ParI expression ParD
+    (37) H -> . identifier
+    (38) H -> . ENTERO
+    (39) identifier -> . ID
+
+    ParI            shift and go to state 38
+    ENTERO          shift and go to state 39
+    ID              shift and go to state 11
+
+    D                              shift and go to state 69
+    expression1                    shift and go to state 34
+    T                              shift and go to state 35
+    F                              shift and go to state 36
+    H                              shift and go to state 37
+    identifier                     shift and go to state 25
+
+state 51
+
+    (23) D -> D MENOR . expression1
+    (28) expression1 -> . expression1 MAS T
+    (29) expression1 -> . expression1 MENOS T
+    (30) expression1 -> . T
+    (31) T -> . T POR F
+    (32) T -> . T DIVIDE F
+    (33) T -> . F
+    (34) F -> . H POTENCIA F
+    (35) F -> . H
+    (36) H -> . ParI expression ParD
+    (37) H -> . identifier
+    (38) H -> . ENTERO
+    (39) identifier -> . ID
+
+    ParI            shift and go to state 38
+    ENTERO          shift and go to state 39
+    ID              shift and go to state 11
+
+    expression1                    shift and go to state 70
+    T                              shift and go to state 35
+    F                              shift and go to state 36
+    H                              shift and go to state 37
+    identifier                     shift and go to state 25
+
+state 52
+
+    (24) D -> D MAYOR . expression1
+    (28) expression1 -> . expression1 MAS T
+    (29) expression1 -> . expression1 MENOS T
+    (30) expression1 -> . T
+    (31) T -> . T POR F
+    (32) T -> . T DIVIDE F
+    (33) T -> . F
+    (34) F -> . H POTENCIA F
+    (35) F -> . H
+    (36) H -> . ParI expression ParD
+    (37) H -> . identifier
+    (38) H -> . ENTERO
+    (39) identifier -> . ID
+
+    ParI            shift and go to state 38
+    ENTERO          shift and go to state 39
+    ID              shift and go to state 11
+
+    expression1                    shift and go to state 71
+    T                              shift and go to state 35
+    F                              shift and go to state 36
+    H                              shift and go to state 37
+    identifier                     shift and go to state 25
+
+state 53
+
+    (25) D -> D MENORIG . expression1
+    (28) expression1 -> . expression1 MAS T
+    (29) expression1 -> . expression1 MENOS T
+    (30) expression1 -> . T
+    (31) T -> . T POR F
+    (32) T -> . T DIVIDE F
+    (33) T -> . F
+    (34) F -> . H POTENCIA F
+    (35) F -> . H
+    (36) H -> . ParI expression ParD
+    (37) H -> . identifier
+    (38) H -> . ENTERO
+    (39) identifier -> . ID
+
+    ParI            shift and go to state 38
+    ENTERO          shift and go to state 39
+    ID              shift and go to state 11
+
+    expression1                    shift and go to state 72
+    T                              shift and go to state 35
+    F                              shift and go to state 36
+    H                              shift and go to state 37
+    identifier                     shift and go to state 25
+
+state 54
+
+    (26) D -> D MAYORIG . expression1
+    (28) expression1 -> . expression1 MAS T
+    (29) expression1 -> . expression1 MENOS T
+    (30) expression1 -> . T
+    (31) T -> . T POR F
+    (32) T -> . T DIVIDE F
+    (33) T -> . F
+    (34) F -> . H POTENCIA F
+    (35) F -> . H
+    (36) H -> . ParI expression ParD
+    (37) H -> . identifier
+    (38) H -> . ENTERO
+    (39) identifier -> . ID
+
+    ParI            shift and go to state 38
+    ENTERO          shift and go to state 39
+    ID              shift and go to state 11
+
+    expression1                    shift and go to state 73
+    T                              shift and go to state 35
+    F                              shift and go to state 36
+    H                              shift and go to state 37
+    identifier                     shift and go to state 25
+
+state 55
+
+    (28) expression1 -> expression1 MAS . T
+    (31) T -> . T POR F
+    (32) T -> . T DIVIDE F
+    (33) T -> . F
+    (34) F -> . H POTENCIA F
+    (35) F -> . H
+    (36) H -> . ParI expression ParD
+    (37) H -> . identifier
+    (38) H -> . ENTERO
+    (39) identifier -> . ID
+
+    ParI            shift and go to state 38
+    ENTERO          shift and go to state 39
+    ID              shift and go to state 11
+
+    T                              shift and go to state 74
+    F                              shift and go to state 36
+    H                              shift and go to state 37
+    identifier                     shift and go to state 25
+
+state 56
+
+    (29) expression1 -> expression1 MENOS . T
+    (31) T -> . T POR F
+    (32) T -> . T DIVIDE F
+    (33) T -> . F
+    (34) F -> . H POTENCIA F
+    (35) F -> . H
+    (36) H -> . ParI expression ParD
+    (37) H -> . identifier
+    (38) H -> . ENTERO
+    (39) identifier -> . ID
+
+    ParI            shift and go to state 38
+    ENTERO          shift and go to state 39
+    ID              shift and go to state 11
+
+    T                              shift and go to state 75
+    F                              shift and go to state 36
+    H                              shift and go to state 37
+    identifier                     shift and go to state 25
+
+state 57
+
+    (31) T -> T POR . F
+    (34) F -> . H POTENCIA F
+    (35) F -> . H
+    (36) H -> . ParI expression ParD
+    (37) H -> . identifier
+    (38) H -> . ENTERO
+    (39) identifier -> . ID
+
+    ParI            shift and go to state 38
+    ENTERO          shift and go to state 39
+    ID              shift and go to state 11
+
+    F                              shift and go to state 76
+    H                              shift and go to state 37
+    identifier                     shift and go to state 25
+
+state 58
+
+    (32) T -> T DIVIDE . F
+    (34) F -> . H POTENCIA F
+    (35) F -> . H
+    (36) H -> . ParI expression ParD
+    (37) H -> . identifier
+    (38) H -> . ENTERO
+    (39) identifier -> . ID
+
+    ParI            shift and go to state 38
+    ENTERO          shift and go to state 39
+    ID              shift and go to state 11
+
+    F                              shift and go to state 77
+    H                              shift and go to state 37
+    identifier                     shift and go to state 25
+
+state 59
+
+    (34) F -> H POTENCIA . F
+    (34) F -> . H POTENCIA F
+    (35) F -> . H
+    (36) H -> . ParI expression ParD
+    (37) H -> . identifier
+    (38) H -> . ENTERO
+    (39) identifier -> . ID
+
+    ParI            shift and go to state 38
+    ENTERO          shift and go to state 39
+    ID              shift and go to state 11
+
+    H                              shift and go to state 37
+    F                              shift and go to state 78
+    identifier                     shift and go to state 25
+
+state 60
+
+    (36) H -> ParI expression . ParD
+    (12) expression -> expression . OR A
+
+    ParD            shift and go to state 79
+    OR              shift and go to state 46
+
+
+state 61
+
+    (40) ifCond -> if ParI expression ParD . LlaveI code LlaveD ifElse
+
+    LlaveI          shift and go to state 80
+
+
+state 62
+
+    (7) declaration -> int ID asign PyC code .
+
+    return          reduce using rule 7 (declaration -> int ID asign PyC code .)
+    LlaveD          reduce using rule 7 (declaration -> int ID asign PyC code .)
+
+
+state 63
+
+    (2) P -> int main LlaveI code return ENTERO PyC LlaveD .
+
+    $end            reduce using rule 2 (P -> int main LlaveI code return ENTERO PyC LlaveD .)
+
+
+state 64
+
+    (8) declaration -> bool ID asign PyC code .
+
+    return          reduce using rule 8 (declaration -> bool ID asign PyC code .)
+    LlaveD          reduce using rule 8 (declaration -> bool ID asign PyC code .)
+
+
+state 65
+
+    (9) definition -> identifier ASIGNA expression PyC code .
+
+    return          reduce using rule 9 (definition -> identifier ASIGNA expression PyC code .)
+    LlaveD          reduce using rule 9 (definition -> identifier ASIGNA expression PyC code .)
+
+
+state 66
+
+    (12) expression -> expression OR A .
+    (14) A -> A . AND B
+
+    PyC             reduce using rule 12 (expression -> expression OR A .)
+    OR              reduce using rule 12 (expression -> expression OR A .)
+    ParD            reduce using rule 12 (expression -> expression OR A .)
+    AND             shift and go to state 47
+
+
+state 67
+
+    (14) A -> A AND B .
+
+    AND             reduce using rule 14 (A -> A AND B .)
+    PyC             reduce using rule 14 (A -> A AND B .)
+    OR              reduce using rule 14 (A -> A AND B .)
+    ParD            reduce using rule 14 (A -> A AND B .)
+
+
+state 68
+
+    (20) C -> C IGUAL D .
+    (23) D -> D . MENOR expression1
+    (24) D -> D . MAYOR expression1
+    (25) D -> D . MENORIG expression1
+    (26) D -> D . MAYORIG expression1
+
+    IGUAL           reduce using rule 20 (C -> C IGUAL D .)
+    DIFERENTE       reduce using rule 20 (C -> C IGUAL D .)
+    AND             reduce using rule 20 (C -> C IGUAL D .)
+    PyC             reduce using rule 20 (C -> C IGUAL D .)
+    OR              reduce using rule 20 (C -> C IGUAL D .)
+    ParD            reduce using rule 20 (C -> C IGUAL D .)
+    MENOR           shift and go to state 51
+    MAYOR           shift and go to state 52
+    MENORIG         shift and go to state 53
+    MAYORIG         shift and go to state 54
+
+
+state 69
+
+    (21) C -> C DIFERENTE D .
+    (23) D -> D . MENOR expression1
+    (24) D -> D . MAYOR expression1
+    (25) D -> D . MENORIG expression1
+    (26) D -> D . MAYORIG expression1
+
+    IGUAL           reduce using rule 21 (C -> C DIFERENTE D .)
+    DIFERENTE       reduce using rule 21 (C -> C DIFERENTE D .)
+    AND             reduce using rule 21 (C -> C DIFERENTE D .)
+    PyC             reduce using rule 21 (C -> C DIFERENTE D .)
+    OR              reduce using rule 21 (C -> C DIFERENTE D .)
+    ParD            reduce using rule 21 (C -> C DIFERENTE D .)
+    MENOR           shift and go to state 51
+    MAYOR           shift and go to state 52
+    MENORIG         shift and go to state 53
+    MAYORIG         shift and go to state 54
+
+
+state 70
+
+    (23) D -> D MENOR expression1 .
+    (28) expression1 -> expression1 . MAS T
+    (29) expression1 -> expression1 . MENOS T
+
+    MENOR           reduce using rule 23 (D -> D MENOR expression1 .)
+    MAYOR           reduce using rule 23 (D -> D MENOR expression1 .)
+    MENORIG         reduce using rule 23 (D -> D MENOR expression1 .)
+    MAYORIG         reduce using rule 23 (D -> D MENOR expression1 .)
+    IGUAL           reduce using rule 23 (D -> D MENOR expression1 .)
+    DIFERENTE       reduce using rule 23 (D -> D MENOR expression1 .)
+    AND             reduce using rule 23 (D -> D MENOR expression1 .)
+    PyC             reduce using rule 23 (D -> D MENOR expression1 .)
+    OR              reduce using rule 23 (D -> D MENOR expression1 .)
+    ParD            reduce using rule 23 (D -> D MENOR expression1 .)
+    MAS             shift and go to state 55
+    MENOS           shift and go to state 56
+
+
+state 71
+
+    (24) D -> D MAYOR expression1 .
+    (28) expression1 -> expression1 . MAS T
+    (29) expression1 -> expression1 . MENOS T
+
+    MENOR           reduce using rule 24 (D -> D MAYOR expression1 .)
+    MAYOR           reduce using rule 24 (D -> D MAYOR expression1 .)
+    MENORIG         reduce using rule 24 (D -> D MAYOR expression1 .)
+    MAYORIG         reduce using rule 24 (D -> D MAYOR expression1 .)
+    IGUAL           reduce using rule 24 (D -> D MAYOR expression1 .)
+    DIFERENTE       reduce using rule 24 (D -> D MAYOR expression1 .)
+    AND             reduce using rule 24 (D -> D MAYOR expression1 .)
+    PyC             reduce using rule 24 (D -> D MAYOR expression1 .)
+    OR              reduce using rule 24 (D -> D MAYOR expression1 .)
+    ParD            reduce using rule 24 (D -> D MAYOR expression1 .)
+    MAS             shift and go to state 55
+    MENOS           shift and go to state 56
+
+
+state 72
+
+    (25) D -> D MENORIG expression1 .
+    (28) expression1 -> expression1 . MAS T
+    (29) expression1 -> expression1 . MENOS T
+
+    MENOR           reduce using rule 25 (D -> D MENORIG expression1 .)
+    MAYOR           reduce using rule 25 (D -> D MENORIG expression1 .)
+    MENORIG         reduce using rule 25 (D -> D MENORIG expression1 .)
+    MAYORIG         reduce using rule 25 (D -> D MENORIG expression1 .)
+    IGUAL           reduce using rule 25 (D -> D MENORIG expression1 .)
+    DIFERENTE       reduce using rule 25 (D -> D MENORIG expression1 .)
+    AND             reduce using rule 25 (D -> D MENORIG expression1 .)
+    PyC             reduce using rule 25 (D -> D MENORIG expression1 .)
+    OR              reduce using rule 25 (D -> D MENORIG expression1 .)
+    ParD            reduce using rule 25 (D -> D MENORIG expression1 .)
+    MAS             shift and go to state 55
+    MENOS           shift and go to state 56
+
+
+state 73
+
+    (26) D -> D MAYORIG expression1 .
+    (28) expression1 -> expression1 . MAS T
+    (29) expression1 -> expression1 . MENOS T
+
+    MENOR           reduce using rule 26 (D -> D MAYORIG expression1 .)
+    MAYOR           reduce using rule 26 (D -> D MAYORIG expression1 .)
+    MENORIG         reduce using rule 26 (D -> D MAYORIG expression1 .)
+    MAYORIG         reduce using rule 26 (D -> D MAYORIG expression1 .)
+    IGUAL           reduce using rule 26 (D -> D MAYORIG expression1 .)
+    DIFERENTE       reduce using rule 26 (D -> D MAYORIG expression1 .)
+    AND             reduce using rule 26 (D -> D MAYORIG expression1 .)
+    PyC             reduce using rule 26 (D -> D MAYORIG expression1 .)
+    OR              reduce using rule 26 (D -> D MAYORIG expression1 .)
+    ParD            reduce using rule 26 (D -> D MAYORIG expression1 .)
+    MAS             shift and go to state 55
+    MENOS           shift and go to state 56
+
+
+state 74
+
+    (28) expression1 -> expression1 MAS T .
+    (31) T -> T . POR F
+    (32) T -> T . DIVIDE F
+
+    MAS             reduce using rule 28 (expression1 -> expression1 MAS T .)
+    MENOS           reduce using rule 28 (expression1 -> expression1 MAS T .)
+    MENOR           reduce using rule 28 (expression1 -> expression1 MAS T .)
+    MAYOR           reduce using rule 28 (expression1 -> expression1 MAS T .)
+    MENORIG         reduce using rule 28 (expression1 -> expression1 MAS T .)
+    MAYORIG         reduce using rule 28 (expression1 -> expression1 MAS T .)
+    IGUAL           reduce using rule 28 (expression1 -> expression1 MAS T .)
+    DIFERENTE       reduce using rule 28 (expression1 -> expression1 MAS T .)
+    AND             reduce using rule 28 (expression1 -> expression1 MAS T .)
+    PyC             reduce using rule 28 (expression1 -> expression1 MAS T .)
+    OR              reduce using rule 28 (expression1 -> expression1 MAS T .)
+    ParD            reduce using rule 28 (expression1 -> expression1 MAS T .)
+    POR             shift and go to state 57
+    DIVIDE          shift and go to state 58
+
+
+state 75
+
+    (29) expression1 -> expression1 MENOS T .
+    (31) T -> T . POR F
+    (32) T -> T . DIVIDE F
+
+    MAS             reduce using rule 29 (expression1 -> expression1 MENOS T .)
+    MENOS           reduce using rule 29 (expression1 -> expression1 MENOS T .)
+    MENOR           reduce using rule 29 (expression1 -> expression1 MENOS T .)
+    MAYOR           reduce using rule 29 (expression1 -> expression1 MENOS T .)
+    MENORIG         reduce using rule 29 (expression1 -> expression1 MENOS T .)
+    MAYORIG         reduce using rule 29 (expression1 -> expression1 MENOS T .)
+    IGUAL           reduce using rule 29 (expression1 -> expression1 MENOS T .)
+    DIFERENTE       reduce using rule 29 (expression1 -> expression1 MENOS T .)
+    AND             reduce using rule 29 (expression1 -> expression1 MENOS T .)
+    PyC             reduce using rule 29 (expression1 -> expression1 MENOS T .)
+    OR              reduce using rule 29 (expression1 -> expression1 MENOS T .)
+    ParD            reduce using rule 29 (expression1 -> expression1 MENOS T .)
+    POR             shift and go to state 57
+    DIVIDE          shift and go to state 58
+
+
+state 76
+
+    (31) T -> T POR F .
+
+    POR             reduce using rule 31 (T -> T POR F .)
+    DIVIDE          reduce using rule 31 (T -> T POR F .)
+    MAS             reduce using rule 31 (T -> T POR F .)
+    MENOS           reduce using rule 31 (T -> T POR F .)
+    MENOR           reduce using rule 31 (T -> T POR F .)
+    MAYOR           reduce using rule 31 (T -> T POR F .)
+    MENORIG         reduce using rule 31 (T -> T POR F .)
+    MAYORIG         reduce using rule 31 (T -> T POR F .)
+    IGUAL           reduce using rule 31 (T -> T POR F .)
+    DIFERENTE       reduce using rule 31 (T -> T POR F .)
+    AND             reduce using rule 31 (T -> T POR F .)
+    PyC             reduce using rule 31 (T -> T POR F .)
+    OR              reduce using rule 31 (T -> T POR F .)
+    ParD            reduce using rule 31 (T -> T POR F .)
+
+
+state 77
+
+    (32) T -> T DIVIDE F .
+
+    POR             reduce using rule 32 (T -> T DIVIDE F .)
+    DIVIDE          reduce using rule 32 (T -> T DIVIDE F .)
+    MAS             reduce using rule 32 (T -> T DIVIDE F .)
+    MENOS           reduce using rule 32 (T -> T DIVIDE F .)
+    MENOR           reduce using rule 32 (T -> T DIVIDE F .)
+    MAYOR           reduce using rule 32 (T -> T DIVIDE F .)
+    MENORIG         reduce using rule 32 (T -> T DIVIDE F .)
+    MAYORIG         reduce using rule 32 (T -> T DIVIDE F .)
+    IGUAL           reduce using rule 32 (T -> T DIVIDE F .)
+    DIFERENTE       reduce using rule 32 (T -> T DIVIDE F .)
+    AND             reduce using rule 32 (T -> T DIVIDE F .)
+    PyC             reduce using rule 32 (T -> T DIVIDE F .)
+    OR              reduce using rule 32 (T -> T DIVIDE F .)
+    ParD            reduce using rule 32 (T -> T DIVIDE F .)
+
+
+state 78
+
+    (34) F -> H POTENCIA F .
+
+    POR             reduce using rule 34 (F -> H POTENCIA F .)
+    DIVIDE          reduce using rule 34 (F -> H POTENCIA F .)
+    MAS             reduce using rule 34 (F -> H POTENCIA F .)
+    MENOS           reduce using rule 34 (F -> H POTENCIA F .)
+    MENOR           reduce using rule 34 (F -> H POTENCIA F .)
+    MAYOR           reduce using rule 34 (F -> H POTENCIA F .)
+    MENORIG         reduce using rule 34 (F -> H POTENCIA F .)
+    MAYORIG         reduce using rule 34 (F -> H POTENCIA F .)
+    IGUAL           reduce using rule 34 (F -> H POTENCIA F .)
+    DIFERENTE       reduce using rule 34 (F -> H POTENCIA F .)
+    AND             reduce using rule 34 (F -> H POTENCIA F .)
+    PyC             reduce using rule 34 (F -> H POTENCIA F .)
+    OR              reduce using rule 34 (F -> H POTENCIA F .)
+    ParD            reduce using rule 34 (F -> H POTENCIA F .)
+
+
+state 79
+
+    (36) H -> ParI expression ParD .
+
+    POTENCIA        reduce using rule 36 (H -> ParI expression ParD .)
+    POR             reduce using rule 36 (H -> ParI expression ParD .)
+    DIVIDE          reduce using rule 36 (H -> ParI expression ParD .)
+    MAS             reduce using rule 36 (H -> ParI expression ParD .)
+    MENOS           reduce using rule 36 (H -> ParI expression ParD .)
+    MENOR           reduce using rule 36 (H -> ParI expression ParD .)
+    MAYOR           reduce using rule 36 (H -> ParI expression ParD .)
+    MENORIG         reduce using rule 36 (H -> ParI expression ParD .)
+    MAYORIG         reduce using rule 36 (H -> ParI expression ParD .)
+    IGUAL           reduce using rule 36 (H -> ParI expression ParD .)
+    DIFERENTE       reduce using rule 36 (H -> ParI expression ParD .)
+    AND             reduce using rule 36 (H -> ParI expression ParD .)
+    PyC             reduce using rule 36 (H -> ParI expression ParD .)
+    OR              reduce using rule 36 (H -> ParI expression ParD .)
+    ParD            reduce using rule 36 (H -> ParI expression ParD .)
+
+
+state 80
+
+    (40) ifCond -> if ParI expression ParD LlaveI . code LlaveD ifElse
+    (3) code -> . declaration
+    (4) code -> . definition
+    (5) code -> . ifCond
+    (6) code -> . empty
+    (7) declaration -> . int ID asign PyC code
+    (8) declaration -> . bool ID asign PyC code
+    (9) definition -> . identifier ASIGNA expression PyC code
+    (40) ifCond -> . if ParI expression ParD LlaveI code LlaveD ifElse
+    (1) empty -> .
+    (39) identifier -> . ID
+
+    int             shift and go to state 5
+    bool            shift and go to state 12
+    if              shift and go to state 14
+    LlaveD          reduce using rule 1 (empty -> .)
+    ID              shift and go to state 11
+
+    code                           shift and go to state 81
+    declaration                    shift and go to state 7
+    definition                     shift and go to state 8
+    ifCond                         shift and go to state 9
+    empty                          shift and go to state 10
+    identifier                     shift and go to state 13
+
+state 81
+
+    (40) ifCond -> if ParI expression ParD LlaveI code . LlaveD ifElse
+
+    LlaveD          shift and go to state 82
+
+
+state 82
+
+    (40) ifCond -> if ParI expression ParD LlaveI code LlaveD . ifElse
+    (41) ifElse -> . else LlaveI code LlaveD code
+    (42) ifElse -> . code
+    (3) code -> . declaration
+    (4) code -> . definition
+    (5) code -> . ifCond
+    (6) code -> . empty
+    (7) declaration -> . int ID asign PyC code
+    (8) declaration -> . bool ID asign PyC code
+    (9) definition -> . identifier ASIGNA expression PyC code
+    (40) ifCond -> . if ParI expression ParD LlaveI code LlaveD ifElse
+    (1) empty -> .
+    (39) identifier -> . ID
+
+    else            shift and go to state 85
+    int             shift and go to state 5
+    bool            shift and go to state 12
+    if              shift and go to state 14
+    return          reduce using rule 1 (empty -> .)
+    LlaveD          reduce using rule 1 (empty -> .)
+    ID              shift and go to state 11
+
+    code                           shift and go to state 83
+    ifElse                         shift and go to state 84
+    declaration                    shift and go to state 7
+    definition                     shift and go to state 8
+    ifCond                         shift and go to state 9
+    empty                          shift and go to state 10
+    identifier                     shift and go to state 13
+
+state 83
+
+    (42) ifElse -> code .
+
+    return          reduce using rule 42 (ifElse -> code .)
+    LlaveD          reduce using rule 42 (ifElse -> code .)
+
+
+state 84
+
+    (40) ifCond -> if ParI expression ParD LlaveI code LlaveD ifElse .
+
+    return          reduce using rule 40 (ifCond -> if ParI expression ParD LlaveI code LlaveD ifElse .)
+    LlaveD          reduce using rule 40 (ifCond -> if ParI expression ParD LlaveI code LlaveD ifElse .)
+
+
+state 85
+
+    (41) ifElse -> else . LlaveI code LlaveD code
+
+    LlaveI          shift and go to state 86
+
+
+state 86
+
+    (41) ifElse -> else LlaveI . code LlaveD code
+    (3) code -> . declaration
+    (4) code -> . definition
+    (5) code -> . ifCond
+    (6) code -> . empty
+    (7) declaration -> . int ID asign PyC code
+    (8) declaration -> . bool ID asign PyC code
+    (9) definition -> . identifier ASIGNA expression PyC code
+    (40) ifCond -> . if ParI expression ParD LlaveI code LlaveD ifElse
+    (1) empty -> .
+    (39) identifier -> . ID
+
+    int             shift and go to state 5
+    bool            shift and go to state 12
+    if              shift and go to state 14
+    LlaveD          reduce using rule 1 (empty -> .)
+    ID              shift and go to state 11
+
+    code                           shift and go to state 87
+    declaration                    shift and go to state 7
+    definition                     shift and go to state 8
+    ifCond                         shift and go to state 9
+    empty                          shift and go to state 10
+    identifier                     shift and go to state 13
+
+state 87
+
+    (41) ifElse -> else LlaveI code . LlaveD code
+
+    LlaveD          shift and go to state 88
+
+
+state 88
+
+    (41) ifElse -> else LlaveI code LlaveD . code
+    (3) code -> . declaration
+    (4) code -> . definition
+    (5) code -> . ifCond
+    (6) code -> . empty
+    (7) declaration -> . int ID asign PyC code
+    (8) declaration -> . bool ID asign PyC code
+    (9) definition -> . identifier ASIGNA expression PyC code
+    (40) ifCond -> . if ParI expression ParD LlaveI code LlaveD ifElse
+    (1) empty -> .
+    (39) identifier -> . ID
+
+    int             shift and go to state 5
+    bool            shift and go to state 12
+    if              shift and go to state 14
+    return          reduce using rule 1 (empty -> .)
+    LlaveD          reduce using rule 1 (empty -> .)
+    ID              shift and go to state 11
+
+    code                           shift and go to state 89
+    declaration                    shift and go to state 7
+    definition                     shift and go to state 8
+    ifCond                         shift and go to state 9
+    empty                          shift and go to state 10
+    identifier                     shift and go to state 13
+
+state 89
+
+    (41) ifElse -> else LlaveI code LlaveD code .
+
+    return          reduce using rule 41 (ifElse -> else LlaveI code LlaveD code .)
+    LlaveD          reduce using rule 41 (ifElse -> else LlaveI code LlaveD code .)
 

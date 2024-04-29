@@ -1,9 +1,9 @@
 @Esto es un comentario
 
 int main{
-	int perro_1 = 5*2+3;
-    int perro_2 = 6/2;
-    int perro_3 = 2**2;
-    int perro_1;
+    int a = (10**2)+30;
+    int b = 28/4;
+    int c;
+    c = 55;
 	return 0;
 }
