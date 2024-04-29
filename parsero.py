@@ -97,10 +97,14 @@ def p_testexp(t):
 
 #  Regla para los errores
 def p_error(t):
-    if(t):
-        print(f"Error sintactico en '{t.value}' .")
+    if pasada == 2:
+        if(t):
+            print(f"Error sintactico en '{t.value}' .")
+            parser.errok()
+        else:
+            print("Error sintatcico en el archivo de entrada.")
     else:
-        print("Error sintatcico en el archivo de entrada.")
+        pass
 
 #  Regla para la produccion vacia epsilon
 def p_empty(t):
