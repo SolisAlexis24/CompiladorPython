@@ -18,9 +18,12 @@ symbolTable = {}
 
 precedence = (
     ('nonassoc', 'MENOR', 'MAYOR', 'MENORIG', 'MAYORIG'),
-    ('left', 'MAS', 'MENOS', 'OR'),
-    ('left', 'POR', 'DIVIDE', 'AND'),
-    ('left', 'POTENCIA', 'NOT')
+    ('left', 'OR'),
+    ('left', 'AND'),
+    ('left', 'NOT'),
+    ('left', 'MAS', 'MENOS'),
+    ('left', 'POR', 'DIVIDE'),
+    ('left', 'POTENCIA')
 )
 
 start = 'code'
@@ -44,7 +47,8 @@ def p_asign(t):
 
 
 def p_definition(t):
-    'definition : ID ASIGNA expression PyC code'
+    'definition : identifier ASIGNA expression PyC code'
+
 
 def p_expression(t):
     '''expression : numexp
@@ -124,7 +128,6 @@ def main():
             parser.parse(data, lexer)
             pasada = pasada + 1
             parser.parse(data, lexer)
-            print(symbolTable)
     except FileNotFoundError:
         print("No se pudo encontrar el archivo referido")
         exit
