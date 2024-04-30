@@ -1,5 +1,7 @@
-int a = 10;
-int b = 5;
-bool x = true;
-bool y = false;
-bool z = x|y;
+@Esto es un comentario
+main{
+    int a = (10**2)+30;
+    int b = 28/4;
+    int c;
+    c = 55;
+}
