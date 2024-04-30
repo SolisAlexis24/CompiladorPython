@@ -7,7 +7,8 @@ reserved = {
     'true': 'true',
     'false' : 'false',
     'int' : 'int',
-    'bool':'bool'
+    'bool':'bool',
+    'main' : 'main'
 }
 #List of token names
 tokens = ['ENTERO','ID','MAS','MENOS','DIVIDE','POTENCIA','POR',

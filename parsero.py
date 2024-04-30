@@ -1,18 +1,6 @@
 import yacc as yacc
 from lexer import tokens, lexer
-import sys
 
-
-class Nodo:
-    def __init__(self,padre = None,hijos=None):
-         self.padre = padre
-         if hijos:
-              self.hijos = hijos
-         else:
-              self.hijos = [ ]
-
-arbol = []
-global pasada
 pasada = 1
 symbolTable = {}
 
@@ -23,10 +11,14 @@ precedence = (
     ('left', 'NOT'),
     ('left', 'MAS', 'MENOS'),
     ('left', 'POR', 'DIVIDE'),
-    ('left', 'POTENCIA')
+    ('right', 'POTENCIA')
 )
 
-start = 'code'
+start = 'program'
+
+
+def p_program(t):
+    '''program : main LlaveI code LlaveD'''
 
 # Regla para el codigo
 def p_code(t):
@@ -51,12 +43,53 @@ def p_definition(t):
 
 
 def p_expression(t):
-    '''expression : numexp
-                  | logicexp
-                  | identifier
-                  | testexp
-                  | ParI expression ParD
-                  | ENTERO'''
+    '''expression : expression OR A
+                  | A'''
+
+def p_A(t):
+    '''A : A AND B
+         | B'''
+
+def p_B(t):
+    '''B : NOT B
+         | C
+         | true
+         | false'''
+    
+def p_C(t):
+    '''C : C IGUAL D
+         | C DIFERENTE D
+         | D'''
+
+def p_D(t):
+    '''D : D MENOR expression1 
+         | D MAYOR expression1
+         | D MENORIG expression1
+         | D MAYORIG expression1
+         | expression1'''
+
+# Regla para las expresiones aritmeticas mas y menos (mismo nivel de precedencia)
+def p_expression1(t):
+    '''expression1 : expression1 MAS T
+                   | expression1 MENOS T
+                   | T'''
+
+#  Regla para las expresiones aritmeticas por y entre (mismo nivel de precedencia)
+def p_T(t):
+    '''T : T POR F
+         | T DIVIDE F
+         | F'''
+
+#  Regla para expresion aritmetica potencia
+def p_F(t):
+    '''F : H POTENCIA F
+         | H'''
+
+#  Regla para regresar arriba con parentesis
+def p_H(t):
+    '''H : ParI expression ParD
+         | identifier
+         | ENTERO'''
 
 def p_identifier(t):
     'identifier : ID'
@@ -68,36 +101,12 @@ def p_identifier(t):
     else:
         pass
 
-# Regla para suma y resta
-def p_numexp(t):
-    '''numexp : expression MAS expression 
-              | expression MENOS expression
-              | expression POR expression 
-              | expression DIVIDE expression
-              | expression POTENCIA expression'''
-
-def p_logicexp(t):
-    '''logicexp : expression OR expression
-                | expression AND expression
-                | NOT expression
-                | true
-                | false'''
-
 def p_ifCond(t):
     'ifCond : if ParI expression ParD LlaveI code LlaveD ifElse'
 
 def p_ifElse(t):
     '''ifElse : else LlaveI code LlaveD code
               | code'''
-
-
-def p_testexp(t):
-    '''testexp : expression IGUAL expression
-               | expression DIFERENTE expression
-               | expression MENOR expression 
-               | expression MAYOR expression
-               | expression MENORIG expression
-               | expression MAYORIG expression'''
 
 #  Regla para los errores
 def p_error(t):
