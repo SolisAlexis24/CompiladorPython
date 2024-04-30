@@ -3,6 +3,7 @@ from lexer import tokens, lexer
 
 pasada = 1
 symbolTable = {}
+errores = 0
 
 precedence = (
     ('nonassoc', 'MENOR', 'MAYOR', 'MENORIG', 'MAYORIG'),
@@ -93,11 +94,13 @@ def p_H(t):
 
 def p_identifier(t):
     'identifier : ID'
+    global errores
     if pasada == 2:
         try:
             symbolTable[t[1]]
         except LookupError:
-            print(f"Variable '{t[1]}' no definida antes.")
+            print(f"Variable '{t[1]}' not defined yet.")
+            errores = errores + 1
     else:
         pass
 
@@ -110,10 +113,12 @@ def p_ifElse(t):
 
 #  Regla para los errores
 def p_error(t):
+    global errores
     if pasada == 2:
         if(t):
             print(f"Error sintactico en '{t.value}' .")
             parser.errok()
+            errores = errores + 1
         else:
             print("Error sintatcico en el archivo de entrada.")
     else:
@@ -131,12 +136,17 @@ parser = yacc.yacc()
 def main():
     code = input("Nombre del archivo a parsear: ")
     global pasada
+    global errores
     try :
         with open(code, 'r') as file:
             data = file.read()
             parser.parse(data, lexer)
             pasada = pasada + 1
             parser.parse(data, lexer)
+            if errores == 0:
+                print("Parsing success!!!")
+            else:
+                print("Parsing errors, can't parse the program")
     except FileNotFoundError:
         print("No se pudo encontrar el archivo referido")
         exit
