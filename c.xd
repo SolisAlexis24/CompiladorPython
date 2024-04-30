@@ -1,11 +1,8 @@
 @Esto es un comentario
 
-int x=1;
-int w;
-bool y=true;
-if(x<10){
-	x=x+1;
-}
-else{
-	x=x-1;
+main{
+	int x = 10;
+	int y = 20;
+	int z;
+	z = x + y;
 }
