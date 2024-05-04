@@ -18,8 +18,8 @@ If you don't have the library **_prettytable_** you need to install the library 
 Then open a terminal and move to the folder in which the files are located
 
 #### For Windows
-Excute de code using the command **_python Lexer.py code.c_**
+Excute de code using the command **_python parsero.py c..xd_**
 #### For Linux
-Excute de code using the command **_python3 Lexer.py code.c_**
+Excute de code using the command **_python3 parsero.py c.xd_**
 
-**NOTE:** If you want to run a different string to test the compiler's operation, you need to edit the file _code.xd_ 
+**NOTE:** If you want to run a different string to test the compiler's operation, you need to edit the file _c.xd_ 
