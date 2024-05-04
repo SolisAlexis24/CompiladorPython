@@ -20,7 +20,7 @@ If you want to know more information about the PLY library you can access the fo
 Then open a terminal and move to the folder in which the files are located
 
 #### For Windows
-Excute de code using the command **_python parsero.py c..xd_**
+Excute de code using the command **_python parsero.py c.xd_**
 #### For Linux
 Excute de code using the command **_python3 parsero.py c.xd_**
 
