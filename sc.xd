@@ -1,5 +1,0 @@
-@Esto es un comentario
-main{
-    int a = 10;
-    bool x = y^w;
-}
