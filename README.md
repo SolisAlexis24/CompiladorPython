@@ -1,4 +1,4 @@
-# Proyect: Compiler
+# Proyect: Parser
 
 ## Team: 04
 
@@ -11,9 +11,11 @@
 ### Instructions to execute de code
 You need to have Python installed on your computer to be able to run the code.
 
-If you don't have the library **_prettytable_** you need to install the library with the following command:
+**NOTE:** A Python library called PLY was used to create the parser, but don't worry, all the files needed to make it work are already included in this repository.
 
-**_pip install -U prettytable_**
+If you want to know more information about the PLY library you can access the following link
+- PLY Files: (https://github.com/dabeaz/ply)
+- PLY Documentation: (https://www.dabeaz.com/ply/ply.html)
 
 Then open a terminal and move to the folder in which the files are located
 
